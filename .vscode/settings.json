@@ -1,0 +1,39 @@
+{
+    "dart.runPubGetOnPubspecChanges": "never",
+    "makefile.extensionOutputFolder": "./.vscode",
+    "files.exclude": {
+        "**/._*": true,
+        "**/*.metadata": true,
+        "**/*.packages": true,
+        "**/*.lock": true,
+        "**/*.dart_tool": true,
+        "**/*.idea": true,
+        ".vscode": false,
+        "**/*.iml": true,
+        "**/*.current": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        // files que no modificamos
+        "linux": true,
+        "windows": true,
+        "macos": true,
+        "web": true
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "env.properties": "*.properties, .current",
+        "app.dart": "main_*.dart",
+        // "*.dart": "$(capture)_*.dart",
+        "*.dart": "$(capture).mocks.dart, $(capture).g.dart, $(capture)_mixin.dart, $(capture)_helper.dart, $(capture).freezed.dart, $(capture).mapper.dart,", // All files que tengan generados o mixin
+        "pubspec.yaml": "*.yaml",
+        ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+    },
+    "cSpell.enabled": true,
+    "coverage-gutters.lcovname": "coverage/lcov.info",
+    "coverage-gutters.coverageFileNames": [
+        "lcov.info"
+    ],
+    "coverage-gutters.showLineCoverage": true,
+    "coverage-gutters.showBranchCoverage": true
+}

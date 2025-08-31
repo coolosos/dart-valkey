@@ -1,0 +1,42 @@
+import '../../codec/valkey_exception.dart';
+import '../command.dart';
+
+/// Represents the 'ZINCRBY key increment member' command.
+///
+/// **Redis Command:**
+/// ```
+/// ZINCRBY myzset 1.5 member1
+/// ```
+///
+/// **Redis Reply (Example):**
+/// ```
+/// $4
+/// 2.5
+/// ```
+///
+/// **Dart Result (from parse method):**
+/// `double` resolving to `2.5`
+final class ZIncrByCommand extends ValkeyCommand<double>
+    with KeyCommand<double> {
+  ZIncrByCommand(this.key, this.increment, this.member);
+  final String key;
+  final double increment;
+  final String member;
+
+  @override
+  List<Object> get commandParts =>
+      ['ZINCRBY', key, increment.toString(), member];
+
+  @override
+  double parse(dynamic data) {
+    if (data is String) return double.parse(data);
+    throw ValkeyException(
+      'Invalid response for ZINCRBY: expected a string, got ${data.runtimeType}',
+    );
+  }
+
+  @override
+  ValkeyCommand<double> applyPrefix(String prefix) {
+    return ZIncrByCommand('$prefix$key', increment, member);
+  }
+}

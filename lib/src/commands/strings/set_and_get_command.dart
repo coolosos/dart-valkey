@@ -1,0 +1,48 @@
+import '../../codec/valkey_exception.dart';
+import '../command.dart';
+
+/// Represents the 'SET key value GET' command.
+///
+/// This returns the old value stored at key, or null if the key did not exist.
+///
+/// Note: This command variant is only available on Redis >= 6.2.
+///
+/// **Redis Command:**
+/// ```
+/// SET mykey myvalue GET
+/// ```
+///
+/// **Redis Reply (Example):**
+/// ```
+/// $5
+/// oldval
+/// ```
+///
+/// **Dart Result (from parse method):**
+/// `String?` resolving to `'oldval'` or `null`
+///
+/// Parameters:
+/// - [key]: The key to set.
+/// - [value]: The value to set.
+final class SetAndGetCommand extends ValkeyCommand<String?>
+    with KeyCommand<String?> {
+  SetAndGetCommand(this.key, this.value);
+  final String key;
+  final String value;
+
+  @override
+  List<Object> get commandParts => ['SET', key, value, 'GET'];
+
+  @override
+  String? parse(dynamic data) {
+    if (data == null || data is String) return data as String?;
+    throw ValkeyException(
+      'Invalid response for SET...GET: expected a string or null, got ${data.runtimeType}',
+    );
+  }
+
+  @override
+  ValkeyCommand<String?> applyPrefix(String prefix) {
+    return SetAndGetCommand('$prefix$key', value);
+  }
+}

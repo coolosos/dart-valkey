@@ -1,0 +1,48 @@
+import '../../codec/valkey_exception.dart';
+import '../command.dart';
+
+/// Represents the 'HINCRBYFLOAT key field increment' command.
+/// Increments the float value of a field in a hash by the given amount.
+///
+/// **Redis Command:**
+/// ```
+/// HINCRBYFLOAT myhash field 1.5
+/// ```
+///
+/// **Redis Reply (Example):**
+/// ```
+/// $4
+/// 1.5
+/// ```
+///
+/// **Dart Result (from parse method):**
+/// `double` resolving to `1.5`
+///
+/// Parameters:
+/// - [key]: The key of the hash.
+/// - [field]: The field to increment.
+/// - [increment]: The amount to increment by.
+final class HIncrByFloatCommand extends ValkeyCommand<double>
+    with KeyCommand<double> {
+  HIncrByFloatCommand(this.key, this.field, this.increment);
+  final String key;
+  final String field;
+  final double increment;
+
+  @override
+  List<Object> get commandParts =>
+      ['HINCRBYFLOAT', key, field, increment.toString()];
+
+  @override
+  double parse(dynamic data) {
+    if (data is String) return double.parse(data);
+    throw ValkeyException(
+      'Invalid response for HINCRBYFLOAT: expected a string, got ${data.runtimeType}',
+    );
+  }
+
+  @override
+  ValkeyCommand<double> applyPrefix(String prefix) {
+    return HIncrByFloatCommand('$prefix$key', field, increment);
+  }
+}

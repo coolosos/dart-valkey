@@ -1,0 +1,42 @@
+# Miscellaneous
+/coverage/
+**/coverage/
+**/*.dart_tool
+**/build
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+*.lcov
+# Autogenerates
+*.g.dart
+*.mapper.dart
+*.freezed.dart
+*.lock
+injection.config.dart
+lib/gen
+.current
+pubspec_overrides.yaml
+
+#Mason
+.mason/
+*-lock.json
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea
+
+.env
+ 
+# FVM Version Cache
+.fvm/
+
+api-keys.json
+ 
