@@ -30,7 +30,7 @@ final class SetAndGetCommand extends BaseSetCommand<String?> {
     super.key,
     super.value, {
     super.expire,
-    super.strategyTypes = SetStrategyTypes.always,
+    super.strategyType = SetStrategyTypes.always,
   });
 
   @override
@@ -41,8 +41,8 @@ final class SetAndGetCommand extends BaseSetCommand<String?> {
       value,
     ];
 
-    if (strategyTypes != SetStrategyTypes.always) {
-      parts.add(strategyTypes.command);
+    if (strategyType != SetStrategyTypes.always) {
+      parts.add(strategyType.command);
     }
     parts.add('GET');
     if (expire case final expire?) {

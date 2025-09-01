@@ -72,19 +72,19 @@ abstract base class BaseSetCommand<T> extends ValkeyCommand<T>
     this.key,
     this.value, {
     this.expire,
-    this.strategyTypes = SetStrategyTypes.always,
+    this.strategyType = SetStrategyTypes.always,
   });
   final String key;
   final String value;
   final ExpireOption? expire;
-  final SetStrategyTypes strategyTypes;
+  final SetStrategyTypes strategyType;
 
   @override
   List<String> get commandParts {
     final parts = <String>['SET', key, value];
 
-    if (strategyTypes != SetStrategyTypes.always) {
-      parts.add(strategyTypes.command);
+    if (strategyType != SetStrategyTypes.always) {
+      parts.add(strategyType.command);
     }
     if (expire case final expire?) {
       parts.addAll(expire.commandParts);
@@ -100,15 +100,15 @@ final class SetCommand extends BaseSetCommand<bool> {
     super.key,
     super.value, {
     super.expire,
-    super.strategyTypes = SetStrategyTypes.always,
+    super.strategyType = SetStrategyTypes.always,
   });
 
   @override
   List<String> get commandParts {
     final parts = <String>['SET', key, value];
 
-    if (strategyTypes != SetStrategyTypes.always) {
-      parts.add(strategyTypes.command);
+    if (strategyType != SetStrategyTypes.always) {
+      parts.add(strategyType.command);
     }
     if (expire case final expire?) {
       parts.addAll(expire.commandParts);
@@ -128,7 +128,7 @@ final class SetCommand extends BaseSetCommand<bool> {
       '$prefix$key',
       value,
       expire: expire,
-      strategyTypes: strategyTypes,
+      strategyType: strategyType,
     );
   }
 }

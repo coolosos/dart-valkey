@@ -87,12 +87,9 @@ extension ValkeyCommands on ValkeyCommandClient {
   Future<bool> expire(
     String key,
     int seconds, {
-    bool nx = false,
-    bool xx = false,
-    bool gt = false,
-    bool lt = false,
+    ExpireStrategyTypes strategyType = ExpireStrategyTypes.always,
   }) =>
-      execute(ExpireCommand(key, seconds, nx: nx, xx: xx, gt: gt, lt: lt));
+      execute(ExpireCommand(key, seconds, strategyType: strategyType));
 
   // Lists
   Future<int> lpush(String key, List<String> values) =>
@@ -157,28 +154,28 @@ extension ValkeyCommands on ValkeyCommandClient {
     String key,
     String value, {
     ExpireOption? expire,
-    SetStrategyTypes strategyTypes = SetStrategyTypes.always,
+    SetStrategyTypes strategyType = SetStrategyTypes.always,
   }) =>
       execute(
         SetCommand(
           key,
           value,
           expire: expire,
-          strategyTypes: strategyTypes,
+          strategyType: strategyType,
         ),
       );
   Future<String?> setAndGet(
     String key,
     String value, {
     ExpireOption? expire,
-    SetStrategyTypes strategyTypes = SetStrategyTypes.always,
+    SetStrategyTypes strategyType = SetStrategyTypes.always,
   }) =>
       execute(
         SetAndGetCommand(
           key,
           value,
           expire: expire,
-          strategyTypes: strategyTypes,
+          strategyType: strategyType,
         ),
       );
   Future<int> incr(String key) => execute(IncrCommand(key));

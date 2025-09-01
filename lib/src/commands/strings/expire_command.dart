@@ -1,6 +1,19 @@
 import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
+enum ExpireStrategyTypes {
+  onlyIfNotExists('NX'),
+  onlyIfExists('XX'),
+  greaterThanCurrent('GT'),
+  lessThanCurrent('LT'),
+  always(''),
+  ;
+
+  const ExpireStrategyTypes(this.command);
+
+  final String command;
+}
+
 /// Represents the 'EXPIRE key seconds [NX|XX|GT|LT]' command.
 ///
 /// **Redis Command:**
@@ -19,40 +32,22 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key to set the expiration for.
 /// - [seconds]: The time to live in seconds.
-/// - [nx]: Set expiry only when the key has no expiry.
-/// - [xx]: Set expiry only when the key has an existing expiry.
-/// - [gt]: Set expiry only when the new expiry is greater than current one.
-/// - [lt]: Set expiry only when the new expiry is less than current one.
+/// - [strategyType]: Set expire strategy.
 final class ExpireCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   ExpireCommand(
     this.key,
     this.seconds, {
-    this.nx = false,
-    this.xx = false,
-    this.gt = false,
-    this.lt = false,
+    this.strategyType = ExpireStrategyTypes.always,
   });
   final String key;
   final int seconds;
-  final bool nx;
-  final bool xx;
-  final bool gt;
-  final bool lt;
+  final ExpireStrategyTypes strategyType;
 
   @override
   List<String> get commandParts {
     final parts = ['EXPIRE', key, seconds.toString()];
-    if (nx) {
-      parts.add('NX');
-    }
-    if (xx) {
-      parts.add('XX');
-    }
-    if (gt) {
-      parts.add('GT');
-    }
-    if (lt) {
-      parts.add('LT');
+    if (strategyType != ExpireStrategyTypes.always) {
+      parts.add(strategyType.command);
     }
     return parts;
   }
@@ -60,6 +55,7 @@ final class ExpireCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   @override
   bool parse(dynamic data) {
     if (data is int) return data == 1;
+    if (data is String) return data == "1";
     throw ValkeyException(
       'Invalid response for EXPIRE: expected an integer, got ${data.runtimeType}',
     );
@@ -70,10 +66,7 @@ final class ExpireCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
     return ExpireCommand(
       '$prefix$key',
       seconds,
-      nx: nx,
-      xx: xx,
-      gt: gt,
-      lt: lt,
+      strategyType: strategyType,
     );
   }
 }
