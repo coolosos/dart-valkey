@@ -28,6 +28,11 @@ final class IncrCommand extends ValkeyCommand<int> with KeyCommand<int> {
   @override
   int parse(dynamic data) {
     if (data is int) return data;
+    if (data is String) {
+      if (int.tryParse(data) case final value?) {
+        return value;
+      }
+    }
     throw ValkeyException(
       'Invalid response for INCR: expected an integer, got ${data.runtimeType}',
     );
