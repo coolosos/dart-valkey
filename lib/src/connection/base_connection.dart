@@ -63,7 +63,8 @@ abstract class BaseConnection implements Connection {
     try {
       final socket = await performSocketConnection();
       socket.setOption(SocketOption.tcpNoDelay, true);
-      _reconnectAttempts = 0;
+
+      final decoder = const RespDecoder().bind(socket).asBroadcastStream();
 
       if (password case final password? when password.isNotEmpty) {
         final ValkeyCommand<dynamic> command;
@@ -79,14 +80,14 @@ abstract class BaseConnection implements Connection {
 
         socket.add(command.encoded);
 
-        final response = await socket.transform(const RespDecoder()).first;
+        final response = await decoder.first;
 
         if (command.parse(response) != 'OK') {
           throw ValkeyException('Authentication failed: $response');
         }
       }
 
-      _socketSubscription = socket.transform(const RespDecoder()).listen(
+      _socketSubscription = decoder.listen(
         onData,
         onError: (error) {
           onError?.call(error);
@@ -99,7 +100,7 @@ abstract class BaseConnection implements Connection {
         cancelOnError: true,
       );
       _socket = socket;
-
+      _reconnectAttempts = 0;
       await onConnected?.call();
     } catch (e) {
       onError?.call(e);
@@ -116,16 +117,19 @@ abstract class BaseConnection implements Connection {
   }
 
   void _scheduleReconnect() {
-    if (_reconnectTimer?.isActive ?? false) return;
+    if (_reconnectTimer != null) return;
 
-    final delay = Duration(
-      milliseconds: min(30000, 500 * pow(2, _reconnectAttempts)).toInt() +
-          Random().nextInt(500),
-    );
+    final milliseconds = min(30000, 500 * pow(2, _reconnectAttempts)).toInt() +
+        Random().nextInt(500);
 
-    _reconnectTimer = Timer(delay, () {
+    _reconnectTimer = Timer(
+        Duration(
+          milliseconds: milliseconds,
+        ), () {
       _reconnectAttempts++;
       _performConnection();
+
+      _reconnectTimer = null;
     });
   }
 
