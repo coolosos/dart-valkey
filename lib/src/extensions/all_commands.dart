@@ -167,8 +167,20 @@ extension ValkeyCommands on ValkeyCommandClient {
           strategyTypes: strategyTypes,
         ),
       );
-  Future<String?> setAndGet(String key, String value) =>
-      execute(SetAndGetCommand(key, value));
+  Future<String?> setAndGet(
+    String key,
+    String value, {
+    ExpireOption? expire,
+    SetStrategyTypes strategyTypes = SetStrategyTypes.always,
+  }) =>
+      execute(
+        SetAndGetCommand(
+          key,
+          value,
+          expire: expire,
+          strategyTypes: strategyTypes,
+        ),
+      );
   Future<int> incr(String key) => execute(IncrCommand(key));
   Future<int> decr(String key) => execute(DecrCommand(key));
   Future<int> decrby(String key, int decrement) =>
