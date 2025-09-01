@@ -17,6 +17,7 @@
         "getname",
         "Getname",
         "GETNAME",
+        "Getredir",
         "hdel",
         "HDEL",
         "hexists",
