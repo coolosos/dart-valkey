@@ -1,10 +1,110 @@
-# dart_valkey
 
-A Dart client for Valkey (and Redis-compatible servers).
+#### dart valkey/redis
 
+This project is a robust, type-safe Dart client for Redis (and Valkey) that manages both command and Pub/Sub interactions. It provides built‐in connection management, automatic reconnection, and pluggable authentication. Thanks to its modular design, the user can easily extend commands as Dart extensions and choose between a secure (TLS) and insecure connection.
+
+---
+
+### Features
+
+- **Connection Management**  
+  Uses the Template Method pattern in `BaseConnection` to handle the socket connection, reconnection logic, and error management automatically.
+  
+- **Authentication and Command Execution**  
+  Implements authentication commands (e.g. `HelloCommand` and `AuthCommand`) to ensure secure and correct data exchange with the Redis/Valkey server.
+
+- **Pub/Sub Support**  
+  Supports Pub/Sub operations with the `ValkeySubscriptionClient` which handles subscriptions to channels and patterns and delivers messages via a unified stream.
+
+- **Extensible & Modular**  
+  Commands are organized into modules so that new commands can be added as extensions. The core libraries (`ValkeyCommandClient` and `ValkeyClient`) provide a foundation for building more specialized client implementations.
+
+---
+
+### Installation
+
+1. Add the dependency in your pubspec.yaml:
+
+    ````dart
+    // filepath: pubspec.yaml
+    dependencies:
+      dart_valkey: any
+    ````
+
+2. Install the dependency by running:
+
+    ```sh
+    pub get
+    ```
+
+---
+
+### Usage
+
+#### Connecting and Sending Commands
+
+To connect and execute commands, first import the client library:
+
+````dart
+import 'package:dart_valkey/dart_valkey.dart';
+
+Future<void> main() async {
+  // Create a command client (or use a specific implementation)
+  final client = ValkeyCommandClient(
+    host: 'localhost',
+    port: 6379,
+    username: 'your-username',  // optional
+    password: 'your-password',  // optional
+  );
+  
+  // Connect to the server
+  await client.connect();
+
+  // Execute a command (for example, a PING command if implemented)
+  final response = await client.execute(PingCommand());
+  print('Server response: $response');
+
+  // Close the client when done
+  await client.close();
+}
+````
+
+#### Pub/Sub Example
+
+Subscribing to channels and listening for messages is simple with the `ValkeySubscriptionClient`:
+
+````dart
+import 'package:dart_valkey/dart_valkey.dart';
+import 'dart:async';
+
+Future<void> main() async {
+  final subClient = ValkeySubscriptionClient(
+    host: 'localhost',
+    port: 6379,
+  );
+
+  // Connect to the server
+  await subClient.connect();
+
+  // Subscribe to a channel
+  subClient.subscribe(['channel1']);
+
+  // Listen to Pub/Sub messages
+  final subscription = subClient.messages.listen((PubSubMessage msg) {
+    print('Received message: ${msg.message} on channel: ${msg.channel}');
+  });
+
+  // Run for a while and cancel subscription when done.
+  await Future.delayed(const Duration(seconds: 30));
+  await subClient.close();
+  await subscription.cancel();
+}
+````
+ 
+ 
 ## Commands Implementation Status
 
-This section outlines the implementation status of Valkey commands within this client, categorized as per the official Valkey documentation. Commands marked with `[x]` are implemented, while `[ ]` indicates they are not yet implemented. Each command links to its official documentation.
+A continuación se muestra el estado de implementación de los comandos de Valkey, tal y como se indica en la documentación oficial. Los comandos marcados con `[x]` están implementados, mientras que los marcados con `[ ]` aún no lo están.
 
 ### Bitmap Operations
 - [ ] [BITCOUNT](https://valkey.io/commands/BITCOUNT)
@@ -448,3 +548,12 @@ This section outlines the implementation status of Valkey commands within this c
 - [ ] [MULTI](https://valkey.io/commands/MULTI)
 - [ ] [UNWATCH](https://valkey.io/commands/UNWATCH)
 - [ ] [WATCH](https://valkey.io/commands/WATCH)
+ 
+
+### Contributing
+
+Contributions are welcome!  
+Feel free to open issues or submit pull requests on our repository.  
+
+
+
