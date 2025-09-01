@@ -1,4 +1,3 @@
-import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'PING [message]' command.
@@ -18,7 +17,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [message]: (Optional) A message to be echoed back by the server.
-final class PingCommand extends ValkeyCommand<String> {
+final class PingCommand extends ValkeyCommand<bool> {
   PingCommand([this.message]);
   final String? message;
 
@@ -26,10 +25,7 @@ final class PingCommand extends ValkeyCommand<String> {
   List<String> get commandParts => ['PING', if (message != null) message!];
 
   @override
-  String parse(dynamic data) {
-    if (data is String) return data;
-    throw ValkeyException(
-      'Invalid response for PING: expected a string, got ${data.runtimeType}',
-    );
+  bool parse(dynamic data) {
+    return (data == 'PONG');
   }
 }
