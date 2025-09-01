@@ -5,7 +5,7 @@ import '../command.dart';
 /// Returns a help text.
 final class PubsubHelpCommand extends ValkeyCommand<List<String>> {
   @override
-  List<Object> get commandParts => ['PUBSUB', 'HELP'];
+  List<String> get commandParts => ['PUBSUB', 'HELP'];
 
   @override
   List<String> parse(dynamic data) {

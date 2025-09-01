@@ -1,5 +1,6 @@
 import '../../codec/valkey_exception.dart';
 import '../command.dart';
+import 'set_command.dart';
 
 /// Represents the 'SET key value GET' command.
 ///
@@ -24,14 +25,32 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key to set.
 /// - [value]: The value to set.
-final class SetAndGetCommand extends ValkeyCommand<String?>
-    with KeyCommand<String?> {
-  SetAndGetCommand(this.key, this.value);
-  final String key;
-  final String value;
+final class SetAndGetCommand extends BaseSetCommand<String?> {
+  SetAndGetCommand(
+    super.key,
+    super.value, {
+    super.expire,
+    super.strategyTypes = SetStrategyTypes.always,
+  });
 
   @override
-  List<Object> get commandParts => ['SET', key, value, 'GET'];
+  List<String> get commandParts {
+    final parts = <String>[
+      'SET',
+      key,
+      value,
+    ];
+
+    if (strategyTypes != SetStrategyTypes.always) {
+      parts.add(strategyTypes.command);
+    }
+    parts.add('GET');
+    if (expire case final expire?) {
+      parts.addAll(expire.commandParts);
+    }
+
+    return parts;
+  }
 
   @override
   String? parse(dynamic data) {

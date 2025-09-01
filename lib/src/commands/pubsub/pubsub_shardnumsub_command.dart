@@ -8,7 +8,7 @@ final class PubsubShardnumsubCommand extends ValkeyCommand<Map<String, int>> {
   final List<String> channels;
 
   @override
-  List<Object> get commandParts => ['PUBSUB', 'SHARDNUMSUB', ...channels];
+  List<String> get commandParts => ['PUBSUB', 'SHARDNUMSUB', ...channels];
 
   @override
   Map<String, int> parse(dynamic data) {

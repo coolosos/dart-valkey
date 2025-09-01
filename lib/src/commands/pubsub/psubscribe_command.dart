@@ -9,5 +9,5 @@ final class PSubscribeCommand extends PubSubCommand<void> {
   final List<String> patterns;
 
   @override
-  List<Object> get commandParts => ['PSUBSCRIBE', ...patterns];
+  List<String> get commandParts => ['PSUBSCRIBE', ...patterns];
 }

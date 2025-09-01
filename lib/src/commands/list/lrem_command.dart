@@ -23,7 +23,7 @@ final class LRemCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String value;
 
   @override
-  List<Object> get commandParts => ['LREM', key, count.toString(), value];
+  List<String> get commandParts => ['LREM', key, count.toString(), value];
 
   @override
   int parse(dynamic data) {

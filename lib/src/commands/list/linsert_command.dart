@@ -30,7 +30,7 @@ final class LInsertCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String value;
 
   @override
-  List<Object> get commandParts => [
+  List<String> get commandParts => [
         'LINSERT',
         key,
         before ? 'BEFORE' : 'AFTER',

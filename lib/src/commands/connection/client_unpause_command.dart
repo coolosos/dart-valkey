@@ -19,7 +19,7 @@ final class ClientUnpauseCommand extends ValkeyCommand<String> {
   ClientUnpauseCommand();
 
   @override
-  List<Object> get commandParts => ['CLIENT', 'UNPAUSE'];
+  List<String> get commandParts => ['CLIENT', 'UNPAUSE'];
 
   @override
   String parse(dynamic data) {

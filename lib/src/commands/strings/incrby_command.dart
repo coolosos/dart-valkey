@@ -26,7 +26,7 @@ final class IncrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final int increment;
 
   @override
-  List<Object> get commandParts => ['INCRBY', key, increment.toString()];
+  List<String> get commandParts => ['INCRBY', key, increment.toString()];
 
   @override
   int parse(dynamic data) {

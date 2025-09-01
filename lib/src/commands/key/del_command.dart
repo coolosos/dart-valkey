@@ -21,7 +21,7 @@ final class DelCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['DEL', ...keys];
+  List<String> get commandParts => ['DEL', ...keys];
 
   @override
   int parse(dynamic data) {

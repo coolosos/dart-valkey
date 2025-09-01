@@ -41,7 +41,7 @@ final class ZRevRangeByScoreWithScoresCommand
   final int? limitCount;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['ZREVRANGEBYSCORE', key, max, min];
     if (limitOffset != null && limitCount != null) {
       parts.addAll(['LIMIT', limitOffset!.toString(), limitCount!.toString()]);

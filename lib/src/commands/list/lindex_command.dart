@@ -27,7 +27,7 @@ final class LIndexCommand extends ValkeyCommand<String?>
   final int index;
 
   @override
-  List<Object> get commandParts => ['LINDEX', key, index.toString()];
+  List<String> get commandParts => ['LINDEX', key, index.toString()];
 
   @override
   String? parse(dynamic data) {

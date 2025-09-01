@@ -20,7 +20,7 @@ final class PersistCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['PERSIST', key];
+  List<String> get commandParts => ['PERSIST', key];
 
   @override
   bool parse(dynamic data) {

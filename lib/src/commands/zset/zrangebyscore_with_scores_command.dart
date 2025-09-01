@@ -41,7 +41,7 @@ final class ZRangeByScoreWithScoresCommand
   final int? limitCount;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['ZRANGEBYSCORE', key, min, max];
     if (limitOffset != null && limitCount != null) {
       parts.addAll(['LIMIT', limitOffset!.toString(), limitCount!.toString()]);

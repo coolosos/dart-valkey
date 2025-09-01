@@ -23,7 +23,7 @@ final class LLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['LLEN', key];
+  List<String> get commandParts => ['LLEN', key];
 
   @override
   int parse(dynamic data) {

@@ -4,7 +4,7 @@ import '../command.dart';
 /// Represents the 'CLIENT CAPA' command.
 final class ClientCapaCommand extends ValkeyCommand<List<String>> {
   @override
-  List<Object> get commandParts => ['CLIENT', 'CAPA'];
+  List<String> get commandParts => ['CLIENT', 'CAPA'];
 
   @override
   List<String> parse(dynamic data) {

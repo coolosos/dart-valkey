@@ -25,7 +25,7 @@ final class SMembersCommand extends ValkeyCommand<List<String>>
   final String key;
 
   @override
-  List<Object> get commandParts => ['SMEMBERS', key];
+  List<String> get commandParts => ['SMEMBERS', key];
 
   @override
   List<String> parse(dynamic data) {

@@ -25,7 +25,7 @@ final class HDelCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> fields;
 
   @override
-  List<Object> get commandParts => ['HDEL', key, ...fields];
+  List<String> get commandParts => ['HDEL', key, ...fields];
 
   @override
   int parse(dynamic data) {

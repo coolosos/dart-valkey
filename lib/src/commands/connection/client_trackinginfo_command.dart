@@ -5,7 +5,7 @@ import '../command.dart';
 final class ClientTrackinginfoCommand
     extends ValkeyCommand<Map<String, dynamic>> {
   @override
-  List<Object> get commandParts => ['CLIENT', 'TRACKINGINFO'];
+  List<String> get commandParts => ['CLIENT', 'TRACKINGINFO'];
 
   @override
   Map<String, dynamic> parse(dynamic data) {

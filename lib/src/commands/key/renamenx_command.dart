@@ -22,7 +22,7 @@ final class RenameNxCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String newKey;
 
   @override
-  List<Object> get commandParts => ['RENAMENX', key, newKey];
+  List<String> get commandParts => ['RENAMENX', key, newKey];
 
   @override
   bool parse(dynamic data) {

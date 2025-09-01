@@ -8,7 +8,7 @@ final class ClientSetinfoCommand extends ValkeyCommand<bool> {
   final String value;
 
   @override
-  List<Object> get commandParts => ['CLIENT', 'SETINFO', key, value];
+  List<String> get commandParts => ['CLIENT', 'SETINFO', key, value];
 
   @override
   bool parse(dynamic data) {

@@ -7,7 +7,7 @@ import '../codec/resp_encoder.dart';
 /// and [PubSubCommand] for Pub/Sub commands).
 sealed class Command<T> {
   /// The command and its arguments, to be implemented by each subclass.
-  List<Object> get commandParts;
+  List<String> get commandParts;
 
   late final List<int> encoded = RespEncoder.encode(commandParts);
 }

@@ -29,7 +29,7 @@ final class RPopCommand extends ValkeyCommand<List<String>>
   final int? count;
 
   @override
-  List<Object> get commandParts => ['RPOP', key, if (count != null) count!];
+  List<String> get commandParts => ['RPOP', key, if (count != null) count!.toString()];
 
   @override
   List<String> parse(dynamic data) {

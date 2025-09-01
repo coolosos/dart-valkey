@@ -5,7 +5,7 @@ import '../command.dart';
 /// Returns the number of subscriptions to patterns.
 final class PubsubNumpatCommand extends ValkeyCommand<int> {
   @override
-  List<Object> get commandParts => ['PUBSUB', 'NUMPAT'];
+  List<String> get commandParts => ['PUBSUB', 'NUMPAT'];
 
   @override
   int parse(dynamic data) {

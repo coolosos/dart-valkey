@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dart_valkey/dart_valkey.dart';
-import 'package:dart_valkey/src/extensions/all_commands.dart';
 import 'package:redis/redis.dart';
 import 'package:shorebird_redis_client/shorebird_redis_client.dart';
 

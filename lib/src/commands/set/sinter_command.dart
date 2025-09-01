@@ -24,7 +24,7 @@ final class SInterCommand extends ValkeyCommand<List<String>>
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['SINTER', ...keys];
+  List<String> get commandParts => ['SINTER', ...keys];
 
   @override
   List<String> parse(dynamic data) {

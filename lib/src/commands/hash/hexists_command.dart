@@ -25,7 +25,7 @@ final class HExistsCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String field;
 
   @override
-  List<Object> get commandParts => ['HEXISTS', key, field];
+  List<String> get commandParts => ['HEXISTS', key, field];
 
   @override
   bool parse(dynamic data) {

@@ -25,7 +25,7 @@ final class RPushCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> values;
 
   @override
-  List<Object> get commandParts => ['RPUSH', key, ...values];
+  List<String> get commandParts => ['RPUSH', key, ...values];
 
   @override
   int parse(dynamic data) {

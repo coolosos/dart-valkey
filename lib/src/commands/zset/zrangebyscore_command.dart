@@ -38,7 +38,7 @@ final class ZRangeByScoreCommand extends ValkeyCommand<dynamic>
   final int? limitCount;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['ZRANGEBYSCORE', key, min, max];
     if (withScores) {
       parts.add('WITHSCORES');
@@ -56,7 +56,8 @@ final class ZRangeByScoreCommand extends ValkeyCommand<dynamic>
         final result = <Map<String, String>>[];
         for (var i = 0; i < data.length; i += 2) {
           result.add(
-              {'member': data[i] as String, 'score': data[i + 1] as String});
+            {'member': data[i] as String, 'score': data[i + 1] as String},
+          );
         }
         return result;
       } else {

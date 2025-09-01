@@ -21,7 +21,7 @@ final class ClientGetredirCommand extends ValkeyCommand<int> {
   ClientGetredirCommand();
 
   @override
-  List<Object> get commandParts => ['CLIENT', 'GETREDIR'];
+  List<String> get commandParts => ['CLIENT', 'GETREDIR'];
 
   @override
   int parse(dynamic data) {

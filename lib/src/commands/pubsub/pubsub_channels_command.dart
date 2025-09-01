@@ -8,7 +8,7 @@ final class PubsubChannelsCommand extends ValkeyCommand<List<String>> {
   final String? pattern;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['PUBSUB', 'CHANNELS', if (pattern != null) pattern!];
 
   @override

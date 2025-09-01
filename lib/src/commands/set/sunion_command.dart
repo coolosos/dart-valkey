@@ -28,7 +28,7 @@ final class SUnionCommand extends ValkeyCommand<List<String>>
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['SUNION', ...keys];
+  List<String> get commandParts => ['SUNION', ...keys];
 
   @override
   List<String> parse(dynamic data) {

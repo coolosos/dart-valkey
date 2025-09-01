@@ -23,7 +23,7 @@ final class SRandMemberCommand extends ValkeyCommand<String?>
   final String key;
 
   @override
-  List<Object> get commandParts => ['SRANDMEMBER', key];
+  List<String> get commandParts => ['SRANDMEMBER', key];
 
   @override
   String? parse(dynamic data) {

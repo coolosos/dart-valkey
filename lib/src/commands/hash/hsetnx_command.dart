@@ -28,7 +28,7 @@ final class HSetNxCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String value;
 
   @override
-  List<Object> get commandParts => ['HSETNX', key, field, value];
+  List<String> get commandParts => ['HSETNX', key, field, value];
 
   @override
   bool parse(dynamic data) {

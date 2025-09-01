@@ -67,7 +67,7 @@ abstract class BaseConnection implements Connection {
 
       if (password case final password? when password.isNotEmpty) {
         final ValkeyCommand<dynamic> command;
-        if (protocolVersion != null) {
+        if (protocolVersion case final protocolVersion?) {
           command = HelloCommand(
             protocolVersion: protocolVersion,
             username: username,

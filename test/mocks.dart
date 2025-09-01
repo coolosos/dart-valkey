@@ -37,7 +37,7 @@ base class FakeCommand<T> extends ValkeyCommand<T> {
 
   /// Dummy command parts to satisfy the abstract property.
   @override
-  List<Object> get commandParts => ['FAKE'];
+  List<String> get commandParts => ['FAKE'];
 
   /// Returns the fake encoded data to be sent.
   @override

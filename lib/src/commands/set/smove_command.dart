@@ -22,7 +22,7 @@ final class SMoveCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String member;
 
   @override
-  List<Object> get commandParts => ['SMOVE', source, destination, member];
+  List<String> get commandParts => ['SMOVE', source, destination, member];
 
   @override
   bool parse(dynamic data) {

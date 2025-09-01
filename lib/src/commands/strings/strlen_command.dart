@@ -24,7 +24,7 @@ final class StrLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['STRLEN', key];
+  List<String> get commandParts => ['STRLEN', key];
 
   @override
   int parse(dynamic data) {

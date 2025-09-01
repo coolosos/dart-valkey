@@ -8,7 +8,7 @@ final class PubsubNumsubCommand extends ValkeyCommand<Map<String, int>> {
   final List<String> channels;
 
   @override
-  List<Object> get commandParts => ['PUBSUB', 'NUMSUB', ...channels];
+  List<String> get commandParts => ['PUBSUB', 'NUMSUB', ...channels];
 
   @override
   Map<String, int> parse(dynamic data) {

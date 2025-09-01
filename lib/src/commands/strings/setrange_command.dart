@@ -28,7 +28,7 @@ final class SetRangeCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String value;
 
   @override
-  List<Object> get commandParts => ['SETRANGE', key, offset.toString(), value];
+  List<String> get commandParts => ['SETRANGE', key, offset.toString(), value];
 
   @override
   int parse(dynamic data) {

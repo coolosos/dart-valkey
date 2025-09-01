@@ -24,7 +24,7 @@ final class SDiffCommand extends ValkeyCommand<List<String>>
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['SDIFF', ...keys];
+  List<String> get commandParts => ['SDIFF', ...keys];
 
   @override
   List<String> parse(dynamic data) {

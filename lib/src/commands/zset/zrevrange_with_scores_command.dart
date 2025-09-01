@@ -45,7 +45,7 @@ final class ZRevRangeWithScoresCommand
   final int? limitCount;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['ZREVRANGE', key, start, stop];
     if (byLex) {
       parts.add('BYLEX');

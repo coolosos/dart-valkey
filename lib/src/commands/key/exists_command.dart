@@ -21,7 +21,7 @@ final class ExistsCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['EXISTS', ...keys];
+  List<String> get commandParts => ['EXISTS', ...keys];
 
   @override
   int parse(dynamic data) {

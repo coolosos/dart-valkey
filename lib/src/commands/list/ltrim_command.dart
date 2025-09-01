@@ -26,7 +26,7 @@ final class LTrimCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final int stop;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['LTRIM', key, start.toString(), stop.toString()];
 
   @override

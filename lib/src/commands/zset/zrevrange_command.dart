@@ -41,7 +41,7 @@ final class ZRevRangeCommand extends ValkeyCommand<List> with KeyCommand<List> {
   final bool withScores;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['ZREVRANGE', key, start, stop];
     if (byLex) {
       parts.add('BYLEX');

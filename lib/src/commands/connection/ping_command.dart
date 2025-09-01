@@ -23,7 +23,7 @@ final class PingCommand extends ValkeyCommand<String> {
   final String? message;
 
   @override
-  List<Object> get commandParts => ['PING', if (message != null) message!];
+  List<String> get commandParts => ['PING', if (message != null) message!];
 
   @override
   String parse(dynamic data) {

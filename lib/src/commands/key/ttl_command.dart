@@ -21,7 +21,7 @@ final class TtlCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['TTL', key];
+  List<String> get commandParts => ['TTL', key];
 
   @override
   int parse(dynamic data) {

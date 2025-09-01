@@ -27,7 +27,7 @@ final class HIncrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final int increment;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['HINCRBY', key, field, increment.toString()];
 
   @override

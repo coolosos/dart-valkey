@@ -153,24 +153,18 @@ extension ValkeyCommands on ValkeyCommandClient {
 
   // Strings
   Future<String?> get(String key) => execute(GetCommand(key));
-  Future<String?> set(
+  Future<bool?> set(
     String key,
     String value, {
-    Duration? expire,
-    DateTime? expireAt,
-    bool keepTtl = false,
-    bool onlyIfNotExists = false,
-    bool onlyIfExists = false,
+    ExpireOption? expire,
+    SetStrategyTypes strategyTypes = SetStrategyTypes.always,
   }) =>
       execute(
         SetCommand(
           key,
           value,
           expire: expire,
-          expireAt: expireAt,
-          keepTtl: keepTtl,
-          onlyIfNotExists: onlyIfNotExists,
-          onlyIfExists: onlyIfExists,
+          strategyTypes: strategyTypes,
         ),
       );
   Future<String?> setAndGet(String key, String value) =>

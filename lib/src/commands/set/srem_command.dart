@@ -21,7 +21,7 @@ final class SRemCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> members;
 
   @override
-  List<Object> get commandParts => ['SREM', key, ...members];
+  List<String> get commandParts => ['SREM', key, ...members];
 
   @override
   int parse(dynamic data) {

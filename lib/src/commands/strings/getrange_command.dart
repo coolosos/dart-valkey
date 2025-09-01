@@ -30,7 +30,7 @@ final class GetRangeCommand extends ValkeyCommand<String>
   final int end;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['GETRANGE', key, start.toString(), end.toString()];
 
   @override

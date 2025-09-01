@@ -27,7 +27,7 @@ final class HGetCommand extends ValkeyCommand<String?>
   final String field;
 
   @override
-  List<Object> get commandParts => ['HGET', key, field];
+  List<String> get commandParts => ['HGET', key, field];
 
   @override
   String? parse(dynamic data) {

@@ -21,7 +21,7 @@ final class RenameCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String newKey;
 
   @override
-  List<Object> get commandParts => ['RENAME', key, newKey];
+  List<String> get commandParts => ['RENAME', key, newKey];
 
   @override
   bool parse(dynamic data) {

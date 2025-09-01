@@ -29,7 +29,7 @@ final class HValsCommand extends ValkeyCommand<List<String>>
   final String key;
 
   @override
-  List<Object> get commandParts => ['HVALS', key];
+  List<String> get commandParts => ['HVALS', key];
 
   @override
   List<String> parse(dynamic data) {

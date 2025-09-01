@@ -20,7 +20,7 @@ final class SCardCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['SCARD', key];
+  List<String> get commandParts => ['SCARD', key];
 
   @override
   int parse(dynamic data) {

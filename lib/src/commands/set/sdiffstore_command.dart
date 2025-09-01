@@ -22,7 +22,7 @@ final class SDiffStoreCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['SDIFFSTORE', destination, ...keys];
+  List<String> get commandParts => ['SDIFFSTORE', destination, ...keys];
 
   @override
   int parse(dynamic data) {

@@ -7,5 +7,5 @@ final class SunsubscribeCommand extends PubSubCommand<void> {
   final List<String> channels;
 
   @override
-  List<Object> get commandParts => ['SUNSUBSCRIBE', ...channels];
+  List<String> get commandParts => ['SUNSUBSCRIBE', ...channels];
 }

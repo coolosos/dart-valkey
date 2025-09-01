@@ -8,7 +8,7 @@ final class ClientPauseCommand extends ValkeyCommand<bool> {
   final bool write;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['CLIENT', 'PAUSE', timeout.toString(), if (write) 'WRITE'];
 
   @override

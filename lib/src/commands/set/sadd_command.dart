@@ -21,7 +21,7 @@ final class SAddCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> members;
 
   @override
-  List<Object> get commandParts => ['SADD', key, ...members];
+  List<String> get commandParts => ['SADD', key, ...members];
 
   @override
   int parse(dynamic data) {

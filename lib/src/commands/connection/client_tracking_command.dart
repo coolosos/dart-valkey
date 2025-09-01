@@ -12,7 +12,7 @@ final class ClientTrackingCommand extends ValkeyCommand<bool> {
   final ClientTrackingMode mode;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['CLIENT', 'TRACKING', mode.name.toUpperCase()];
 
   @override

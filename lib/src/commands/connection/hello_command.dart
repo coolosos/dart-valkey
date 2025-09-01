@@ -28,19 +28,21 @@ final class HelloCommand extends ValkeyCommand<Map<String, dynamic>> {
   final String? clientName;
 
   @override
-  List<Object> get commandParts {
-    final List<Object> parts = ['HELLO'];
-    if (protocolVersion != null) {
-      parts.add(protocolVersion!);
+  List<String> get commandParts {
+    final parts = ['HELLO'];
+    if (protocolVersion case final protocolVersion?) {
+      parts.add(protocolVersion.toString());
+
+      if (username != null && password != null) {
+        parts.addAll(['AUTH', username!, password!]);
+      } else if (username == null && password != null) {
+        parts.addAll(['AUTH', 'default', password!]);
+      }
+      if (clientName != null) {
+        parts.addAll(['SETNAME', clientName!]);
+      }
     }
-    if (username != null && password != null) {
-      parts.addAll(['AUTH', username!, password!]);
-    } else if (username == null && password != null) {
-      parts.addAll(['AUTH', 'default', password!]);
-    }
-    if (clientName != null) {
-      parts.addAll(['SETNAME', clientName!]);
-    }
+
     return parts;
   }
 

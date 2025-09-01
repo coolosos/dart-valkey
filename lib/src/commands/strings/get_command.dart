@@ -24,7 +24,7 @@ final class GetCommand extends ValkeyCommand<String?> with KeyCommand<String?> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['GET', key];
+  List<String> get commandParts => ['GET', key];
 
   @override
   String? parse(dynamic data) {

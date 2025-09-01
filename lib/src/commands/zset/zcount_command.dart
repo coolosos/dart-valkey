@@ -22,7 +22,7 @@ final class ZCountCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String max;
 
   @override
-  List<Object> get commandParts => ['ZCOUNT', key, min, max];
+  List<String> get commandParts => ['ZCOUNT', key, min, max];
 
   @override
   int parse(dynamic data) {

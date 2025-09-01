@@ -9,7 +9,7 @@ final class SelectCommand extends ValkeyCommand<bool> {
   final int index;
 
   @override
-  List<Object> get commandParts => ['SELECT', index];
+  List<String> get commandParts => ['SELECT', index.toString()];
 
   @override
   bool parse(dynamic data) {

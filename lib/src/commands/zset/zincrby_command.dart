@@ -24,7 +24,7 @@ final class ZIncrByCommand extends ValkeyCommand<double>
   final String member;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['ZINCRBY', key, increment.toString(), member];
 
   @override

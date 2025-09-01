@@ -8,7 +8,7 @@ final class AuthCommand extends ValkeyCommand<String> {
   final String password;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['AUTH'];
     if (username != null) {
       parts.add(username!);

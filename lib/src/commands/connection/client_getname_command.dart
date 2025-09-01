@@ -4,7 +4,7 @@ import '../command.dart';
 /// Represents the 'CLIENT GETNAME' command.
 final class ClientGetnameCommand extends ValkeyCommand<String?> {
   @override
-  List<Object> get commandParts => ['CLIENT', 'GETNAME'];
+  List<String> get commandParts => ['CLIENT', 'GETNAME'];
 
   @override
   String? parse(dynamic data) {

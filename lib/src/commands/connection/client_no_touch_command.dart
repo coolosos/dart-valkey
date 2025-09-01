@@ -21,7 +21,7 @@ final class ClientNoTouchCommand extends ValkeyCommand<String> {
   final bool enable;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['CLIENT', 'NO-TOUCH', enable ? 'ON' : 'OFF'];
 
   @override

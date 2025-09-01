@@ -30,7 +30,7 @@ final class HIncrByFloatCommand extends ValkeyCommand<double>
   final double increment;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['HINCRBYFLOAT', key, field, increment.toString()];
 
   @override

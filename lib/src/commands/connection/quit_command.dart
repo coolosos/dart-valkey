@@ -4,7 +4,7 @@ import '../command.dart';
 /// Represents the 'QUIT' command.
 final class QuitCommand extends ValkeyCommand<String> {
   @override
-  List<Object> get commandParts => ['QUIT'];
+  List<String> get commandParts => ['QUIT'];
 
   @override
   String parse(dynamic data) {

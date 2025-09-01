@@ -28,7 +28,7 @@ final class MGetCommand extends ValkeyCommand<List<String?>>
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['MGET', ...keys];
+  List<String> get commandParts => ['MGET', ...keys];
 
   @override
   List<String?> parse(dynamic data) {

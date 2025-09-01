@@ -24,7 +24,7 @@ final class DecrCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['DECR', key];
+  List<String> get commandParts => ['DECR', key];
 
   @override
   int parse(dynamic data) {

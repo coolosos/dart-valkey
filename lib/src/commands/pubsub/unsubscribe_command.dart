@@ -10,5 +10,5 @@ final class UnsubscribeCommand extends PubSubCommand<void> {
   final List<String> channels;
 
   @override
-  List<Object> get commandParts => ['UNSUBSCRIBE', ...channels];
+  List<String> get commandParts => ['UNSUBSCRIBE', ...channels];
 }

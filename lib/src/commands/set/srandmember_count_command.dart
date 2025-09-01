@@ -27,7 +27,7 @@ final class SRandMemberCountCommand extends ValkeyCommand<List<String>>
   final int count;
 
   @override
-  List<Object> get commandParts => ['SRANDMEMBER', key, count.toString()];
+  List<String> get commandParts => ['SRANDMEMBER', key, count.toString()];
 
   @override
   List<String> parse(dynamic data) {

@@ -34,7 +34,7 @@ final class ZRangeWithScoresCommand
   final int stop;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ZRangeCommand(key, start.toString(), stop.toString(), withScores: true)
           .commandParts;
 

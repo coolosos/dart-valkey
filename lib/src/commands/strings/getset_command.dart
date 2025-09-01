@@ -28,7 +28,7 @@ final class GetSetCommand extends ValkeyCommand<String?>
   final String value;
 
   @override
-  List<Object> get commandParts => ['GETSET', key, value];
+  List<String> get commandParts => ['GETSET', key, value];
 
   @override
   String? parse(dynamic data) {

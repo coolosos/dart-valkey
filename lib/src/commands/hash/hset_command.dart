@@ -25,8 +25,8 @@ final class HSetCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final Map<String, Object> fields;
 
   @override
-  List<Object> get commandParts {
-    final parts = <Object>['HSET', key];
+  List<String> get commandParts {
+          final parts = <String>['HSET', key];
     fields.forEach((field, value) {
       parts.add(field);
       parts.add(value.toString());

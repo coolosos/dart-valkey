@@ -25,7 +25,7 @@ final class LPushCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> values;
 
   @override
-  List<Object> get commandParts => ['LPUSH', key, ...values];
+  List<String> get commandParts => ['LPUSH', key, ...values];
 
   @override
   int parse(dynamic data) {

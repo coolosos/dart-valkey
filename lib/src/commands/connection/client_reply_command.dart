@@ -13,7 +13,7 @@ final class ClientReplyCommand extends ValkeyCommand<bool> {
   final ClientReplyMode mode;
 
   @override
-  List<Object> get commandParts => ['CLIENT', 'REPLY', mode.name.toUpperCase()];
+  List<String> get commandParts => ['CLIENT', 'REPLY', mode.name.toUpperCase()];
 
   @override
   bool parse(dynamic data) {

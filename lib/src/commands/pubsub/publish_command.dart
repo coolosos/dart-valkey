@@ -11,7 +11,7 @@ final class PublishCommand extends ValkeyCommand<int> {
   final String message;
 
   @override
-  List<Object> get commandParts => ['PUBLISH', channel, message];
+  List<String> get commandParts => ['PUBLISH', channel, message];
 
   @override
   int parse(dynamic data) {

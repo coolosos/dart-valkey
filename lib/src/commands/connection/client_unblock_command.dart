@@ -27,8 +27,8 @@ final class ClientUnblockCommand extends ValkeyCommand<int> {
   final UnblockType? unblockType;
 
   @override
-  List<Object> get commandParts {
-    final parts = ['CLIENT', 'UNBLOCK', clientId];
+  List<String> get commandParts {
+          final parts = ['CLIENT', 'UNBLOCK', clientId.toString()];
     if (unblockType != null) {
       parts.add(unblockType!.name.toUpperCase());
     }

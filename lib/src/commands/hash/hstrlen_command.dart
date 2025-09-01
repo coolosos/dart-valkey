@@ -41,7 +41,7 @@ final class HStrLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String field;
 
   @override
-  List<Object> get commandParts => ['HSTRLEN', key, field];
+  List<String> get commandParts => ['HSTRLEN', key, field];
 
   @override
   int parse(dynamic data) {

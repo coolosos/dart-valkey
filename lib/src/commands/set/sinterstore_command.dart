@@ -22,7 +22,7 @@ final class SInterStoreCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['SINTERSTORE', destination, ...keys];
+  List<String> get commandParts => ['SINTERSTORE', destination, ...keys];
 
   @override
   int parse(dynamic data) {

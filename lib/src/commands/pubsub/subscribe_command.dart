@@ -10,5 +10,5 @@ final class SubscribeCommand extends PubSubCommand<void> {
   final List<String> channels;
 
   @override
-  List<Object> get commandParts => ['SUBSCRIBE', ...channels];
+  List<String> get commandParts => ['SUBSCRIBE', ...channels];
 }

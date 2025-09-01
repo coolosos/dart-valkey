@@ -21,7 +21,7 @@ final class TypeCommand extends ValkeyCommand<String> with KeyCommand<String> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['TYPE', key];
+  List<String> get commandParts => ['TYPE', key];
 
   @override
   String parse(dynamic data) {

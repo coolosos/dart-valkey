@@ -24,7 +24,7 @@ final class RPopLPushCommand extends ValkeyCommand<String?>
   final String destination;
 
   @override
-  List<Object> get commandParts => ['RPOPLPUSH', source, destination];
+  List<String> get commandParts => ['RPOPLPUSH', source, destination];
 
   @override
   String? parse(dynamic data) {

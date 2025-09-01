@@ -22,7 +22,7 @@ final class ZRankCommand extends ValkeyCommand<int?> with KeyCommand<int?> {
   final String member;
 
   @override
-  List<Object> get commandParts => ['ZRANK', key, member];
+  List<String> get commandParts => ['ZRANK', key, member];
 
   @override
   int? parse(dynamic data) {

@@ -21,7 +21,7 @@ final class ClientCachingCommand extends ValkeyCommand<String> {
   final bool enable;
 
   @override
-  List<Object> get commandParts => ['CLIENT', 'CACHING', enable ? 'YES' : 'NO'];
+  List<String> get commandParts => ['CLIENT', 'CACHING', enable ? 'YES' : 'NO'];
 
   @override
   String parse(dynamic data) {

@@ -21,7 +21,7 @@ final class ClientNoEvictCommand extends ValkeyCommand<String> {
   final bool enable;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['CLIENT', 'NO-EVICT', enable ? 'ON' : 'OFF'];
 
   @override

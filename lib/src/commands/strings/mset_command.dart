@@ -24,8 +24,8 @@ final class MSetCommand extends ValkeyCommand<String> with KeyCommand<String> {
   final Map<String, String> keyValuePairs;
 
   @override
-  List<Object> get commandParts {
-    final parts = <Object>['MSET'];
+  List<String> get commandParts {
+    final parts = <String>['MSET'];
     keyValuePairs.forEach((key, value) {
       parts.add(key);
       parts.add(value);

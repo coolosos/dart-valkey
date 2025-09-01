@@ -23,7 +23,7 @@ final class IncrCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String key;
 
   @override
-  List<Object> get commandParts => ['INCR', key];
+  List<String> get commandParts => ['INCR', key];
 
   @override
   int parse(dynamic data) {

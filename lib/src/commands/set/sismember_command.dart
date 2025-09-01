@@ -20,7 +20,7 @@ final class SIsMemberCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final String member;
 
   @override
-  List<Object> get commandParts => ['SISMEMBER', key, member];
+  List<String> get commandParts => ['SISMEMBER', key, member];
 
   @override
   bool parse(dynamic data) {

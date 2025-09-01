@@ -29,7 +29,7 @@ final class HMGetCommand extends ValkeyCommand<List<String?>>
   final List<String> fields;
 
   @override
-  List<Object> get commandParts => ['HMGET', key, ...fields];
+  List<String> get commandParts => ['HMGET', key, ...fields];
 
   @override
   List<String?> parse(dynamic data) {

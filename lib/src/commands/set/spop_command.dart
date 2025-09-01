@@ -23,7 +23,7 @@ final class SPopCommand extends ValkeyCommand<String?>
   final String key;
 
   @override
-  List<Object> get commandParts => ['SPOP', key];
+  List<String> get commandParts => ['SPOP', key];
 
   @override
   String? parse(dynamic data) {

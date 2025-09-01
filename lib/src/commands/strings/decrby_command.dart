@@ -26,7 +26,7 @@ final class DecrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final int decrement;
 
   @override
-  List<Object> get commandParts => ['DECRBY', key, decrement.toString()];
+  List<String> get commandParts => ['DECRBY', key, decrement.toString()];
 
   @override
   int parse(dynamic data) {

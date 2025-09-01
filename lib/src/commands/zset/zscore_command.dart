@@ -23,7 +23,7 @@ final class ZScoreCommand extends ValkeyCommand<double?>
   final String member;
 
   @override
-  List<Object> get commandParts => ['ZSCORE', key, member];
+  List<String> get commandParts => ['ZSCORE', key, member];
 
   @override
   double? parse(dynamic data) {

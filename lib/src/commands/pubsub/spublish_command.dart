@@ -9,7 +9,7 @@ final class SpublishCommand extends ValkeyCommand<int> {
   final String message;
 
   @override
-  List<Object> get commandParts => ['SPUBLISH', channel, message];
+  List<String> get commandParts => ['SPUBLISH', channel, message];
 
   @override
   int parse(dynamic data) {

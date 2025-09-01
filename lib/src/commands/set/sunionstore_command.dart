@@ -22,7 +22,7 @@ final class SUnionStoreCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final List<String> keys;
 
   @override
-  List<Object> get commandParts => ['SUNIONSTORE', destination, ...keys];
+  List<String> get commandParts => ['SUNIONSTORE', destination, ...keys];
 
   @override
   int parse(dynamic data) {

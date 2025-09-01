@@ -7,7 +7,7 @@ final class EchoCommand extends ValkeyCommand<String> {
   final String message;
 
   @override
-  List<Object> get commandParts => ['ECHO', message];
+  List<String> get commandParts => ['ECHO', message];
 
   @override
   String parse(dynamic data) {

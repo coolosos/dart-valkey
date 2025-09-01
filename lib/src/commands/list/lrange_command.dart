@@ -32,7 +32,7 @@ final class LRangeCommand extends ValkeyCommand<List<String>>
   final int stop;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['LRANGE', key, start.toString(), stop.toString()];
 
   @override

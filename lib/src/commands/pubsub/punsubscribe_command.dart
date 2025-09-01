@@ -10,5 +10,5 @@ final class PUnsubscribeCommand extends PubSubCommand<void> {
   final List<String> patterns;
 
   @override
-  List<Object> get commandParts => ['PUNSUBSCRIBE', ...patterns];
+  List<String> get commandParts => ['PUNSUBSCRIBE', ...patterns];
 }

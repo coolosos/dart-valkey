@@ -38,7 +38,7 @@ final class ZRevRangeByScoreCommand extends ValkeyCommand<dynamic>
   final int? limitCount;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['ZREVRANGEBYSCORE', key, max, min];
     if (withScores) {
       parts.add('WITHSCORES');

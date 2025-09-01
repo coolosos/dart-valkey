@@ -44,8 +44,8 @@ final class ZAddCommand extends ValkeyCommand<dynamic>
   final bool incr;
 
   @override
-  List<Object> get commandParts {
-    final parts = <Object>['ZADD', key];
+  List<String> get commandParts {
+    final parts = <String>['ZADD', key];
 
     if (onlyIfNotExists) {
       parts.add('NX');

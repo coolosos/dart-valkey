@@ -32,7 +32,7 @@ final class HGetAllCommand extends ValkeyCommand<Map<String, String>>
   final String key;
 
   @override
-  List<Object> get commandParts => ['HGETALL', key];
+  List<String> get commandParts => ['HGETALL', key];
 
   @override
   Map<String, String> parse(dynamic data) {

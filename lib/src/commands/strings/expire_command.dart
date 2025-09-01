@@ -40,7 +40,7 @@ final class ExpireCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   final bool lt;
 
   @override
-  List<Object> get commandParts {
+  List<String> get commandParts {
     final parts = ['EXPIRE', key, seconds.toString()];
     if (nx) {
       parts.add('NX');

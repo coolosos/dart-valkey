@@ -4,7 +4,7 @@ import '../command.dart';
 /// Represents the 'CLIENT IMPORT-SOURCE' command.
 final class ClientImportSourceCommand extends ValkeyCommand<bool> {
   @override
-  List<Object> get commandParts => ['CLIENT', 'IMPORT-SOURCE'];
+  List<String> get commandParts => ['CLIENT', 'IMPORT-SOURCE'];
 
   @override
   bool parse(dynamic data) {

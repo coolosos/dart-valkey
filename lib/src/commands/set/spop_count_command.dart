@@ -27,7 +27,7 @@ final class SPopCountCommand extends ValkeyCommand<List<String>>
   final int count;
 
   @override
-  List<Object> get commandParts => ['SPOP', key, count.toString()];
+  List<String> get commandParts => ['SPOP', key, count.toString()];
 
   @override
   List<String> parse(dynamic data) {

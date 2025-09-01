@@ -7,7 +7,7 @@ final class ClientKillCommand extends ValkeyCommand<int> {
   final int clientId;
 
   @override
-  List<Object> get commandParts =>
+  List<String> get commandParts =>
       ['CLIENT', 'KILL', 'ID', clientId.toString()];
 
   @override

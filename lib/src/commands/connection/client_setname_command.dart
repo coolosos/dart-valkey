@@ -7,7 +7,7 @@ final class ClientSetnameCommand extends ValkeyCommand<String> {
   final String name;
 
   @override
-  List<Object> get commandParts => ['CLIENT', 'SETNAME', name];
+  List<String> get commandParts => ['CLIENT', 'SETNAME', name];
 
   @override
   String parse(dynamic data) {

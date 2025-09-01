@@ -26,7 +26,7 @@ final class AppendCommand extends ValkeyCommand<int> with KeyCommand<int> {
   final String value;
 
   @override
-  List<Object> get commandParts => ['APPEND', key, value];
+  List<String> get commandParts => ['APPEND', key, value];
 
   @override
   int parse(dynamic data) {

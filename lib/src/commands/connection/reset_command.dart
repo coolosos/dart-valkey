@@ -4,7 +4,7 @@ import '../command.dart';
 /// Represents the 'RESET' command.
 final class ResetCommand extends ValkeyCommand<String> {
   @override
-  List<Object> get commandParts => ['RESET'];
+  List<String> get commandParts => ['RESET'];
 
   @override
   String parse(dynamic data) {
