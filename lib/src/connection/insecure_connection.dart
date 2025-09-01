@@ -11,6 +11,7 @@ class InsecureConnection extends BaseConnection {
     super.onData,
     super.onDone,
     super.onError,
+    super.maxReconnectAttempts,
   });
 
   @override

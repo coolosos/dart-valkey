@@ -11,6 +11,7 @@ class SecureConnection extends BaseConnection {
     super.onData,
     super.onDone,
     super.onError,
+    super.maxReconnectAttempts,
     this.onBadCertificate,
   });
 

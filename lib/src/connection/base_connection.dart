@@ -20,11 +20,13 @@ abstract class BaseConnection implements Connection {
     this.onData,
     this.onDone,
     this.onError,
+    this.maxReconnectAttempts = 5,
   });
 
   final String host;
   final int port;
   final Duration connectionTimeout;
+  final int maxReconnectAttempts;
 
   final Future<void> Function()? onConnected;
   final void Function(dynamic data)? onData;
@@ -37,6 +39,9 @@ abstract class BaseConnection implements Connection {
 
   Socket? _socket;
   StreamSubscription? _socketSubscription;
+
+  @visibleForTesting
+  Socket? get testSocket => _socket;
 
   int _reconnectAttempts = 0;
   Timer? _reconnectTimer;
@@ -113,7 +118,9 @@ abstract class BaseConnection implements Connection {
     _socket?.destroy();
     _socket = null;
 
-    _scheduleReconnect();
+    if (_reconnectAttempts < maxReconnectAttempts) {
+      _scheduleReconnect();
+    }
   }
 
   void _scheduleReconnect() {
