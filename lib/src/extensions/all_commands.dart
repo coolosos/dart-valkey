@@ -6,7 +6,7 @@ import '../commands/commands.dart';
 /// Extends [ValkeyCommandClient] with all commands.
 extension ValkeyCommands on ValkeyCommandClient {
   // Connection
-  Future<String> ping([String? message]) => execute(PingCommand(message));
+  Future<bool> ping([String? message]) => execute(PingCommand(message));
   Future<String> echo(String message) => execute(EchoCommand(message));
   Future<String?> clientGetname() => execute(ClientGetnameCommand());
   Future<int> clientId() => execute(ClientIdCommand());
