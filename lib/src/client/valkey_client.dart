@@ -11,6 +11,8 @@ import '../connection/secure_connection.dart';
 import '../codec/valkey_exception.dart';
 import '../models/pubsub_message.dart';
 import 'package:meta/meta.dart';
+
+export '../models/pubsub_message.dart';
 part 'valkey_command_client.dart';
 part 'valkey_subscription_client.dart';
 part 'mixins/regular_subscription_mixin.dart';
