@@ -19,20 +19,7 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
         buffer.add(chunk);
         final currentBuffer = buffer.toBytes();
 
-        while (offset < currentBuffer.length) {
-          try {
-            final result = _parse(currentBuffer, offset);
-            controller.add(result.value);
-            offset += result.bytesConsumed;
-          } on _IncompleteDataException {
-            break;
-          } catch (e) {
-            controller.addError(e);
-            buffer.clear();
-            offset = 0;
-            return;
-          }
-        }
+        offset = _processBuffer(currentBuffer, offset, controller, buffer);
 
         if (offset > 0) {
           final remaining = currentBuffer.sublist(offset);
@@ -48,8 +35,33 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
     return controller.stream;
   }
 
+  int _processBuffer(
+    List<int> currentBuffer,
+    int offset,
+    StreamSink<dynamic> controller,
+    BytesBuilder buffer,
+  ) {
+    while (offset < currentBuffer.length) {
+      try {
+        final result = _parse(currentBuffer, offset);
+        controller.add(result.value);
+        offset += result.bytesConsumed;
+      } on _IncompleteDataException {
+        break;
+      } catch (e) {
+        controller.addError(e);
+        buffer.clear();
+        offset = 0;
+        return 0; // Reset offset on error
+      }
+    }
+    return offset;
+  }
+
   _ParseResult _parse(List<int> buffer, int offset) {
-    if (offset >= buffer.length) throw _IncompleteDataException();
+    if (offset >= buffer.length) {
+      throw _IncompleteDataException();
+    }
 
     final type = buffer[offset];
     switch (type) {
@@ -81,7 +93,9 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
 
   _ParseResult _parseSimpleString(List<int> buffer, int offset) {
     final crlfPos = _findCRLF(buffer, offset);
-    if (crlfPos == -1) throw _IncompleteDataException();
+    if (crlfPos == -1) {
+      throw _IncompleteDataException();
+    }
 
     final value = utf8.decode(buffer.sublist(offset + 1, crlfPos));
     return _ParseResult(value, (crlfPos - offset) + 2);
@@ -89,15 +103,20 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
 
   _ParseResult _parseError(List<int> buffer, int offset) {
     final crlfPos = _findCRLF(buffer, offset);
-    if (crlfPos == -1) throw _IncompleteDataException();
+    if (crlfPos == -1) {
+      throw _IncompleteDataException();
+    }
 
     final message = utf8.decode(buffer.sublist(offset + 1, crlfPos));
+    // throw ValkeyException(message);
     return _ParseResult(ValkeyException(message), (crlfPos - offset) + 2);
   }
 
   _ParseResult _parseInteger(List<int> buffer, int offset) {
     final crlfPos = _findCRLF(buffer, offset);
-    if (crlfPos == -1) throw _IncompleteDataException();
+    if (crlfPos == -1) {
+      throw _IncompleteDataException();
+    }
 
     final valueStr = utf8.decode(buffer.sublist(offset + 1, crlfPos));
     return _ParseResult(int.parse(valueStr), (crlfPos - offset) + 2);
@@ -105,7 +124,9 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
 
   _ParseResult _parseBulkString(List<int> buffer, int offset) {
     final crlfPos = _findCRLF(buffer, offset);
-    if (crlfPos == -1) throw _IncompleteDataException();
+    if (crlfPos == -1) {
+      throw _IncompleteDataException();
+    }
 
     final length = int.parse(utf8.decode(buffer.sublist(offset + 1, crlfPos)));
     if (length == -1) {
@@ -114,7 +135,9 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
 
     final dataStart = crlfPos + 2;
     final totalLength = dataStart + length + 2;
-    if (buffer.length < totalLength) throw _IncompleteDataException();
+    if (buffer.length < totalLength) {
+      throw _IncompleteDataException();
+    }
 
     final value = utf8.decode(buffer.sublist(dataStart, dataStart + length));
     return _ParseResult(value, (totalLength - offset));
@@ -122,7 +145,9 @@ class RespDecoder extends StreamTransformerBase<Uint8List, dynamic> {
 
   _ParseResult _parseArray(List<int> buffer, int offset) {
     final crlfPos = _findCRLF(buffer, offset);
-    if (crlfPos == -1) throw _IncompleteDataException();
+    if (crlfPos == -1) {
+      throw _IncompleteDataException();
+    }
 
     final count = int.parse(utf8.decode(buffer.sublist(offset + 1, crlfPos)));
     if (count == -1) {
