@@ -4,7 +4,7 @@ import 'package:dart_valkey/dart_valkey.dart';
 import 'package:dart_valkey/src/connection/base_connection.dart';
 import 'package:mockito/annotations.dart';
 
-@GenerateMocks([Socket, StreamSubscription, Connection])
+@GenerateMocks([Socket, StreamSubscription, Connection, Stream, RespDecoder])
 void main() {}
 
 class TestConnection extends BaseConnection {

@@ -33,6 +33,9 @@ abstract class BaseConnection implements Connection {
   final void Function()? onDone;
   final void Function(Object error)? onError;
 
+  @visibleForTesting
+  RespDecoder get respDecoder => const RespDecoder();
+
   String? username;
   String? password;
   int? protocolVersion;
@@ -69,7 +72,7 @@ abstract class BaseConnection implements Connection {
       final socket = await performSocketConnection();
       socket.setOption(SocketOption.tcpNoDelay, true);
 
-      final decoder = const RespDecoder().bind(socket).asBroadcastStream();
+      final decoder = respDecoder.bind(socket).asBroadcastStream();
 
       if (password case final password? when password.isNotEmpty) {
         final ValkeyCommand<dynamic> command;

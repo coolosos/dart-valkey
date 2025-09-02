@@ -8,6 +8,7 @@ import 'dart:convert' as _i3;
 import 'dart:io' as _i2;
 import 'dart:typed_data' as _i5;
 
+import 'package:dart_valkey/src/codec/resp_decoder.dart' as _i8;
 import 'package:dart_valkey/src/connection/connection.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
@@ -60,6 +61,17 @@ class _FakeStreamSubscription_2<T> extends _i1.SmartFake
 
 class _FakeFuture_3<T> extends _i1.SmartFake implements _i4.Future<T> {
   _FakeFuture_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeStreamTransformer_4<S, T> extends _i1.SmartFake
+    implements _i4.StreamTransformer<S, T> {
+  _FakeStreamTransformer_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -862,4 +874,603 @@ class MockConnection extends _i1.Mock implements _i7.Connection {
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+}
+
+/// A class which mocks [Stream].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStream<T> extends _i1.Mock implements _i4.Stream<T> {
+  MockStream() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get isBroadcast => (super.noSuchMethod(
+        Invocation.getter(#isBroadcast),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i4.Future<int> get length => (super.noSuchMethod(
+        Invocation.getter(#length),
+        returnValue: _i4.Future<int>.value(0),
+      ) as _i4.Future<int>);
+
+  @override
+  _i4.Future<bool> get isEmpty => (super.noSuchMethod(
+        Invocation.getter(#isEmpty),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+
+  @override
+  _i4.Future<T> get first => (super.noSuchMethod(
+        Invocation.getter(#first),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.getter(#first),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.getter(#first),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Future<T> get last => (super.noSuchMethod(
+        Invocation.getter(#last),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.getter(#last),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.getter(#last),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Future<T> get single => (super.noSuchMethod(
+        Invocation.getter(#single),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.getter(#single),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.getter(#single),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Stream<T> asBroadcastStream({
+    void Function(_i4.StreamSubscription<T>)? onListen,
+    void Function(_i4.StreamSubscription<T>)? onCancel,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #asBroadcastStream,
+          [],
+          {
+            #onListen: onListen,
+            #onCancel: onCancel,
+          },
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.StreamSubscription<T> listen(
+    void Function(T)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #listen,
+          [onData],
+          {
+            #onError: onError,
+            #onDone: onDone,
+            #cancelOnError: cancelOnError,
+          },
+        ),
+        returnValue: _FakeStreamSubscription_2<T>(
+          this,
+          Invocation.method(
+            #listen,
+            [onData],
+            {
+              #onError: onError,
+              #onDone: onDone,
+              #cancelOnError: cancelOnError,
+            },
+          ),
+        ),
+      ) as _i4.StreamSubscription<T>);
+
+  @override
+  _i4.Stream<T> where(bool Function(T)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #where,
+          [test],
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Stream<S> map<S>(S Function(T)? convert) => (super.noSuchMethod(
+        Invocation.method(
+          #map,
+          [convert],
+        ),
+        returnValue: _i4.Stream<S>.empty(),
+      ) as _i4.Stream<S>);
+
+  @override
+  _i4.Stream<E> asyncMap<E>(_i4.FutureOr<E> Function(T)? convert) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #asyncMap,
+          [convert],
+        ),
+        returnValue: _i4.Stream<E>.empty(),
+      ) as _i4.Stream<E>);
+
+  @override
+  _i4.Stream<E> asyncExpand<E>(_i4.Stream<E>? Function(T)? convert) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #asyncExpand,
+          [convert],
+        ),
+        returnValue: _i4.Stream<E>.empty(),
+      ) as _i4.Stream<E>);
+
+  @override
+  _i4.Stream<T> handleError(
+    Function? onError, {
+    bool Function(dynamic)? test,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleError,
+          [onError],
+          {#test: test},
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Stream<S> expand<S>(Iterable<S> Function(T)? convert) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #expand,
+          [convert],
+        ),
+        returnValue: _i4.Stream<S>.empty(),
+      ) as _i4.Stream<S>);
+
+  @override
+  _i4.Future<dynamic> pipe(_i4.StreamConsumer<T>? streamConsumer) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #pipe,
+          [streamConsumer],
+        ),
+        returnValue: _i4.Future<dynamic>.value(),
+      ) as _i4.Future<dynamic>);
+
+  @override
+  _i4.Stream<S> transform<S>(_i4.StreamTransformer<T, S>? streamTransformer) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #transform,
+          [streamTransformer],
+        ),
+        returnValue: _i4.Stream<S>.empty(),
+      ) as _i4.Stream<S>);
+
+  @override
+  _i4.Future<T> reduce(
+          T Function(
+            T,
+            T,
+          )? combine) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #reduce,
+          [combine],
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #reduce,
+                  [combine],
+                ),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.method(
+                #reduce,
+                [combine],
+              ),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Future<S> fold<S>(
+    S? initialValue,
+    S Function(
+      S,
+      T,
+    )? combine,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fold,
+          [
+            initialValue,
+            combine,
+          ],
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<S>(
+                this,
+                Invocation.method(
+                  #fold,
+                  [
+                    initialValue,
+                    combine,
+                  ],
+                ),
+              ),
+              (S v) => _i4.Future<S>.value(v),
+            ) ??
+            _FakeFuture_3<S>(
+              this,
+              Invocation.method(
+                #fold,
+                [
+                  initialValue,
+                  combine,
+                ],
+              ),
+            ),
+      ) as _i4.Future<S>);
+
+  @override
+  _i4.Future<String> join([String? separator = '']) => (super.noSuchMethod(
+        Invocation.method(
+          #join,
+          [separator],
+        ),
+        returnValue: _i4.Future<String>.value(_i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #join,
+            [separator],
+          ),
+        )),
+      ) as _i4.Future<String>);
+
+  @override
+  _i4.Future<bool> contains(Object? needle) => (super.noSuchMethod(
+        Invocation.method(
+          #contains,
+          [needle],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+
+  @override
+  _i4.Future<void> forEach(void Function(T)? action) => (super.noSuchMethod(
+        Invocation.method(
+          #forEach,
+          [action],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<bool> every(bool Function(T)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #every,
+          [test],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+
+  @override
+  _i4.Future<bool> any(bool Function(T)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #any,
+          [test],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
+
+  @override
+  _i4.Stream<R> cast<R>() => (super.noSuchMethod(
+        Invocation.method(
+          #cast,
+          [],
+        ),
+        returnValue: _i4.Stream<R>.empty(),
+      ) as _i4.Stream<R>);
+
+  @override
+  _i4.Future<List<T>> toList() => (super.noSuchMethod(
+        Invocation.method(
+          #toList,
+          [],
+        ),
+        returnValue: _i4.Future<List<T>>.value(<T>[]),
+      ) as _i4.Future<List<T>>);
+
+  @override
+  _i4.Future<Set<T>> toSet() => (super.noSuchMethod(
+        Invocation.method(
+          #toSet,
+          [],
+        ),
+        returnValue: _i4.Future<Set<T>>.value(<T>{}),
+      ) as _i4.Future<Set<T>>);
+
+  @override
+  _i4.Future<E> drain<E>([E? futureValue]) => (super.noSuchMethod(
+        Invocation.method(
+          #drain,
+          [futureValue],
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<E>(
+                this,
+                Invocation.method(
+                  #drain,
+                  [futureValue],
+                ),
+              ),
+              (E v) => _i4.Future<E>.value(v),
+            ) ??
+            _FakeFuture_3<E>(
+              this,
+              Invocation.method(
+                #drain,
+                [futureValue],
+              ),
+            ),
+      ) as _i4.Future<E>);
+
+  @override
+  _i4.Stream<T> take(int? count) => (super.noSuchMethod(
+        Invocation.method(
+          #take,
+          [count],
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Stream<T> takeWhile(bool Function(T)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #takeWhile,
+          [test],
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Stream<T> skip(int? count) => (super.noSuchMethod(
+        Invocation.method(
+          #skip,
+          [count],
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Stream<T> skipWhile(bool Function(T)? test) => (super.noSuchMethod(
+        Invocation.method(
+          #skipWhile,
+          [test],
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Stream<T> distinct(
+          [bool Function(
+            T,
+            T,
+          )? equals]) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #distinct,
+          [equals],
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+
+  @override
+  _i4.Future<T> firstWhere(
+    bool Function(T)? test, {
+    T Function()? orElse,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #firstWhere,
+          [test],
+          {#orElse: orElse},
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #firstWhere,
+                  [test],
+                  {#orElse: orElse},
+                ),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.method(
+                #firstWhere,
+                [test],
+                {#orElse: orElse},
+              ),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Future<T> lastWhere(
+    bool Function(T)? test, {
+    T Function()? orElse,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #lastWhere,
+          [test],
+          {#orElse: orElse},
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #lastWhere,
+                  [test],
+                  {#orElse: orElse},
+                ),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.method(
+                #lastWhere,
+                [test],
+                {#orElse: orElse},
+              ),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Future<T> singleWhere(
+    bool Function(T)? test, {
+    T Function()? orElse,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #singleWhere,
+          [test],
+          {#orElse: orElse},
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #singleWhere,
+                  [test],
+                  {#orElse: orElse},
+                ),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.method(
+                #singleWhere,
+                [test],
+                {#orElse: orElse},
+              ),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Future<T> elementAt(int? index) => (super.noSuchMethod(
+        Invocation.method(
+          #elementAt,
+          [index],
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #elementAt,
+                  [index],
+                ),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.method(
+                #elementAt,
+                [index],
+              ),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  _i4.Stream<T> timeout(
+    Duration? timeLimit, {
+    void Function(_i4.EventSink<T>)? onTimeout,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #timeout,
+          [timeLimit],
+          {#onTimeout: onTimeout},
+        ),
+        returnValue: _i4.Stream<T>.empty(),
+      ) as _i4.Stream<T>);
+}
+
+/// A class which mocks [RespDecoder].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRespDecoder extends _i1.Mock implements _i8.RespDecoder {
+  MockRespDecoder() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Stream<dynamic> bind(_i4.Stream<List<int>>? stream) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #bind,
+          [stream],
+        ),
+        returnValue: _i4.Stream<dynamic>.empty(),
+      ) as _i4.Stream<dynamic>);
+
+  @override
+  _i4.StreamTransformer<RS, RT> cast<RS, RT>() => (super.noSuchMethod(
+        Invocation.method(
+          #cast,
+          [],
+        ),
+        returnValue: _FakeStreamTransformer_4<RS, RT>(
+          this,
+          Invocation.method(
+            #cast,
+            [],
+          ),
+        ),
+      ) as _i4.StreamTransformer<RS, RT>);
 }
