@@ -21,7 +21,7 @@ part of 'valkey_client.dart';
 /// await client.close();
 /// ```
 
-final class ValkeyCommandClient extends BaseValkeyClient {
+base class ValkeyCommandClient extends BaseValkeyClient {
   /// Creates a new [ValkeyCommandClient] instance.
   ///
   /// This constructor initializes the client but does not establish a connection.
@@ -45,6 +45,7 @@ final class ValkeyCommandClient extends BaseValkeyClient {
     super.username,
     super.password,
     super.connection,
+    super.protocolVersion,
   })  : _db = db,
         keyPrefix =
             (keyPrefix?.endsWith(':') ?? false) ? keyPrefix : '$keyPrefix:';
