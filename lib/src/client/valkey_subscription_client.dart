@@ -5,7 +5,7 @@ part of 'valkey_client.dart';
 /// This object manages a dedicated connection to the Valkey server for Pub/Sub
 /// operations. A single client can subscribe to multiple channels and patterns,
 /// and all messages are delivered through a single [messages] stream.
-final class ValkeySubscriptionClient extends BaseValkeyClient
+base class ValkeySubscriptionClient extends BaseValkeyClient
     with
         RegularSubscriptionMixin,
         PatternSubscriptionMixin,
@@ -23,6 +23,7 @@ final class ValkeySubscriptionClient extends BaseValkeyClient
     super.username,
     super.password,
     super.connection,
+    super.protocolVersion,
   }) {
     _pendingCompleters = {};
     _commandQueue = Queue();
