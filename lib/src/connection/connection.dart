@@ -12,4 +12,6 @@ abstract class Connection {
 
   /// Closes the connection and releases all resources.
   Future<void> close();
+
+  bool get isConnected;
 }

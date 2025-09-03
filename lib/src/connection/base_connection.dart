@@ -50,12 +50,14 @@ abstract class BaseConnection implements Connection {
   Timer? _reconnectTimer;
 
   @override
+  bool get isConnected => _socket != null;
+  @override
   Future<void> connect({
     String? username,
     String? password,
     int? protocolVersion,
   }) async {
-    if (_socket != null) return;
+    if (isConnected) return;
     _reconnectAttempts = 0;
     this.username = username;
     this.password = password;

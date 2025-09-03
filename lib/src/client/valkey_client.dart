@@ -65,11 +65,15 @@ sealed class BaseValkeyClient {
   late final Connection _connection;
 
   /// Establishes the network connection to the Valkey/Redis server.
-  Future<void> connect() => _connection.connect(
+  Future<void> connect() async {
+    if (!_connection.isConnected) {
+      await _connection.connect(
         username: username,
         password: password,
         protocolVersion: protocolVersion,
       );
+    }
+  }
 
   /// Closes the connection to the Valkey/Redis server and releases all associated resources.
   Future<void> close() => _connection.close();
