@@ -129,19 +129,32 @@ void main() {
           port: 6379,
           connection: mockConnection,
         );
-
-        // when(client.execute<String>(command)).thenAnswer((_) async => 'OK');
       });
 
       test('should call execute for SelectCommand and resend queued commands',
           () async {
         final command = FakeCommand(fakeEncoded: [1, 2, 3], fakeResult: 'OK');
 
-        client.execute(command);
+        Future.delayed(
+          const Duration(),
+          () => client.handleDataMock("ok"),
+        );
 
+        await client.execute(command);
+        client.handleDataMock("ok");
+        Future.delayed(
+          const Duration(),
+          () => client.handleDataMock("ok"),
+        );
         client.handleOnConnectedMock();
+        Future.delayed(
+          const Duration(),
+          () => client.handleDataMock("ok"),
+        );
+        await client.execute(command);
 
-        verify(mockConnection.send(argThat(isA<List<int>>()))).called(2);
+        verify(mockConnection.send(command.encoded)).called(3);
+        verify(mockConnection.send(argThat(isA<List<int>>()))).called(1);
       });
     });
   });
