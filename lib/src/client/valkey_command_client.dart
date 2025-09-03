@@ -21,7 +21,7 @@ part of 'valkey_client.dart';
 /// await client.close();
 /// ```
 
-base class ValkeyCommandClient extends BaseValkeyClient {
+class ValkeyCommandClient extends BaseValkeyClient {
   /// Creates a new [ValkeyCommandClient] instance.
   ///
   /// This constructor initializes the client but does not establish a connection.
@@ -119,7 +119,4 @@ base class ValkeyCommandClient extends BaseValkeyClient {
     _commandQueue.clear();
     _pendingCompleters.clear();
   }
-
-  @visibleForTesting
-  void handleDataMock(dynamic data) => _onData(data);
 }

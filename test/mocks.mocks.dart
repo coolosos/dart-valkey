@@ -8,8 +8,11 @@ import 'dart:convert' as _i3;
 import 'dart:io' as _i2;
 import 'dart:typed_data' as _i5;
 
+import 'package:dart_valkey/src/client/valkey_client.dart' as _i9;
 import 'package:dart_valkey/src/codec/resp_decoder.dart' as _i8;
+import 'package:dart_valkey/src/commands/commands.dart' as _i10;
 import 'package:dart_valkey/src/connection/connection.dart' as _i7;
+import 'package:dart_valkey/src/models/pubsub_message.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 
@@ -72,6 +75,16 @@ class _FakeFuture_3<T> extends _i1.SmartFake implements _i4.Future<T> {
 class _FakeStreamTransformer_4<S, T> extends _i1.SmartFake
     implements _i4.StreamTransformer<S, T> {
   _FakeStreamTransformer_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeDuration_5 extends _i1.SmartFake implements Duration {
+  _FakeDuration_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -837,6 +850,12 @@ class MockConnection extends _i1.Mock implements _i7.Connection {
   }
 
   @override
+  bool get isConnected => (super.noSuchMethod(
+        Invocation.getter(#isConnected),
+        returnValue: false,
+      ) as bool);
+
+  @override
   _i4.Future<void> connect({
     String? username,
     String? password,
@@ -1473,4 +1492,246 @@ class MockRespDecoder extends _i1.Mock implements _i8.RespDecoder {
           ),
         ),
       ) as _i4.StreamTransformer<RS, RT>);
+}
+
+/// A class which mocks [ValkeyCommandClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockValkeyCommandClient extends _i1.Mock
+    implements _i9.ValkeyCommandClient {
+  MockValkeyCommandClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get host => (super.noSuchMethod(
+        Invocation.getter(#host),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.getter(#host),
+        ),
+      ) as String);
+
+  @override
+  int get port => (super.noSuchMethod(
+        Invocation.getter(#port),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  bool get secure => (super.noSuchMethod(
+        Invocation.getter(#secure),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  Duration get connectionTimeout => (super.noSuchMethod(
+        Invocation.getter(#connectionTimeout),
+        returnValue: _FakeDuration_5(
+          this,
+          Invocation.getter(#connectionTimeout),
+        ),
+      ) as Duration);
+
+  @override
+  _i4.Future<T> execute<T>(_i10.ValkeyCommand<T>? command) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [command],
+        ),
+        returnValue: _i6.ifNotNull(
+              _i6.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #execute,
+                  [command],
+                ),
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_3<T>(
+              this,
+              Invocation.method(
+                #execute,
+                [command],
+              ),
+            ),
+      ) as _i4.Future<T>);
+
+  @override
+  void handleDataMock(dynamic data) => super.noSuchMethod(
+        Invocation.method(
+          #handleDataMock,
+          [data],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Future<void> connect() => (super.noSuchMethod(
+        Invocation.method(
+          #connect,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [ValkeySubscriptionClient].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockValkeySubscriptionClient extends _i1.Mock
+    implements _i9.ValkeySubscriptionClient {
+  MockValkeySubscriptionClient() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Stream<_i11.PubSubMessage> get messages => (super.noSuchMethod(
+        Invocation.getter(#messages),
+        returnValue: _i4.Stream<_i11.PubSubMessage>.empty(),
+      ) as _i4.Stream<_i11.PubSubMessage>);
+
+  @override
+  String get host => (super.noSuchMethod(
+        Invocation.getter(#host),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.getter(#host),
+        ),
+      ) as String);
+
+  @override
+  int get port => (super.noSuchMethod(
+        Invocation.getter(#port),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  bool get secure => (super.noSuchMethod(
+        Invocation.getter(#secure),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  Duration get connectionTimeout => (super.noSuchMethod(
+        Invocation.getter(#connectionTimeout),
+        returnValue: _FakeDuration_5(
+          this,
+          Invocation.getter(#connectionTimeout),
+        ),
+      ) as Duration);
+
+  @override
+  List<String> get subscribedChannels => (super.noSuchMethod(
+        Invocation.getter(#subscribedChannels),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  List<String> get subscribedPatterns => (super.noSuchMethod(
+        Invocation.getter(#subscribedPatterns),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  List<String> get subscribedShardChannels => (super.noSuchMethod(
+        Invocation.getter(#subscribedShardChannels),
+        returnValue: <String>[],
+      ) as List<String>);
+
+  @override
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  void handleDataMock(dynamic data) => super.noSuchMethod(
+        Invocation.method(
+          #handleDataMock,
+          [data],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Future<void> connect() => (super.noSuchMethod(
+        Invocation.method(
+          #connect,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  void subscribe(List<String>? channels) => super.noSuchMethod(
+        Invocation.method(
+          #subscribe,
+          [channels],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void unsubscribe([List<String>? channels = const []]) => super.noSuchMethod(
+        Invocation.method(
+          #unsubscribe,
+          [channels],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void psubscribe(List<String>? patterns) => super.noSuchMethod(
+        Invocation.method(
+          #psubscribe,
+          [patterns],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void punsubscribe([List<String>? patterns = const []]) => super.noSuchMethod(
+        Invocation.method(
+          #punsubscribe,
+          [patterns],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void ssubscribe(List<String>? channels) => super.noSuchMethod(
+        Invocation.method(
+          #ssubscribe,
+          [channels],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void sunsubscribe([List<String>? channels = const []]) => super.noSuchMethod(
+        Invocation.method(
+          #sunsubscribe,
+          [channels],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

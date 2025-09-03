@@ -92,4 +92,13 @@ sealed class BaseValkeyClient {
 
   /// Abstract method to be implemented by subclasses for handling connection errors.
   void _onError(Object error);
+
+  @visibleForTesting
+  Future<void> handleOnConnectedMock() => _onConnected();
+  @visibleForTesting
+  void handleDataMock(dynamic data) => _onData(data);
+  @visibleForTesting
+  void handleDoneMock() => _onDone();
+  @visibleForTesting
+  void handleErrorMock(Object error) => _onError(error);
 }
