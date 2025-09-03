@@ -19,6 +19,10 @@ void main() {
         port: 6379,
         connection: mockConnection,
       );
+      when(mockConnection.isConnected).thenReturn(false);
+      when(mockConnection.connect()).thenAnswer((_) async {
+        when(mockConnection.isConnected).thenReturn(true);
+      });
     });
 
     test('execute should enqueue command and send encoded data', () async {
@@ -36,6 +40,15 @@ void main() {
       client.handleDataMock('OK'); // helper to call _onData
 
       expect(await future, equals('OK'));
+    });
+
+    test('connect should not reconnect if already connected', () async {
+      // Connect once in setUp
+      await client.connect();
+      // Connect again
+      await client.connect();
+
+      verify(mockConnection.connect()).called(1);
     });
   });
 
@@ -69,6 +82,29 @@ void main() {
       await Future.delayed(const Duration());
 
       expect(receivedError, isA<ValkeyException>());
+    });
+    });
+  });
+
+  group('ValkeyClient', () {
+    late MockValkeyCommandClient mockCommandClient;
+    late MockValkeySubscriptionClient mockSubscriptionClient;
+    late ValkeyClient client;
+
+    setUp(() {
+      mockCommandClient = MockValkeyCommandClient();
+      mockSubscriptionClient = MockValkeySubscriptionClient();
+      client = ValkeyClient(
+        commandClient: mockCommandClient,
+        subscriptionClient: mockSubscriptionClient,
+      );
+    });
+
+    test('close should call close on both clients', () {
+      client.close();
+
+      verify(mockCommandClient.close()).called(1);
+      verify(mockSubscriptionClient.close()).called(1);
     });
   });
 }
