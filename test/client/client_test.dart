@@ -190,5 +190,24 @@ void main() {
 
       expect(receivedError, isA<ValkeyException>());
     });
+
+    test('close should close the connection and message stream', () async {
+      final mockConnection = MockConnection();
+      final subClient = ValkeySubscriptionClient(
+        host: 'localhost',
+        port: 6379,
+        connection: mockConnection,
+      );
+
+      // Listen to the stream to keep it active, then cancel to check if it's closed
+      final subscription = subClient.messages.listen(null);
+
+      await subClient.close();
+
+      verify(mockConnection.close()).called(1);
+      expect(subscription.isPaused, isFalse); // Should not be paused
+      expect(subscription.cancel(),
+          completes); // Should complete, indicating stream is closed
+    });
   });
 }

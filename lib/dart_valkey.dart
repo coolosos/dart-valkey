@@ -10,3 +10,4 @@ export 'src/connection/insecure_connection.dart';
 export 'src/connection/secure_connection.dart';
 
 export 'src/client/valkey_client.dart';
+export 'src/models/pubsub_message.dart';

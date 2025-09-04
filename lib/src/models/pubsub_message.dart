@@ -26,9 +26,6 @@ class PubSubMessage {
 
   @override
   String toString() {
-    if (type == 'message' || type == 'pmessage') {
-      return 'PubSubMessage(type: $type, channel: $channel, pattern: $pattern, message: $message)';
-    }
-    return 'PubSubMessage(type: $type, channel: $channel, count: $count)';
+    return 'PubSubMessage(type: $type, channel: $channel, pattern: $pattern, message: $message)';
   }
 }
