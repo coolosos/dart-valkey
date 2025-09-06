@@ -1,20 +1,25 @@
-/// The byte value for a RESP Simple String (`+`).
-const int respSimpleString = 43;
+// RESP2 constants
+const int respSimpleString = 43; // '+'
+const int respError = 45; // '-'
+const int respInteger = 58; // ':'
+const int respBulkString = 36; // '$'
+const int respArray = 42; // '*'
 
-/// The byte value for a RESP Error (`-`).
-const int respError = 45;
+//CRLF
+const int respCarriageReturn = 13; // \r
+const int respLineFeed = 10; // \n
 
-/// The byte value for a RESP Integer (`:`).
-const int respInteger = 58;
+// RESP3 constants
+const int respBoolean = 35; // '#'
+const int respDouble = 44; // ','
+const int respNull = 95; // '_'
+const int respMap = 37; // '%'
+const int respSet = 126; // '~'
+const int respBlobError = 33; // '!'
+const int respPush = 62; // '>'
+const int respVerbatimString = 61; // '='
+const int respBigNumber = 40; // '('
 
-/// The byte value for a RESP Bulk String (`$`).
-const int respBulkString = 36;
-
-/// The byte value for a RESP Array (`*`).
-const int respArray = 42;
-
-/// The byte value for a carriage return (`\r`).
-const int respCarriageReturn = 13;
-
-/// The byte value for a line feed (`\n`).
-const int respLineFeed = 10;
+// Valores booleanos (usados dentro del tipo booleano)
+const int respTrue = 116; // 't'
+const int respFalse = 102; // 'f'

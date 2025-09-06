@@ -34,7 +34,7 @@ abstract class BaseConnection implements Connection {
   final void Function(Object error)? onError;
 
   @visibleForTesting
-  RespDecoder get respDecoder => const RespDecoder();
+  BaseRespCodec get respDecoder => const Resp3Decoder();
 
   String? username;
   String? password;

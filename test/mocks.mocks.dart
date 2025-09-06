@@ -1460,16 +1460,53 @@ class MockStream<T> extends _i1.Mock implements _i4.Stream<T> {
       ) as _i4.Stream<T>);
 }
 
-/// A class which mocks [RespDecoder].
+/// A class which mocks [Resp3Decoder].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRespDecoder extends _i1.Mock implements _i8.RespDecoder {
-  MockRespDecoder() {
+class MockResp3Decoder extends _i1.Mock implements _i8.Resp3Decoder {
+  MockResp3Decoder() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Stream<dynamic> bind(_i4.Stream<List<int>>? stream) =>
+  _i3.Encoding get encoding => (super.noSuchMethod(
+        Invocation.getter(#encoding),
+        returnValue: _FakeEncoding_1(
+          this,
+          Invocation.getter(#encoding),
+        ),
+      ) as _i3.Encoding);
+
+  @override
+  String decodeString(
+    _i5.Uint8List? buffer,
+    int? start,
+    int? end,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #decodeString,
+          [
+            buffer,
+            start,
+            end,
+          ],
+        ),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #decodeString,
+            [
+              buffer,
+              start,
+              end,
+            ],
+          ),
+        ),
+      ) as String);
+
+  @override
+  _i4.Stream<dynamic> bind(_i4.Stream<_i5.Uint8List>? stream) =>
       (super.noSuchMethod(
         Invocation.method(
           #bind,
@@ -1492,6 +1529,384 @@ class MockRespDecoder extends _i1.Mock implements _i8.RespDecoder {
           ),
         ),
       ) as _i4.StreamTransformer<RS, RT>);
+
+  @override
+  int findCRLF(
+    _i5.Uint8List? buffer,
+    int? from,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #findCRLF,
+          [
+            buffer,
+            from,
+          ],
+        ),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  _i8.ParseResult<String> parseSimpleString(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseSimpleString,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<String>>(
+          this,
+          Invocation.method(
+            #parseSimpleString,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<String>);
+
+  @override
+  _i8.ParseResult<_i8.RespException> parseError(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseError,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<_i8.RespException>>(
+          this,
+          Invocation.method(
+            #parseError,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<_i8.RespException>);
+
+  @override
+  _i8.ParseResult<int> parseInteger(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseInteger,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<int>>(
+          this,
+          Invocation.method(
+            #parseInteger,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<int>);
+
+  @override
+  _i8.ParseResult<String?> parseBulkString(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseBulkString,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<String?>>(
+          this,
+          Invocation.method(
+            #parseBulkString,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<String?>);
+
+  @override
+  _i8.ParseResult<List<dynamic>?> parseArray(
+    _i5.Uint8List? buffer,
+    int? offset,
+    _i8.ItemParser? parseItem,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseArray,
+          [
+            buffer,
+            offset,
+            parseItem,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<List<dynamic>?>>(
+          this,
+          Invocation.method(
+            #parseArray,
+            [
+              buffer,
+              offset,
+              parseItem,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<List<dynamic>?>);
+
+  @override
+  _i8.ParseResult<bool> parseBoolean(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseBoolean,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<bool>>(
+          this,
+          Invocation.method(
+            #parseBoolean,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<bool>);
+
+  @override
+  _i8.ParseResult<double> parseDouble(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseDouble,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<double>>(
+          this,
+          Invocation.method(
+            #parseDouble,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<double>);
+
+  @override
+  _i8.ParseResult<dynamic> parseNull(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseNull,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<dynamic>>(
+          this,
+          Invocation.method(
+            #parseNull,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<dynamic>);
+
+  @override
+  _i8.ParseResult<Map<dynamic, dynamic>?> parseMap(
+    _i5.Uint8List? buffer,
+    int? offset,
+    _i8.ItemParser? parseItem,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseMap,
+          [
+            buffer,
+            offset,
+            parseItem,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<Map<dynamic, dynamic>?>>(
+          this,
+          Invocation.method(
+            #parseMap,
+            [
+              buffer,
+              offset,
+              parseItem,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<Map<dynamic, dynamic>?>);
+
+  @override
+  _i8.ParseResult<_i8.RespException?> parseBlobError(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseBlobError,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<_i8.RespException?>>(
+          this,
+          Invocation.method(
+            #parseBlobError,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<_i8.RespException?>);
+
+  @override
+  _i8.ParseResult<String?> parseVerbatimString(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseVerbatimString,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<String?>>(
+          this,
+          Invocation.method(
+            #parseVerbatimString,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<String?>);
+
+  @override
+  _i8.ParseResult<BigInt> parseBigNumber(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseBigNumber,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<BigInt>>(
+          this,
+          Invocation.method(
+            #parseBigNumber,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<BigInt>);
+
+  @override
+  _i8.ParseResult<List<dynamic>?> parsePush(
+    _i5.Uint8List? buffer,
+    int? offset,
+    _i8.ItemParser? parseItem,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parsePush,
+          [
+            buffer,
+            offset,
+            parseItem,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<List<dynamic>?>>(
+          this,
+          Invocation.method(
+            #parsePush,
+            [
+              buffer,
+              offset,
+              parseItem,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<List<dynamic>?>);
+
+  @override
+  _i8.ParseResult<Set<dynamic>?> parseSet(
+    _i5.Uint8List? buffer,
+    int? offset,
+    _i8.ItemParser? parseItem,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseSet,
+          [
+            buffer,
+            offset,
+            parseItem,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<Set<dynamic>?>>(
+          this,
+          Invocation.method(
+            #parseSet,
+            [
+              buffer,
+              offset,
+              parseItem,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<Set<dynamic>?>);
 }
 
 /// A class which mocks [ValkeyCommandClient].

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dart_valkey/src/connection/base_connection.dart';
 import 'package:mockito/mockito.dart';
@@ -20,7 +21,7 @@ class TestConnection extends BaseConnection {
   });
 
   late Socket socketToReturn;
-  late RespDecoder mockRespDecoder;
+  late BaseRespCodec mockRespDecoder;
 
   @override
   Future<Socket> performSocketConnection() async {
@@ -28,27 +29,27 @@ class TestConnection extends BaseConnection {
   }
 
   @override
-  RespDecoder get respDecoder => mockRespDecoder;
+  BaseRespCodec get respDecoder => mockRespDecoder;
 }
 
 void main() {
   group('BaseConnection', () {
     late TestConnection connection;
     late MockSocket mockSocket;
-    late MockStream<List<int>> mockStream;
-    late MockRespDecoder mockRespDecoder;
+    late MockStream<Uint8List> mockStream;
+    late Resp3Decoder mockRespDecoder;
 
     setUp(() {
       mockSocket = MockSocket();
       mockStream = MockStream();
-      mockRespDecoder = MockRespDecoder();
+      mockRespDecoder = const Resp3Decoder();
       connection = TestConnection(
         mockRespDecoder: mockRespDecoder,
       );
       connection.socketToReturn = mockSocket;
 
       when(mockRespDecoder.bind(any))
-          .thenAnswer((_) => mockStream as Stream<List<int>>);
+          .thenAnswer((_) => mockStream as Stream<Uint8List>);
       when(mockStream.asBroadcastStream()).thenAnswer((_) => mockStream);
     });
 
@@ -56,12 +57,14 @@ void main() {
         () async {
       when(mockSocket.setOption(any, any)).thenReturn(true);
       // Explicitly stub listen for this test to allow connect to complete
-      when(mockStream.listen(
-        any,
-        onError: anyNamed('onError'),
-        onDone: anyNamed('onDone'),
-        cancelOnError: anyNamed('cancelOnError'),
-      )).thenReturn(MockStreamSubscription());
+      when(
+        mockStream.listen(
+          any,
+          onError: anyNamed('onError'),
+          onDone: anyNamed('onDone'),
+          cancelOnError: anyNamed('cancelOnError'),
+        ),
+      ).thenReturn(MockStreamSubscription());
 
       await connection.connect();
 
@@ -78,12 +81,14 @@ void main() {
       when(mockSocket.setOption(any, any)).thenReturn(true);
 
       // Explicitly stub listen for this test to allow connect to complete
-      when(mockStream.listen(
-        any,
-        onError: anyNamed('onError'),
-        onDone: anyNamed('onDone'),
-        cancelOnError: anyNamed('cancelOnError'),
-      )).thenReturn(MockStreamSubscription());
+      when(
+        mockStream.listen(
+          any,
+          onError: anyNamed('onError'),
+          onDone: anyNamed('onDone'),
+          cancelOnError: anyNamed('cancelOnError'),
+        ),
+      ).thenReturn(MockStreamSubscription());
 
       await connection.connect();
 
@@ -98,12 +103,14 @@ void main() {
 
       when(mockSocket.setOption(any, any)).thenReturn(true);
       // Explicitly stub listen for this test to allow connect to complete
-      when(mockStream.listen(
-        any,
-        onError: anyNamed('onError'),
-        onDone: anyNamed('onDone'),
-        cancelOnError: anyNamed('cancelOnError'),
-      )).thenReturn(MockStreamSubscription());
+      when(
+        mockStream.listen(
+          any,
+          onError: anyNamed('onError'),
+          onDone: anyNamed('onDone'),
+          cancelOnError: anyNamed('cancelOnError'),
+        ),
+      ).thenReturn(MockStreamSubscription());
 
       await connection.connect();
       // force close
@@ -124,12 +131,14 @@ void main() {
       connection.socketToReturn = mockSocket;
 
       when(mockSocket.setOption(any, any)).thenReturn(true);
-      when(mockStream.listen(
-        any,
-        onError: anyNamed('onError'),
-        onDone: anyNamed('onDone'),
-        cancelOnError: anyNamed('cancelOnError'),
-      )).thenAnswer((invocation) {
+      when(
+        mockStream.listen(
+          any,
+          onError: anyNamed('onError'),
+          onDone: anyNamed('onDone'),
+          cancelOnError: anyNamed('cancelOnError'),
+        ),
+      ).thenAnswer((invocation) {
         final Function? onErrorCallback = invocation.namedArguments[#onError];
         if (onErrorCallback != null) {
           onErrorCallback(Exception('simulated error'));

@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('RespDecoder', () {
-    const decoder = RespDecoder();
+    const decoder = Resp3Decoder();
 
     Future<dynamic> testDecode(String encoded) {
       return Stream.value(utf8.encode(encoded)).transform(decoder).first;
