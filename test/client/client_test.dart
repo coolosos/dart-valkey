@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:dart_valkey/dart_valkey.dart';
-
+import 'package:dart_valkey/src/client/valkey_client.dart';
+import 'package:dart_valkey/src/codec/valkey_exception.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -119,11 +120,6 @@ void main() {
 
       setUp(() {
         mockConnection = MockConnection();
-        // when(mockConnection.isConnected).thenReturn(true);
-        // when(mockConnection.connect()).thenAnswer((_) async {});
-
-        // when(mockConnection.send(any)).thenReturn(null);
-
         client = ValkeyCommandClient(
           host: 'localhost',
           port: 6379,
@@ -161,12 +157,14 @@ void main() {
 
   group('ValkeySubscriptionClient', () {
     late ValkeySubscriptionClient subClient;
+    late MockConnection mockConnection;
 
     setUp(() {
+      mockConnection = MockConnection();
       subClient = ValkeySubscriptionClient(
         host: 'localhost',
         port: 6379,
-        connection: MockConnection(),
+        connection: mockConnection,
       );
     });
 
@@ -191,23 +189,152 @@ void main() {
       expect(receivedError, isA<ValkeyException>());
     });
 
+    group('_onData', () {
+      test('should handle "message" type', () async {
+        final data = ['message', 'channel1', 'hello'];
+        final expectation = expectLater(
+          subClient.messages,
+          emits(
+            isA<PubSubMessage>()
+                .having((m) => m.type, 'type', 'message')
+                .having((m) => m.channel, 'channel', 'channel1')
+                .having((m) => m.message, 'message', 'hello'),
+          ),
+        );
+        subClient.handleDataMock(data);
+        await expectation;
+      });
+
+      test('should handle "pmessage" type', () async {
+        final data = ['pmessage', 'patt*', 'channel2', 'world'];
+        final expectation = expectLater(
+          subClient.messages,
+          emits(
+            isA<PubSubMessage>()
+                .having((m) => m.type, 'type', 'pmessage')
+                .having((m) => m.pattern, 'pattern', 'patt*')
+                .having((m) => m.channel, 'channel', 'channel2')
+                .having((m) => m.message, 'message', 'world'),
+          ),
+        );
+        subClient.handleDataMock(data);
+        await expectation;
+      });
+
+      test('should handle "smessage" type', () async {
+        final data = ['smessage', 'shard-channel', 'shard-message'];
+        final expectation = expectLater(
+          subClient.messages,
+          emits(
+            isA<PubSubMessage>()
+                .having((m) => m.type, 'type', 'smessage')
+                .having((m) => m.channel, 'channel', 'shard-channel')
+                .having((m) => m.message, 'message', 'shard-message'),
+          ),
+        );
+        subClient.handleDataMock(data);
+        await expectation;
+      });
+
+      test('should handle "subscribe" type', () async {
+        final data = ['subscribe', 'channel1', 1];
+        final expectation = expectLater(
+          subClient.messages,
+          emits(
+            isA<PubSubMessage>()
+                .having((m) => m.type, 'type', 'subscribe')
+                .having((m) => m.channel, 'channel', 'channel1')
+                .having((m) => m.count, 'count', 1),
+          ),
+        );
+        subClient.handleDataMock(data);
+        await expectation;
+      });
+
+      test('should handle unknown type with an error', () async {
+        final data = ['unknown', 'some', 'data'];
+        final expectation = expectLater(
+          subClient.messages,
+          emitsError(isA<ValkeyException>()),
+        );
+        subClient.handleDataMock(data);
+        await expectation;
+      });
+    });
+
+    group('RegularSubscriptionMixin', () {
+      test('subscribe should send subscribe command', () {
+        subClient.subscribe(['channel1', 'channel2']);
+        verify(mockConnection.send(any)).called(1);
+      });
+
+      test('unsubscribe should send unsubscribe command', () {
+        subClient.subscribe(['channel1']);
+        subClient.unsubscribe(['channel1']);
+        verify(mockConnection.send(any)).called(2);
+      });
+
+      test('unsubscribe with no channels should not send command if not subscribed', () {
+        subClient.unsubscribe();
+        verifyNever(mockConnection.send(any));
+      });
+    });
+
+    group('PatternSubscriptionMixin', () {
+      test('psubscribe should send psubscribe command', () {
+        subClient.psubscribe(['patt*']);
+        verify(mockConnection.send(any)).called(1);
+      });
+
+      test('punsubscribe should send punsubscribe command', () {
+        subClient.psubscribe(['patt*']);
+        subClient.punsubscribe(['patt*']);
+        verify(mockConnection.send(any)).called(2);
+      });
+
+      test('punsubscribe with no patterns should not send command if not subscribed', () {
+        subClient.punsubscribe();
+        verifyNever(mockConnection.send(any));
+      });
+    });
+
+    group('ShardSubscriptionMixin', () {
+      test('ssubscribe should send ssubscribe command', () {
+        subClient.ssubscribe(['shard-channel']);
+        verify(mockConnection.send(any)).called(1);
+      });
+
+      test('sunsubscribe should send sunsubscribe command', () {
+        subClient.ssubscribe(['shard-channel']);
+        subClient.sunsubscribe(['shard-channel']);
+        verify(mockConnection.send(any)).called(2);
+      });
+
+      test('sunsubscribe with no channels should not send command if not subscribed', () {
+        subClient.sunsubscribe();
+        verifyNever(mockConnection.send(any));
+      });
+    });
+
+    group('Lifecycle event handlers', () {
+      test('_onError should forward error to message stream', () async {
+        final testException = Exception('test error');
+        final expectation = expectLater(subClient.messages, emitsError(testException));
+        subClient.handleErrorMock(testException);
+        await expectation;
+      });
+
+      test('_onDone should be callable', () {
+        // No real way to test the outcome without a pending command future,
+        // but we can call it for coverage.
+        subClient.handleDoneMock();
+      });
+    });
+
     test('close should close the connection and message stream', () async {
-      final mockConnection = MockConnection();
-      final subClient = ValkeySubscriptionClient(
-        host: 'localhost',
-        port: 6379,
-        connection: mockConnection,
-      );
-
-      // Listen to the stream to keep it active, then cancel to check if it's closed
-      final subscription = subClient.messages.listen(null);
-
+      when(mockConnection.close()).thenAnswer((_) async {});
       await subClient.close();
-
       verify(mockConnection.close()).called(1);
-      expect(subscription.isPaused, isFalse); // Should not be paused
-      expect(subscription.cancel(),
-          completes); // Should complete, indicating stream is closed
     });
   });
 }

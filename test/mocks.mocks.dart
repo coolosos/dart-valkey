@@ -1560,15 +1560,6 @@ class MockValkeyCommandClient extends _i1.Mock
       ) as _i4.Future<T>);
 
   @override
-  void handleDataMock(dynamic data) => super.noSuchMethod(
-        Invocation.method(
-          #handleDataMock,
-          [data],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   _i4.Future<void> connect() => (super.noSuchMethod(
         Invocation.method(
           #connect,
@@ -1587,6 +1578,43 @@ class MockValkeyCommandClient extends _i1.Mock
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> handleOnConnectedMock() => (super.noSuchMethod(
+        Invocation.method(
+          #handleOnConnectedMock,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  void handleDataMock(dynamic data) => super.noSuchMethod(
+        Invocation.method(
+          #handleDataMock,
+          [data],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void handleDoneMock() => super.noSuchMethod(
+        Invocation.method(
+          #handleDoneMock,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void handleErrorMock(Object? error) => super.noSuchMethod(
+        Invocation.method(
+          #handleErrorMock,
+          [error],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [ValkeySubscriptionClient].
@@ -1680,6 +1708,34 @@ class MockValkeySubscriptionClient extends _i1.Mock
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> handleOnConnectedMock() => (super.noSuchMethod(
+        Invocation.method(
+          #handleOnConnectedMock,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  void handleDoneMock() => super.noSuchMethod(
+        Invocation.method(
+          #handleDoneMock,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void handleErrorMock(Object? error) => super.noSuchMethod(
+        Invocation.method(
+          #handleErrorMock,
+          [error],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void subscribe(List<String>? channels) => super.noSuchMethod(
