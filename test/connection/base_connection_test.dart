@@ -37,12 +37,12 @@ void main() {
     late TestConnection connection;
     late MockSocket mockSocket;
     late MockStream<Uint8List> mockStream;
-    late Resp3Decoder mockRespDecoder;
+    late MockResp3Decoder mockRespDecoder;
 
     setUp(() {
       mockSocket = MockSocket();
       mockStream = MockStream();
-      mockRespDecoder = const Resp3Decoder();
+      mockRespDecoder = MockResp3Decoder();
       connection = TestConnection(
         mockRespDecoder: mockRespDecoder,
       );

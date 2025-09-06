@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dart_valkey/src/codec/resp_decoder.dart';
-import 'package:dart_valkey/src/codec/valkey_exception.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -22,10 +21,10 @@ void main() {
         final aa = await testDecode('-ERR unknown command\r\n');
         expect(
           aa,
-          isA<ValkeyException>(),
+          isA<RespException>(),
         );
         expect(
-          (aa as ValkeyException).message,
+          (aa as RespException).message,
           'ERR unknown command',
         );
       });
