@@ -66,8 +66,8 @@ class KeepTtl extends ExpireOption {
   List<String> get commandParts => ['KEEPTTL'];
 }
 
-abstract base class BaseSetCommand<T> extends ValkeyCommand<T>
-    with KeyCommand<T> {
+abstract base class BaseSetCommand<T> extends ValKeyedCommand<T>
+    with KeyedCommand<T> {
   BaseSetCommand(
     this.key,
     this.value, {

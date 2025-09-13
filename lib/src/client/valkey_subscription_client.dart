@@ -23,13 +23,15 @@ class ValkeySubscriptionClient extends BaseValkeyClient
     super.username,
     super.password,
     super.connection,
-    super.protocolVersion,
+    super.maxReconnectAttempts = 5,
+    super.respDecoder = const Resp3Decoder(),
   }) {
     _pendingCompleters = {};
     _commandQueue = Queue();
   }
 
-  late final Map<Completer<dynamic>, ValkeyCommand<dynamic>> _pendingCompleters;
+  late final Map<Completer<dynamic>, ValKeyedCommand<dynamic>>
+      _pendingCompleters;
   late final Queue<Completer<dynamic>> _commandQueue;
 
   final _messageController = StreamController<PubSubMessage>.broadcast();
@@ -72,7 +74,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
               PubSubMessage(
                 type: type,
                 channel: data[1] as String,
-                message: data[2] as String,
+                message: data[2] as String?,
               ),
             );
           }
@@ -83,7 +85,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
               PubSubMessage(
                 type: type,
                 channel: data[1] as String,
-                message: data[2] as String,
+                message: data[2] as String?,
               ),
             );
           }
@@ -93,9 +95,9 @@ class ValkeySubscriptionClient extends BaseValkeyClient
             _messageController.add(
               PubSubMessage(
                 type: type,
-                pattern: data[1] as String,
+                pattern: data[1] as String?,
                 channel: data[2] as String,
-                message: data[3] as String,
+                message: data[3] as String?,
               ),
             );
           }
@@ -122,7 +124,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
               PubSubMessage(
                 type: type,
                 channel: data[1] as String, // channel or pattern
-                count: data[2] as int,
+                count: data[2] as int?,
               ),
             );
           }
@@ -162,6 +164,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
     // The connection is closed.
   }
 
+  @override
   @visibleForTesting
   void handleDataMock(dynamic data) => _onData(data);
 }

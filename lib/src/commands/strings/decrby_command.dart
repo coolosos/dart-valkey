@@ -20,7 +20,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key to decrement.
 /// - [decrement]: The amount to decrement by.
-final class DecrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class DecrByCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   DecrByCommand(this.key, this.decrement);
   final String key;
   final int decrement;
@@ -37,7 +37,7 @@ final class DecrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return DecrByCommand('$prefix$key', decrement);
   }
 }

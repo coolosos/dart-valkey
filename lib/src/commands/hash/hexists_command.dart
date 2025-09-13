@@ -19,7 +19,8 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the hash.
 /// - [field]: The field to check for existence.
-final class HExistsCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
+final class HExistsCommand extends ValKeyedCommand<bool>
+    with KeyedCommand<bool> {
   HExistsCommand(this.key, this.field);
   final String key;
   final String field;
@@ -36,7 +37,7 @@ final class HExistsCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   }
 
   @override
-  ValkeyCommand<bool> applyPrefix(String prefix) {
+  ValKeyedCommand<bool> applyPrefix(String prefix) {
     return HExistsCommand('$prefix$key', field);
   }
 }

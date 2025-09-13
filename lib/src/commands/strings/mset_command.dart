@@ -19,7 +19,8 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [keyValuePairs]: A map of key-value pairs to set.
-final class MSetCommand extends ValkeyCommand<String> with KeyCommand<String> {
+final class MSetCommand extends ValKeyedCommand<String>
+    with KeyedCommand<String> {
   MSetCommand(this.keyValuePairs);
   final Map<String, String> keyValuePairs;
 
@@ -42,7 +43,7 @@ final class MSetCommand extends ValkeyCommand<String> with KeyCommand<String> {
   }
 
   @override
-  ValkeyCommand<String> applyPrefix(String prefix) {
+  ValKeyedCommand<String> applyPrefix(String prefix) {
     final prefixedPairs = <String, String>{};
     keyValuePairs.forEach((key, value) {
       prefixedPairs['$prefix$key'] = value;

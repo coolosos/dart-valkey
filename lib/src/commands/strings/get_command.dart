@@ -19,7 +19,8 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [key]: The key to retrieve the value from.
-final class GetCommand extends ValkeyCommand<String?> with KeyCommand<String?> {
+final class GetCommand extends ValKeyedCommand<String?>
+    with KeyedCommand<String?> {
   GetCommand(this.key);
   final String key;
 
@@ -35,7 +36,7 @@ final class GetCommand extends ValkeyCommand<String?> with KeyCommand<String?> {
   }
 
   @override
-  ValkeyCommand<String?> applyPrefix(String prefix) {
+  ValKeyedCommand<String?> applyPrefix(String prefix) {
     return GetCommand('$prefix$key');
   }
 }

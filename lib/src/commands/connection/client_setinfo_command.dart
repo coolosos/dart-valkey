@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT SETINFO <key> <value>' command.
-final class ClientSetinfoCommand extends ValkeyCommand<bool> {
+final class ClientSetinfoCommand extends ValKeyedCommand<bool> {
   ClientSetinfoCommand(this.key, this.value);
   final String key;
   final String value;

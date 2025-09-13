@@ -20,7 +20,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key to append to.
 /// - [value]: The string to append.
-final class AppendCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class AppendCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   AppendCommand(this.key, this.value);
   final String key;
   final String value;
@@ -37,7 +37,7 @@ final class AppendCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return AppendCommand('$prefix$key', value);
   }
 }

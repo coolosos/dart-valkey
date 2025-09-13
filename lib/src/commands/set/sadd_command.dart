@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `2` (number of members added)
-final class SAddCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class SAddCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   SAddCommand(this.key, this.members);
   final String key;
   final List<String> members;
@@ -32,7 +32,7 @@ final class SAddCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return SAddCommand('$prefix$key', members);
   }
 }

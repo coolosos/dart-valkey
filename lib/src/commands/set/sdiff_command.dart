@@ -18,8 +18,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `List<String>` resolving to `['member2']`
-final class SDiffCommand extends ValkeyCommand<List<String>>
-    with KeyCommand<List<String>> {
+final class SDiffCommand extends ValKeyedCommand<List<String>>
+    with KeyedCommand<List<String>> {
   SDiffCommand(this.keys);
   final List<String> keys;
 
@@ -35,7 +35,7 @@ final class SDiffCommand extends ValkeyCommand<List<String>>
   }
 
   @override
-  ValkeyCommand<List<String>> applyPrefix(String prefix) {
+  ValKeyedCommand<List<String>> applyPrefix(String prefix) {
     return SDiffCommand(keys.map((key) => '$prefix$key').toList());
   }
 }

@@ -35,7 +35,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the hash.
 /// - [field]: The field to get the length of.
-final class HStrLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class HStrLenCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   HStrLenCommand(this.key, this.field);
   final String key;
   final String field;
@@ -52,7 +52,7 @@ final class HStrLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return HStrLenCommand('$prefix$key', field);
   }
 }

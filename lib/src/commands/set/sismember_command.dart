@@ -14,7 +14,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `bool` resolving to `true`
-final class SIsMemberCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
+final class SIsMemberCommand extends ValKeyedCommand<bool>
+    with KeyedCommand<bool> {
   SIsMemberCommand(this.key, this.member);
   final String key;
   final String member;
@@ -30,7 +31,7 @@ final class SIsMemberCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   }
 
   @override
-  ValkeyCommand<bool> applyPrefix(String prefix) {
+  ValKeyedCommand<bool> applyPrefix(String prefix) {
     return SIsMemberCommand('$prefix$key', member);
   }
 }

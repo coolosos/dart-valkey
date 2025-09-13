@@ -4,7 +4,6 @@ abstract class Connection {
   Future<void> connect({
     String? username,
     String? password,
-    int? protocolVersion,
   });
 
   /// Sends a command (encoded as a list of bytes) to the server.

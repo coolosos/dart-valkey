@@ -19,7 +19,7 @@ import '../command.dart';
 /// - [key]: The key of the list.
 /// - [start]: The starting offset.
 /// - [stop]: The ending offset (inclusive).
-final class LTrimCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
+final class LTrimCommand extends ValKeyedCommand<bool> with KeyedCommand<bool> {
   LTrimCommand(this.key, this.start, this.stop);
   final String key;
   final int start;
@@ -37,7 +37,7 @@ final class LTrimCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   }
 
   @override
-  ValkeyCommand<bool> applyPrefix(String prefix) {
+  ValKeyedCommand<bool> applyPrefix(String prefix) {
     return LTrimCommand('$prefix$key', start, stop);
   }
 }

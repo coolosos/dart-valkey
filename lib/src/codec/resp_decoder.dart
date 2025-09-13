@@ -30,13 +30,6 @@ final class ParseResult<T> {
 sealed class BaseRespCodec extends StreamTransformerBase<Uint8List, dynamic> {
   const BaseRespCodec();
 
-  Encoding get encoding => const Utf8Codec();
-
-  String decodeString(Uint8List buffer, int start, int end) =>
-      // String.fromCharCodes(buffer, start, end);
-      // encoding.decode(buffer.sublist(start, end));
-      encoding.decode(Uint8List.view(buffer.buffer, start, end - start));
-
   @override
   Stream<dynamic> bind(Stream<Uint8List> stream) {
     final controller = StreamController<dynamic>();
@@ -97,7 +90,14 @@ sealed class BaseRespCodec extends StreamTransformerBase<Uint8List, dynamic> {
 }
 
 // RESP2 helpers
-mixin Resp2ParsingHelpers on BaseRespCodec {
+mixin Resp2ParsingHelpers {
+  Encoding get encoding => const Utf8Codec();
+
+  String decodeString(Uint8List buffer, int start, int end) =>
+      // String.fromCharCodes(buffer, start, end);
+      // encoding.decode(buffer.sublist(start, end));
+      encoding.decode(Uint8List.view(buffer.buffer, start, end - start));
+
   int findCRLF(Uint8List buffer, int from) {
     for (var i = from; i < buffer.length - 1; i++) {
       if (buffer[i] == respCarriageReturn && buffer[i + 1] == respLineFeed) {

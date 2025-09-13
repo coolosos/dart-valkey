@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT GETNAME' command.
-final class ClientGetnameCommand extends ValkeyCommand<String?> {
+final class ClientGetnameCommand extends ValKeyedCommand<String?> {
   @override
   List<String> get commandParts => ['CLIENT', 'GETNAME'];
 

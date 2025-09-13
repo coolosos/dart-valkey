@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'OK'`
-final class ClientNoEvictCommand extends ValkeyCommand<String> {
+final class ClientNoEvictCommand extends ValKeyedCommand<String> {
   ClientNoEvictCommand(this.enable);
 
   final bool enable;

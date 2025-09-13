@@ -8,11 +8,9 @@ import 'package:test/test.dart';
 
 import '../mocks.mocks.dart';
 
-import 'package:dart_valkey/src/codec/resp_decoder.dart';
-
 class TestConnection extends BaseConnection {
   TestConnection({
-    required this.mockRespDecoder,
+    required super.respDecoder,
     super.onConnected,
     super.onData,
     super.onDone,
@@ -21,15 +19,11 @@ class TestConnection extends BaseConnection {
   });
 
   late Socket socketToReturn;
-  late BaseRespCodec mockRespDecoder;
 
   @override
   Future<Socket> performSocketConnection() async {
     return socketToReturn;
   }
-
-  @override
-  BaseRespCodec get respDecoder => mockRespDecoder;
 }
 
 void main() {
@@ -37,14 +31,14 @@ void main() {
     late TestConnection connection;
     late MockSocket mockSocket;
     late MockStream<Uint8List> mockStream;
-    late MockResp3Decoder mockRespDecoder;
+    late MockResp2Decoder mockRespDecoder;
 
     setUp(() {
       mockSocket = MockSocket();
       mockStream = MockStream();
-      mockRespDecoder = MockResp3Decoder();
+      mockRespDecoder = MockResp2Decoder();
       connection = TestConnection(
-        mockRespDecoder: mockRespDecoder,
+        respDecoder: mockRespDecoder,
       );
       connection.socketToReturn = mockSocket;
 
@@ -126,7 +120,7 @@ void main() {
 
       connection = TestConnection(
         onError: (error) => receivedError = error,
-        mockRespDecoder: mockRespDecoder,
+        respDecoder: mockRespDecoder,
       );
       connection.socketToReturn = mockSocket;
 

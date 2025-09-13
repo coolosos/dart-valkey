@@ -20,7 +20,7 @@ enum UnblockType {
   error,
 }
 
-final class ClientUnblockCommand extends ValkeyCommand<int> {
+final class ClientUnblockCommand extends ValKeyedCommand<int> {
   ClientUnblockCommand(this.clientId, {this.unblockType});
 
   final int clientId;
@@ -28,7 +28,7 @@ final class ClientUnblockCommand extends ValkeyCommand<int> {
 
   @override
   List<String> get commandParts {
-          final parts = ['CLIENT', 'UNBLOCK', clientId.toString()];
+    final parts = ['CLIENT', 'UNBLOCK', clientId.toString()];
     if (unblockType != null) {
       parts.add(unblockType!.name.toUpperCase());
     }

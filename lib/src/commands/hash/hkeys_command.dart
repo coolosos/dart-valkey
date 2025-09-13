@@ -23,8 +23,8 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [key]: The key of the hash.
-final class HKeysCommand extends ValkeyCommand<List<String>>
-    with KeyCommand<List<String>> {
+final class HKeysCommand extends ValKeyedCommand<List<String>>
+    with KeyedCommand<List<String>> {
   HKeysCommand(this.key);
   final String key;
 
@@ -40,7 +40,7 @@ final class HKeysCommand extends ValkeyCommand<List<String>>
   }
 
   @override
-  ValkeyCommand<List<String>> applyPrefix(String prefix) {
+  ValKeyedCommand<List<String>> applyPrefix(String prefix) {
     return HKeysCommand('$prefix$key');
   }
 }

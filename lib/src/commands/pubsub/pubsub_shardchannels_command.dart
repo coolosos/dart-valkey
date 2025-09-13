@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'PUBSUB SHARDCHANNELS [pattern]' command.
 /// Lists the currently active shard channels.
-final class PubsubShardchannelsCommand extends ValkeyCommand<List<String>> {
+final class PubsubShardchannelsCommand extends ValKeyedCommand<List<String>> {
   PubsubShardchannelsCommand([this.pattern]);
   final String? pattern;
 

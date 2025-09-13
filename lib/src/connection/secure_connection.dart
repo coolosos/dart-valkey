@@ -4,6 +4,7 @@ import 'base_connection.dart';
 
 class SecureConnection extends BaseConnection {
   SecureConnection({
+    required super.respDecoder,
     super.host,
     super.port,
     super.connectionTimeout,

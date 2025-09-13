@@ -22,8 +22,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `List<String>` resolving to `['member1', 'member2', 'member3']`
-final class SUnionCommand extends ValkeyCommand<List<String>>
-    with KeyCommand<List<String>> {
+final class SUnionCommand extends ValKeyedCommand<List<String>>
+    with KeyedCommand<List<String>> {
   SUnionCommand(this.keys);
   final List<String> keys;
 
@@ -39,7 +39,7 @@ final class SUnionCommand extends ValkeyCommand<List<String>>
   }
 
   @override
-  ValkeyCommand<List<String>> applyPrefix(String prefix) {
+  ValKeyedCommand<List<String>> applyPrefix(String prefix) {
     return SUnionCommand(keys.map((key) => '$prefix$key').toList());
   }
 }

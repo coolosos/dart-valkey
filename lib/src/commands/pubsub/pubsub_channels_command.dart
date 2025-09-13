@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'PUBSUB CHANNELS [pattern]' command.
 /// Lists the currently active channels.
-final class PubsubChannelsCommand extends ValkeyCommand<List<String>> {
+final class PubsubChannelsCommand extends ValKeyedCommand<List<String>> {
   PubsubChannelsCommand([this.pattern]);
   final String? pattern;
 

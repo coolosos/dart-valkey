@@ -33,7 +33,8 @@ enum ExpireStrategyTypes {
 /// - [key]: The key to set the expiration for.
 /// - [seconds]: The time to live in seconds.
 /// - [strategyType]: Set expire strategy.
-final class ExpireCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
+final class ExpireCommand extends ValKeyedCommand<bool>
+    with KeyedCommand<bool> {
   ExpireCommand(
     this.key,
     this.seconds, {
@@ -62,7 +63,7 @@ final class ExpireCommand extends ValkeyCommand<bool> with KeyCommand<bool> {
   }
 
   @override
-  ValkeyCommand<bool> applyPrefix(String prefix) {
+  ValKeyedCommand<bool> applyPrefix(String prefix) {
     return ExpireCommand(
       '$prefix$key',
       seconds,

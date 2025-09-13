@@ -20,7 +20,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key to increment.
 /// - [increment]: The amount to increment by.
-final class IncrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class IncrByCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   IncrByCommand(this.key, this.increment);
   final String key;
   final int increment;
@@ -37,7 +37,7 @@ final class IncrByCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return IncrByCommand('$prefix$key', increment);
   }
 }

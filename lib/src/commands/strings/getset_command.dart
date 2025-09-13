@@ -21,8 +21,8 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key to set.
 /// - [value]: The new value to set.
-final class GetSetCommand extends ValkeyCommand<String?>
-    with KeyCommand<String?> {
+final class GetSetCommand extends ValKeyedCommand<String?>
+    with KeyedCommand<String?> {
   GetSetCommand(this.key, this.value);
   final String key;
   final String value;
@@ -39,7 +39,7 @@ final class GetSetCommand extends ValkeyCommand<String?>
   }
 
   @override
-  ValkeyCommand<String?> applyPrefix(String prefix) {
+  ValKeyedCommand<String?> applyPrefix(String prefix) {
     return GetSetCommand('$prefix$key', value);
   }
 }

@@ -16,8 +16,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `double?` resolving to `1.0` or `null`
-final class ZScoreCommand extends ValkeyCommand<double?>
-    with KeyCommand<double?> {
+final class ZScoreCommand extends ValKeyedCommand<double?>
+    with KeyedCommand<double?> {
   ZScoreCommand(this.key, this.member);
   final String key;
   final String member;
@@ -35,7 +35,7 @@ final class ZScoreCommand extends ValkeyCommand<double?>
   }
 
   @override
-  ValkeyCommand<double?> applyPrefix(String prefix) {
+  ValKeyedCommand<double?> applyPrefix(String prefix) {
     return ZScoreCommand('$prefix$key', member);
   }
 }

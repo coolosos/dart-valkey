@@ -19,7 +19,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [key]: The key to get the length of.
-final class StrLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class StrLenCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   StrLenCommand(this.key);
   final String key;
 
@@ -35,7 +35,7 @@ final class StrLenCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return StrLenCommand('$prefix$key');
   }
 }

@@ -20,8 +20,8 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the list.
 /// - [index]: The zero-based index of the element to retrieve.
-final class LIndexCommand extends ValkeyCommand<String?>
-    with KeyCommand<String?> {
+final class LIndexCommand extends ValKeyedCommand<String?>
+    with KeyedCommand<String?> {
   LIndexCommand(this.key, this.index);
   final String key;
   final int index;
@@ -38,7 +38,7 @@ final class LIndexCommand extends ValkeyCommand<String?>
   }
 
   @override
-  ValkeyCommand<String?> applyPrefix(String prefix) {
+  ValKeyedCommand<String?> applyPrefix(String prefix) {
     return LIndexCommand('$prefix$key', index);
   }
 }

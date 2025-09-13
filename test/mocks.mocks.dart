@@ -83,16 +83,6 @@ class _FakeStreamTransformer_4<S, T> extends _i1.SmartFake
         );
 }
 
-class _FakeDuration_5 extends _i1.SmartFake implements Duration {
-  _FakeDuration_5(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [Socket].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -859,7 +849,6 @@ class MockConnection extends _i1.Mock implements _i7.Connection {
   _i4.Future<void> connect({
     String? username,
     String? password,
-    int? protocolVersion,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -868,7 +857,6 @@ class MockConnection extends _i1.Mock implements _i7.Connection {
           {
             #username: username,
             #password: password,
-            #protocolVersion: protocolVersion,
           },
         ),
         returnValue: _i4.Future<void>.value(),
@@ -1460,11 +1448,11 @@ class MockStream<T> extends _i1.Mock implements _i4.Stream<T> {
       ) as _i4.Stream<T>);
 }
 
-/// A class which mocks [Resp3Decoder].
+/// A class which mocks [Resp2Decoder].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResp3Decoder extends _i1.Mock implements _i8.Resp3Decoder {
-  MockResp3Decoder() {
+class MockResp2Decoder extends _i1.Mock implements _i8.Resp2Decoder {
+  MockResp2Decoder() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -1476,6 +1464,31 @@ class MockResp3Decoder extends _i1.Mock implements _i8.Resp3Decoder {
           Invocation.getter(#encoding),
         ),
       ) as _i3.Encoding);
+
+  @override
+  _i4.Stream<dynamic> bind(_i4.Stream<_i5.Uint8List>? stream) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #bind,
+          [stream],
+        ),
+        returnValue: _i4.Stream<dynamic>.empty(),
+      ) as _i4.Stream<dynamic>);
+
+  @override
+  _i4.StreamTransformer<RS, RT> cast<RS, RT>() => (super.noSuchMethod(
+        Invocation.method(
+          #cast,
+          [],
+        ),
+        returnValue: _FakeStreamTransformer_4<RS, RT>(
+          this,
+          Invocation.method(
+            #cast,
+            [],
+          ),
+        ),
+      ) as _i4.StreamTransformer<RS, RT>);
 
   @override
   String decodeString(
@@ -1506,6 +1519,168 @@ class MockResp3Decoder extends _i1.Mock implements _i8.Resp3Decoder {
       ) as String);
 
   @override
+  int findCRLF(
+    _i5.Uint8List? buffer,
+    int? from,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #findCRLF,
+          [
+            buffer,
+            from,
+          ],
+        ),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  _i8.ParseResult<String> parseSimpleString(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseSimpleString,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<String>>(
+          this,
+          Invocation.method(
+            #parseSimpleString,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<String>);
+
+  @override
+  _i8.ParseResult<_i8.RespException> parseError(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseError,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<_i8.RespException>>(
+          this,
+          Invocation.method(
+            #parseError,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<_i8.RespException>);
+
+  @override
+  _i8.ParseResult<int> parseInteger(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseInteger,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<int>>(
+          this,
+          Invocation.method(
+            #parseInteger,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<int>);
+
+  @override
+  _i8.ParseResult<String?> parseBulkString(
+    _i5.Uint8List? buffer,
+    int? offset,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseBulkString,
+          [
+            buffer,
+            offset,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<String?>>(
+          this,
+          Invocation.method(
+            #parseBulkString,
+            [
+              buffer,
+              offset,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<String?>);
+
+  @override
+  _i8.ParseResult<List<dynamic>?> parseArray(
+    _i5.Uint8List? buffer,
+    int? offset,
+    _i8.ItemParser? parseItem,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #parseArray,
+          [
+            buffer,
+            offset,
+            parseItem,
+          ],
+        ),
+        returnValue: _i6.dummyValue<_i8.ParseResult<List<dynamic>?>>(
+          this,
+          Invocation.method(
+            #parseArray,
+            [
+              buffer,
+              offset,
+              parseItem,
+            ],
+          ),
+        ),
+      ) as _i8.ParseResult<List<dynamic>?>);
+}
+
+/// A class which mocks [Resp3Decoder].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockResp3Decoder extends _i1.Mock implements _i8.Resp3Decoder {
+  MockResp3Decoder() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Encoding get encoding => (super.noSuchMethod(
+        Invocation.getter(#encoding),
+        returnValue: _FakeEncoding_1(
+          this,
+          Invocation.getter(#encoding),
+        ),
+      ) as _i3.Encoding);
+
+  @override
   _i4.Stream<dynamic> bind(_i4.Stream<_i5.Uint8List>? stream) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1529,6 +1704,34 @@ class MockResp3Decoder extends _i1.Mock implements _i8.Resp3Decoder {
           ),
         ),
       ) as _i4.StreamTransformer<RS, RT>);
+
+  @override
+  String decodeString(
+    _i5.Uint8List? buffer,
+    int? start,
+    int? end,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #decodeString,
+          [
+            buffer,
+            start,
+            end,
+          ],
+        ),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #decodeString,
+            [
+              buffer,
+              start,
+              end,
+            ],
+          ),
+        ),
+      ) as String);
 
   @override
   int findCRLF(
@@ -1919,37 +2122,7 @@ class MockValkeyCommandClient extends _i1.Mock
   }
 
   @override
-  String get host => (super.noSuchMethod(
-        Invocation.getter(#host),
-        returnValue: _i6.dummyValue<String>(
-          this,
-          Invocation.getter(#host),
-        ),
-      ) as String);
-
-  @override
-  int get port => (super.noSuchMethod(
-        Invocation.getter(#port),
-        returnValue: 0,
-      ) as int);
-
-  @override
-  bool get secure => (super.noSuchMethod(
-        Invocation.getter(#secure),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  Duration get connectionTimeout => (super.noSuchMethod(
-        Invocation.getter(#connectionTimeout),
-        returnValue: _FakeDuration_5(
-          this,
-          Invocation.getter(#connectionTimeout),
-        ),
-      ) as Duration);
-
-  @override
-  _i4.Future<T> execute<T>(_i10.ValkeyCommand<T>? command) =>
+  _i4.Future<T> execute<T>(_i10.ValKeyedCommand<T>? command) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
@@ -2046,36 +2219,6 @@ class MockValkeySubscriptionClient extends _i1.Mock
         Invocation.getter(#messages),
         returnValue: _i4.Stream<_i11.PubSubMessage>.empty(),
       ) as _i4.Stream<_i11.PubSubMessage>);
-
-  @override
-  String get host => (super.noSuchMethod(
-        Invocation.getter(#host),
-        returnValue: _i6.dummyValue<String>(
-          this,
-          Invocation.getter(#host),
-        ),
-      ) as String);
-
-  @override
-  int get port => (super.noSuchMethod(
-        Invocation.getter(#port),
-        returnValue: 0,
-      ) as int);
-
-  @override
-  bool get secure => (super.noSuchMethod(
-        Invocation.getter(#secure),
-        returnValue: false,
-      ) as bool);
-
-  @override
-  Duration get connectionTimeout => (super.noSuchMethod(
-        Invocation.getter(#connectionTimeout),
-        returnValue: _FakeDuration_5(
-          this,
-          Invocation.getter(#connectionTimeout),
-        ),
-      ) as Duration);
 
   @override
   List<String> get subscribedChannels => (super.noSuchMethod(

@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT CAPA' command.
-final class ClientCapaCommand extends ValkeyCommand<List<String>> {
+final class ClientCapaCommand extends ValKeyedCommand<List<String>> {
   @override
   List<String> get commandParts => ['CLIENT', 'CAPA'];
 

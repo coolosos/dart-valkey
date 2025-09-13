@@ -4,7 +4,7 @@ import '../command.dart';
 /// Represents the `PUBLISH channel message` command.
 ///
 /// Posts a message to the given channel.
-final class PublishCommand extends ValkeyCommand<int> {
+final class PublishCommand extends ValKeyedCommand<int> {
   PublishCommand(this.channel, this.message);
   // Changed extends
   final String channel;

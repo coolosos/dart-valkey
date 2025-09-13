@@ -4,6 +4,7 @@ import 'base_connection.dart';
 
 class InsecureConnection extends BaseConnection {
   InsecureConnection({
+    required super.respDecoder,
     super.host,
     super.port,
     super.connectionTimeout,

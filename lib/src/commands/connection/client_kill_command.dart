@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT KILL ID clientid' command.
-final class ClientKillCommand extends ValkeyCommand<int> {
+final class ClientKillCommand extends ValKeyedCommand<int> {
   ClientKillCommand(this.clientId);
   final int clientId;
 

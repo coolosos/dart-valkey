@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:io';
 
+import '../codec/resp_decoder.dart';
 import '../commands/commands.dart';
 import '../connection/connection.dart';
 import '../connection/insecure_connection.dart';
@@ -22,14 +23,15 @@ part 'mixins/shard_subscription_mixin.dart';
 /// Base class for Valkey and Valkey Pub/Sub clients, providing common connection management.
 sealed class BaseValkeyClient {
   BaseValkeyClient({
-    required this.host,
-    required this.port,
-    this.secure = false,
-    this.connectionTimeout = const Duration(seconds: 5),
-    this.onBadCertificate,
+    required String host,
+    required int port,
+    bool secure = false,
+    Duration connectionTimeout = const Duration(seconds: 5),
+    bool Function(X509Certificate certificate)? onBadCertificate,
     this.username,
     this.password,
-    this.protocolVersion,
+    int maxReconnectAttempts = 5,
+    BaseRespCodec respDecoder = const Resp3Decoder(),
     Connection? connection,
   }) {
     _connection = connection ??
@@ -43,6 +45,8 @@ sealed class BaseValkeyClient {
                 onDone: _onDone,
                 onError: _onError,
                 onBadCertificate: onBadCertificate,
+                maxReconnectAttempts: maxReconnectAttempts,
+                respDecoder: respDecoder,
               )
             : InsecureConnection(
                 host: host,
@@ -52,16 +56,14 @@ sealed class BaseValkeyClient {
                 onData: _onData,
                 onDone: _onDone,
                 onError: _onError,
+                maxReconnectAttempts: maxReconnectAttempts,
+                respDecoder: respDecoder,
               ));
   }
-  final String host;
-  final int port;
-  final bool secure;
-  final Duration connectionTimeout;
-  final bool Function(X509Certificate certificate)? onBadCertificate;
+
   final String? username;
   final String? password;
-  final int? protocolVersion;
+
   late final Connection _connection;
 
   /// Establishes the network connection to the Valkey/Redis server.
@@ -70,7 +72,6 @@ sealed class BaseValkeyClient {
       await _connection.connect(
         username: username,
         password: password,
-        protocolVersion: protocolVersion,
       );
     }
   }

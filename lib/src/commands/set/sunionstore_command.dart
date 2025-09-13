@@ -16,7 +16,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `3` (number of elements in the resulting set)
-final class SUnionStoreCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class SUnionStoreCommand extends ValKeyedCommand<int>
+    with KeyedCommand<int> {
   SUnionStoreCommand(this.destination, this.keys);
   final String destination;
   final List<String> keys;
@@ -33,7 +34,7 @@ final class SUnionStoreCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return SUnionStoreCommand(
       '$prefix$destination',
       keys.map((key) => '$prefix$key').toList(),

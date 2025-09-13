@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT IMPORT-SOURCE' command.
-final class ClientImportSourceCommand extends ValkeyCommand<bool> {
+final class ClientImportSourceCommand extends ValKeyedCommand<bool> {
   @override
   List<String> get commandParts => ['CLIENT', 'IMPORT-SOURCE'];
 

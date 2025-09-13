@@ -9,6 +9,7 @@ import 'package:mockito/annotations.dart';
   StreamSubscription,
   Connection,
   Stream,
+  Resp2Decoder,
   Resp3Decoder,
   ValkeyCommandClient,
   ValkeySubscriptionClient,
@@ -21,7 +22,7 @@ class TestConnection extends BaseConnection {
     super.onData,
     super.onDone,
     super.onError,
-  });
+  }) : super(respDecoder: const Resp3Decoder());
 
   late Socket socketToReturn;
 
@@ -31,7 +32,7 @@ class TestConnection extends BaseConnection {
   }
 }
 
-base class FakeCommand<T> extends ValkeyCommand<T> {
+base class FakeCommand<T> extends ValKeyedCommand<T> {
   FakeCommand({
     required this.fakeEncoded,
     required this.fakeResult,

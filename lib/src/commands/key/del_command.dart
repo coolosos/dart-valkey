@@ -16,7 +16,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `2` (number of keys deleted)
-final class DelCommand extends ValkeyCommand<int> with KeyCommand<int> {
+final class DelCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   DelCommand(this.keys);
   final List<String> keys;
 
@@ -32,7 +32,7 @@ final class DelCommand extends ValkeyCommand<int> with KeyCommand<int> {
   }
 
   @override
-  ValkeyCommand<int> applyPrefix(String prefix) {
+  ValKeyedCommand<int> applyPrefix(String prefix) {
     return DelCommand(keys.map((key) => '$prefix$key').toList());
   }
 }

@@ -45,7 +45,8 @@ class ValkeyCommandClient extends BaseValkeyClient {
     super.username,
     super.password,
     super.connection,
-    super.protocolVersion,
+    super.maxReconnectAttempts = 5,
+    super.respDecoder = const Resp3Decoder(),
   })  : _db = db,
         keyPrefix =
             (keyPrefix?.endsWith(':') ?? false) ? keyPrefix : '$keyPrefix:';
@@ -53,14 +54,15 @@ class ValkeyCommandClient extends BaseValkeyClient {
   final int _db;
   final String? keyPrefix;
   final Queue<Completer<dynamic>> _commandQueue = Queue();
-  final Map<Completer<dynamic>, ValkeyCommand<dynamic>> _pendingCompleters = {};
+  final Map<Completer<dynamic>, ValKeyedCommand<dynamic>> _pendingCompleters =
+      {};
 
   /// Executes a [ValkeyCommand] and returns a [Future] that completes with the command\'s result.
   /// - [command]: The [ValkeyCommand] instance to execute.
 
-  Future<T> execute<T>(ValkeyCommand<T> command) {
-    final ValkeyCommand<T> commandToExecute = switch (command) {
-      KeyCommand<T> c when (keyPrefix?.isNotEmpty ?? false) =>
+  Future<T> execute<T>(ValKeyedCommand<T> command) {
+    final ValKeyedCommand<T> commandToExecute = switch (command) {
+      KeyedCommand<T> c when (keyPrefix?.isNotEmpty ?? false) =>
         c.applyPrefix(keyPrefix!),
       _ => command,
     };

@@ -20,8 +20,8 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the hash.
 /// - [field]: The field to retrieve.
-final class HGetCommand extends ValkeyCommand<String?>
-    with KeyCommand<String?> {
+final class HGetCommand extends ValKeyedCommand<String?>
+    with KeyedCommand<String?> {
   HGetCommand(this.key, this.field);
   final String key;
   final String field;
@@ -38,7 +38,7 @@ final class HGetCommand extends ValkeyCommand<String?>
   }
 
   @override
-  ValkeyCommand<String?> applyPrefix(String prefix) {
+  ValKeyedCommand<String?> applyPrefix(String prefix) {
     return HGetCommand('$prefix$key', field);
   }
 }

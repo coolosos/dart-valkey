@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'CLIENT TRACKINGINFO' command.
 final class ClientTrackinginfoCommand
-    extends ValkeyCommand<Map<String, dynamic>> {
+    extends ValKeyedCommand<Map<String, dynamic>> {
   @override
   List<String> get commandParts => ['CLIENT', 'TRACKINGINFO'];
 

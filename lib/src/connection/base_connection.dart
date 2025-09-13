@@ -13,6 +13,7 @@ import '../../dart_valkey.dart';
 /// implement how the socket is physically created (insecure vs secure).
 abstract class BaseConnection implements Connection {
   BaseConnection({
+    required this.respDecoder,
     this.host = '127.00.1',
     this.port = 6379,
     this.connectionTimeout = const Duration(seconds: 10),
@@ -34,11 +35,10 @@ abstract class BaseConnection implements Connection {
   final void Function(Object error)? onError;
 
   @visibleForTesting
-  BaseRespCodec get respDecoder => const Resp3Decoder();
+  final BaseRespCodec respDecoder;
 
   String? username;
   String? password;
-  int? protocolVersion;
 
   Socket? _socket;
   StreamSubscription? _socketSubscription;
@@ -55,13 +55,11 @@ abstract class BaseConnection implements Connection {
   Future<void> connect({
     String? username,
     String? password,
-    int? protocolVersion,
   }) async {
     if (isConnected) return;
     _reconnectAttempts = 0;
     this.username = username;
     this.password = password;
-    this.protocolVersion = protocolVersion;
     await _performConnection();
   }
 
@@ -76,23 +74,32 @@ abstract class BaseConnection implements Connection {
 
       final decoder = respDecoder.bind(socket).asBroadcastStream();
 
-      if (password case final password? when password.isNotEmpty) {
-        final ValkeyCommand<dynamic> command;
-        if (protocolVersion case final protocolVersion?) {
-          command = HelloCommand(
-            protocolVersion: protocolVersion,
+      final initialCommand = switch (respDecoder) {
+        Resp2Decoder() when (password?.isNotEmpty ?? false) => AuthCommand(
+            username: username,
+            password: password!,
+          ),
+        Resp3Decoder() => HelloCommand(
+            protocolVersion: 3,
             username: username,
             password: password,
-          );
-        } else {
-          command = AuthCommand(password: password, username: username);
-        }
+          ),
+        _ => null,
+      };
 
-        socket.add(command.encoded);
-
+      if (initialCommand case ValKeyedCommand initialCommand) {
+        socket.add(initialCommand.encoded);
         final response = await decoder.first;
+        final parsedResponse = initialCommand.parse(response);
 
-        if (command.parse(response) != 'OK') {
+        final bool authSuccess = switch (initialCommand) {
+          AuthCommand() => parsedResponse == 'OK',
+          HelloCommand() => parsedResponse is Map<String, dynamic> &&
+              parsedResponse['proto'] == 3,
+          _ => false, // Should not happen for these commands
+        };
+
+        if (!authSuccess) {
           throw ValkeyException('Authentication failed: $response');
         }
       }

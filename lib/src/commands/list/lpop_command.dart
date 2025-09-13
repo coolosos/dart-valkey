@@ -22,14 +22,15 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the list.
 /// - [count]: (Optional) The number of elements to pop.
-final class LPopCommand extends ValkeyCommand<List<String>>
-    with KeyCommand<List<String>> {
+final class LPopCommand extends ValKeyedCommand<List<String>>
+    with KeyedCommand<List<String>> {
   LPopCommand(this.key, [this.count]);
   final String key;
   final int? count;
 
   @override
-  List<String> get commandParts => ['LPOP', key, if (count != null) count!.toString()];
+  List<String> get commandParts =>
+      ['LPOP', key, if (count != null) count!.toString()];
 
   @override
   List<String> parse(dynamic data) {

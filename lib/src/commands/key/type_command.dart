@@ -16,7 +16,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'string'`, `'hash'`, `'list'`, `'set'`, `'zset'`, or `'none'`
-final class TypeCommand extends ValkeyCommand<String> with KeyCommand<String> {
+final class TypeCommand extends ValKeyedCommand<String>
+    with KeyedCommand<String> {
   TypeCommand(this.key);
   final String key;
 
@@ -32,7 +33,7 @@ final class TypeCommand extends ValkeyCommand<String> with KeyCommand<String> {
   }
 
   @override
-  ValkeyCommand<String> applyPrefix(String prefix) {
+  ValKeyedCommand<String> applyPrefix(String prefix) {
     return TypeCommand('$prefix$key');
   }
 }

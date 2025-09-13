@@ -22,8 +22,8 @@ import '../command.dart';
 /// - [key]: The key of the hash.
 /// - [field]: The field to increment.
 /// - [increment]: The amount to increment by.
-final class HIncrByFloatCommand extends ValkeyCommand<double>
-    with KeyCommand<double> {
+final class HIncrByFloatCommand extends ValKeyedCommand<double>
+    with KeyedCommand<double> {
   HIncrByFloatCommand(this.key, this.field, this.increment);
   final String key;
   final String field;
@@ -42,7 +42,7 @@ final class HIncrByFloatCommand extends ValkeyCommand<double>
   }
 
   @override
-  ValkeyCommand<double> applyPrefix(String prefix) {
+  ValKeyedCommand<double> applyPrefix(String prefix) {
     return HIncrByFloatCommand('$prefix$key', field, increment);
   }
 }

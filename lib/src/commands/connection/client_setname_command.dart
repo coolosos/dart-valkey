@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT SETNAME connection-name' command.
-final class ClientSetnameCommand extends ValkeyCommand<String> {
+final class ClientSetnameCommand extends ValKeyedCommand<String> {
   ClientSetnameCommand(this.name);
   final String name;
 

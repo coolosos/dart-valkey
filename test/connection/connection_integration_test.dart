@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dart_valkey/src/codec/resp_decoder.dart';
 import 'package:dart_valkey/src/connection/base_connection.dart';
 import 'package:test/test.dart';
 
 class TestableConnection extends BaseConnection {
   TestableConnection({
+    super.respDecoder = const Resp3Decoder(),
     super.host = 'localhost',
     super.port,
     super.connectionTimeout,
@@ -14,6 +16,7 @@ class TestableConnection extends BaseConnection {
     super.onData,
     super.onDone,
     super.onError,
+    super.maxReconnectAttempts = 5,
   });
 
   @override
@@ -34,9 +37,22 @@ void main() {
       await connection.close();
     });
 
-    test('should connect to the Valkey server', () async {
+    test('should connect to the Valkey server RESP2', () async {
       bool connected = false;
       connection = TestableConnection(
+        respDecoder: const Resp2Decoder(),
+        onConnected: () async {
+          connected = true;
+        },
+      );
+      await connection.connect();
+      expect(connected, isTrue);
+    });
+
+    test('should connect to the Valkey server RESP3', () async {
+      bool connected = false;
+      connection = TestableConnection(
+        respDecoder: const Resp3Decoder(),
         onConnected: () async {
           connected = true;
         },

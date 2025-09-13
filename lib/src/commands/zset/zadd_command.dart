@@ -15,8 +15,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `2` (number of elements added) or `double` (if INCR is true)
-final class ZAddCommand extends ValkeyCommand<dynamic>
-    with KeyCommand<dynamic> {
+final class ZAddCommand extends ValKeyedCommand<dynamic>
+    with KeyedCommand<dynamic> {
   ZAddCommand(
     this.key,
     this.membersWithScores, {
@@ -80,7 +80,7 @@ final class ZAddCommand extends ValkeyCommand<dynamic>
   }
 
   @override
-  ValkeyCommand<dynamic> applyPrefix(String prefix) {
+  ValKeyedCommand<dynamic> applyPrefix(String prefix) {
     return ZAddCommand(
       '$prefix$key',
       membersWithScores,

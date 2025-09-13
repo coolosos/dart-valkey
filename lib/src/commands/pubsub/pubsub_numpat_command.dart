@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'PUBSUB NUMPAT' command.
 /// Returns the number of subscriptions to patterns.
-final class PubsubNumpatCommand extends ValkeyCommand<int> {
+final class PubsubNumpatCommand extends ValKeyedCommand<int> {
   @override
   List<String> get commandParts => ['PUBSUB', 'NUMPAT'];
 

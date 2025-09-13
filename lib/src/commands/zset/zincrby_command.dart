@@ -16,8 +16,8 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `double` resolving to `2.5`
-final class ZIncrByCommand extends ValkeyCommand<double>
-    with KeyCommand<double> {
+final class ZIncrByCommand extends ValKeyedCommand<double>
+    with KeyedCommand<double> {
   ZIncrByCommand(this.key, this.increment, this.member);
   final String key;
   final double increment;
@@ -36,7 +36,7 @@ final class ZIncrByCommand extends ValkeyCommand<double>
   }
 
   @override
-  ValkeyCommand<double> applyPrefix(String prefix) {
+  ValKeyedCommand<double> applyPrefix(String prefix) {
     return ZIncrByCommand('$prefix$key', increment, member);
   }
 }
