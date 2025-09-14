@@ -22,6 +22,7 @@ abstract class BaseConnection implements Connection {
     this.onDone,
     this.onError,
     this.maxReconnectAttempts = 5,
+    this.disableNagle = true,
   });
 
   final String host;
@@ -34,6 +35,7 @@ abstract class BaseConnection implements Connection {
   final void Function()? onDone;
   final void Function(Object error)? onError;
 
+  final bool disableNagle;
   @visibleForTesting
   final BaseRespCodec respDecoder;
 
@@ -70,7 +72,9 @@ abstract class BaseConnection implements Connection {
   Future<void> _performConnection() async {
     try {
       final socket = await performSocketConnection();
-      socket.setOption(SocketOption.tcpNoDelay, true);
+      if (disableNagle) {
+        socket.setOption(SocketOption.tcpNoDelay, true);
+      }
 
       final decoder = respDecoder.bind(socket).asBroadcastStream();
 

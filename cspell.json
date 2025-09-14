@@ -44,6 +44,7 @@
         "mockito",
         "MSET",
         "myset",
+        "Nagle",
         "Numsub",
         "pmessage",
         "psubscribe",

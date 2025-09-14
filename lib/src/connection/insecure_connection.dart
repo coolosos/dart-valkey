@@ -13,6 +13,7 @@ class InsecureConnection extends BaseConnection {
     super.onDone,
     super.onError,
     super.maxReconnectAttempts,
+    super.disableNagle = true,
   });
 
   @override

@@ -14,6 +14,7 @@ class SecureConnection extends BaseConnection {
     super.onError,
     super.maxReconnectAttempts,
     this.onBadCertificate,
+    super.disableNagle = true,
   });
 
   final bool Function(X509Certificate certificate)? onBadCertificate;

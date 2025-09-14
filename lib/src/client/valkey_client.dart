@@ -33,6 +33,7 @@ sealed class BaseValkeyClient {
     int maxReconnectAttempts = 5,
     BaseRespCodec respDecoder = const Resp3Decoder(),
     Connection? connection,
+    bool disableNagle = true,
   }) {
     _connection = connection ??
         (secure
@@ -47,6 +48,7 @@ sealed class BaseValkeyClient {
                 onBadCertificate: onBadCertificate,
                 maxReconnectAttempts: maxReconnectAttempts,
                 respDecoder: respDecoder,
+                disableNagle: disableNagle,
               )
             : InsecureConnection(
                 host: host,
@@ -58,6 +60,7 @@ sealed class BaseValkeyClient {
                 onError: _onError,
                 maxReconnectAttempts: maxReconnectAttempts,
                 respDecoder: respDecoder,
+                disableNagle: disableNagle,
               ));
   }
 
