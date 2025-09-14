@@ -30,7 +30,8 @@ void main() {
       verify(mockConnection.connect()).called(1);
     });
 
-    test('connect should not call connection.connect when already connected', () async {
+    test('connect should not call connection.connect when already connected',
+        () async {
       when(mockConnection.isConnected).thenReturn(true);
 
       await client.connect();

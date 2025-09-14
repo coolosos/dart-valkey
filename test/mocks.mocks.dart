@@ -2122,7 +2122,7 @@ class MockValkeyCommandClient extends _i1.Mock
   }
 
   @override
-  _i4.Future<T> execute<T>(_i10.ValKeyedCommand<T>? command) =>
+  _i4.Future<T> execute<T>(_i10.ValkeyCommand<T>? command) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,

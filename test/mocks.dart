@@ -32,7 +32,7 @@ class TestConnection extends BaseConnection {
   }
 }
 
-base class FakeCommand<T> extends ValKeyedCommand<T> {
+base class FakeCommand<T> extends ValkeyCommand<T> {
   FakeCommand({
     required this.fakeEncoded,
     required this.fakeResult,
