@@ -9,6 +9,7 @@
         "BITFIELD",
         "BITOP",
         "BITPOS",
+        "brenchmark",
         "BYLEX",
         "BYSCORE",
         "clientid",
