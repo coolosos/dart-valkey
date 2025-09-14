@@ -26,7 +26,7 @@ jobs:
         run: dart analyze --fatal-infos
 
       - name: Run tests
-        run: dart test
+        run: dart test --coverage=coverage --exclude-tags integration
 
  
       - name: Publish to pub.dev
