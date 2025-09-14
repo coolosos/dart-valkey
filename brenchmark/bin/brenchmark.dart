@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dart_valkey/dart_valkey.dart';
+import 'package:dart_valkey/src/extensions/all_commands.dart'; // Import the extension
 import 'package:redis/redis.dart';
 import 'package:shorebird_redis_client/shorebird_redis_client.dart';
 
@@ -32,14 +33,17 @@ Future<BenchmarkResult> benchmarkDartValkey({int iterations = 1000}) async {
   stdout.writeln('Memoria Inicial: $initialMemory KB');
 
   // Warmup
-  final pingCommand = PingCommand();
-  await client.execute(pingCommand);
+  await client.ping();
+  await client.set('test_key', 'test_value');
+  await client.get('test_key');
 
   List<double> latencies = [];
   final swTotal = Stopwatch()..start();
   for (int i = 0; i < iterations; i++) {
     final sw = Stopwatch()..start();
-    await client.execute(pingCommand);
+    await client.set('key_$i', 'value_$i');
+    await client.get('key_$i');
+    await client.ping();
     sw.stop();
     latencies.add(sw.elapsedMicroseconds / 1000.0); // ms
   }
@@ -78,12 +82,17 @@ Future<BenchmarkResult> benchmarkRedisPackage({int iterations = 1000}) async {
 
   stdout.writeln('Memoria Inicial: $initialMemory KB');
 
+  // Warmup
   await redisCommand.send_object(["PING"]);
+  await redisCommand.send_object(["SET", "test_key", "test_value"]);
+  await redisCommand.send_object(["GET", "test_key"]);
 
   List<double> latencies = [];
   final swTotal = Stopwatch()..start();
   for (int i = 0; i < iterations; i++) {
     final sw = Stopwatch()..start();
+    await redisCommand.send_object(["SET", "key_$i", "value_$i"]);
+    await redisCommand.send_object(["GET", "key_$i"]);
     await redisCommand.send_object(["PING"]);
     sw.stop();
     latencies.add(sw.elapsedMicroseconds / 1000.0);
@@ -125,12 +134,17 @@ Future<BenchmarkResult> benchmarkShorebirdRedisClient({
 
   stdout.writeln('Memoria Inicial: $initialMemory KB');
 
+  // Warmup
   await client.execute(['PING']);
+  await client.execute(['SET', 'test_key', 'test_value']);
+  await client.execute(['GET', 'test_key']);
 
   List<double> latencies = [];
   final swTotal = Stopwatch()..start();
   for (int i = 0; i < iterations; i++) {
     final sw = Stopwatch()..start();
+    await client.execute(['SET', 'key_$i', 'value_$i']);
+    await client.execute(['GET', 'key_$i']);
     await client.execute(['PING']);
     sw.stop();
     latencies.add(sw.elapsedMicroseconds / 1000.0);
@@ -162,7 +176,7 @@ Future<BenchmarkResult> benchmarkShorebirdRedisClient({
 }
 
 Future<void> main() async {
-  const int rounds = 10;
+  const int rounds = 50;
   const int iterations = 1000;
 
   // Listas para acumular resultados
@@ -184,35 +198,31 @@ Future<void> main() async {
     await Future.delayed(const Duration(seconds: 1));
   }
 
-  List<BenchmarkResult> validDartValkeyResults = resultsDartValkey.sublist(1);
-  List<BenchmarkResult> validRedisResults = resultsRedisPackage.sublist(1);
-  List<BenchmarkResult> validShorebirdResults = resultsShorebird.sublist(1);
-
   // Función auxiliar para calcular la media de una lista de valores
   double average(List<double> values) =>
       values.reduce((a, b) => a + b) / values.length;
 
   // Calcular promedios para cada librería
   double avgLatencyDartValkey =
-      average(validDartValkeyResults.map((r) => r.avgLatency).toList());
+      average(resultsDartValkey.map((r) => r.avgLatency).toList());
   double avgThroughputDartValkey =
-      average(validDartValkeyResults.map((r) => r.throughput).toList());
+      average(resultsDartValkey.map((r) => r.throughput).toList());
   double avgMemoryDartValkey =
-      average(validDartValkeyResults.map((r) => r.memoryDelta).toList());
+      average(resultsDartValkey.map((r) => r.memoryDelta).toList());
 
   double avgLatencyRedis =
-      average(validRedisResults.map((r) => r.avgLatency).toList());
+      average(resultsRedisPackage.map((r) => r.avgLatency).toList());
   double avgThroughputRedis =
-      average(validRedisResults.map((r) => r.throughput).toList());
+      average(resultsRedisPackage.map((r) => r.throughput).toList());
   double avgMemoryRedis =
-      average(validRedisResults.map((r) => r.memoryDelta).toList());
+      average(resultsRedisPackage.map((r) => r.memoryDelta).toList());
 
   double avgLatencyShorebird =
-      average(validShorebirdResults.map((r) => r.avgLatency).toList());
+      average(resultsShorebird.map((r) => r.avgLatency).toList());
   double avgThroughputShorebird =
-      average(validShorebirdResults.map((r) => r.throughput).toList());
+      average(resultsShorebird.map((r) => r.throughput).toList());
   double avgMemoryShorebird =
-      average(validShorebirdResults.map((r) => r.memoryDelta).toList());
+      average(resultsShorebird.map((r) => r.memoryDelta).toList());
 
   stdout.writeln('===== Promedio de Resultados tras $rounds rounds =====\n');
 
