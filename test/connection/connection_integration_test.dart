@@ -26,7 +26,7 @@ class TestableConnection extends BaseConnection {
 }
 
 void main() {
-  group('BaseConnection Integration Tests', () {
+  group('BaseConnection Integration Tests', tags: 'integration', () {
     late TestableConnection connection;
 
     setUp(() {
