@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Dart SDK
-      uses: dart-lang/setup-dart@v1
+      uses: dart-lang/setup-dart@v1.7.1
 
     - name: Install dependencies
       run: dart pub get
@@ -24,7 +24,7 @@ jobs:
       run: dart analyze --fatal-infos
 
     - name: Run tests with coverage
-      run: dart test --coverage=coverage --exclude-path test/connection/connection_integration_test.dart
+      run: dart test --coverage=coverage --exclude-tags integration
 
     - name: Generate LCOV report
       run: dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info
