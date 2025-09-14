@@ -25,7 +25,7 @@ import '../command.dart';
 /// **Dart Result (from parse method):**
 /// `List<Map<String, String>>` resolving to `[{'member': 'member1', 'score': '1.0'}, {'member': 'member2', 'score': '2.0'}]`
 final class ZRangeByScoreWithScoresCommand
-    extends ValKeyedCommand<List<Map<String, String>>>
+    extends ValkeyCommand<List<Map<String, String>>>
     with KeyedCommand<List<Map<String, String>>> {
   ZRangeByScoreWithScoresCommand(
     this.key,
@@ -66,7 +66,7 @@ final class ZRangeByScoreWithScoresCommand
   }
 
   @override
-  ValKeyedCommand<List<Map<String, String>>> applyPrefix(String prefix) {
+  ValkeyCommand<List<Map<String, String>>> applyPrefix(String prefix) {
     return ZRangeByScoreWithScoresCommand(
       '$prefix$key',
       min,

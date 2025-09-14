@@ -24,7 +24,7 @@ import '../command.dart';
 /// - [key]: The key of the list.
 /// - [start]: The starting offset.
 /// - [stop]: The ending offset (inclusive).
-final class LRangeCommand extends ValKeyedCommand<List<String>>
+final class LRangeCommand extends ValkeyCommand<List<String>>
     with KeyedCommand<List<String>> {
   LRangeCommand(this.key, this.start, this.stop);
   final String key;
@@ -44,7 +44,7 @@ final class LRangeCommand extends ValKeyedCommand<List<String>>
   }
 
   @override
-  ValKeyedCommand<List<String>> applyPrefix(String prefix) {
+  ValkeyCommand<List<String>> applyPrefix(String prefix) {
     return LRangeCommand('$prefix$key', start, stop);
   }
 }

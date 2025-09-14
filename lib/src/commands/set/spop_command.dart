@@ -17,7 +17,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String?` resolving to `'member1'` or `null`
-final class SPopCommand extends ValKeyedCommand<String?>
+final class SPopCommand extends ValkeyCommand<String?>
     with KeyedCommand<String?> {
   SPopCommand(this.key);
   final String key;
@@ -34,7 +34,7 @@ final class SPopCommand extends ValKeyedCommand<String?>
   }
 
   @override
-  ValKeyedCommand<String?> applyPrefix(String prefix) {
+  ValkeyCommand<String?> applyPrefix(String prefix) {
     return SPopCommand('$prefix$key');
   }
 }

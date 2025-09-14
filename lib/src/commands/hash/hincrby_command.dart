@@ -20,7 +20,7 @@ import '../command.dart';
 /// - [key]: The key of the hash.
 /// - [field]: The field to increment.
 /// - [increment]: The amount to increment by.
-final class HIncrByCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class HIncrByCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   HIncrByCommand(this.key, this.field, this.increment);
   final String key;
   final String field;
@@ -39,7 +39,7 @@ final class HIncrByCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return HIncrByCommand('$prefix$key', field, increment);
   }
 }

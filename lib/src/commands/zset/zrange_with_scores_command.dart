@@ -26,7 +26,7 @@ import '../../codec/valkey_exception.dart';
 /// **Dart Result (from parse method):**
 /// `List<Map<String, String>>` resolving to `[{'member': 'member1', 'score': '1.0'}, {'member': 'member2', 'score': '2.0'}]`
 final class ZRangeWithScoresCommand
-    extends ValKeyedCommand<List<Map<String, String>>>
+    extends ValkeyCommand<List<Map<String, String>>>
     with KeyedCommand<List<Map<String, String>>> {
   ZRangeWithScoresCommand(this.key, this.start, this.stop);
   final String key;
@@ -54,7 +54,7 @@ final class ZRangeWithScoresCommand
   }
 
   @override
-  ValKeyedCommand<List<Map<String, String>>> applyPrefix(String prefix) {
+  ValkeyCommand<List<Map<String, String>>> applyPrefix(String prefix) {
     return ZRangeWithScoresCommand('$prefix$key', start, stop);
   }
 }

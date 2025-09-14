@@ -17,7 +17,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String?` resolving to `'member1'` or `null`
-final class SRandMemberCommand extends ValKeyedCommand<String?>
+final class SRandMemberCommand extends ValkeyCommand<String?>
     with KeyedCommand<String?> {
   SRandMemberCommand(this.key);
   final String key;
@@ -34,7 +34,7 @@ final class SRandMemberCommand extends ValKeyedCommand<String?>
   }
 
   @override
-  ValKeyedCommand<String?> applyPrefix(String prefix) {
+  ValkeyCommand<String?> applyPrefix(String prefix) {
     return SRandMemberCommand('$prefix$key');
   }
 }

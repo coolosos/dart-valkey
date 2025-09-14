@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'OK'`
-final class ClientUnpauseCommand extends ValKeyedCommand<String> {
+final class ClientUnpauseCommand extends ValkeyCommand<String> {
   ClientUnpauseCommand();
 
   @override

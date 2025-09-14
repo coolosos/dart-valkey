@@ -17,7 +17,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [message]: (Optional) A message to be echoed back by the server.
-final class PingCommand extends ValKeyedCommand<bool> {
+final class PingCommand extends ValkeyCommand<bool> {
   PingCommand([this.message]);
   final String? message;
 

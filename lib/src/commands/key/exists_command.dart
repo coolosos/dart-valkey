@@ -16,7 +16,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `1` (number of keys that exist)
-final class ExistsCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class ExistsCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   ExistsCommand(this.keys);
   final List<String> keys;
 
@@ -32,7 +32,7 @@ final class ExistsCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return ExistsCommand(keys.map((key) => '$prefix$key').toList());
   }
 }

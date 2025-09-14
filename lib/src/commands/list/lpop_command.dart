@@ -22,7 +22,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the list.
 /// - [count]: (Optional) The number of elements to pop.
-final class LPopCommand extends ValKeyedCommand<List<String>>
+final class LPopCommand extends ValkeyCommand<List<String>>
     with KeyedCommand<List<String>> {
   LPopCommand(this.key, [this.count]);
   final String key;

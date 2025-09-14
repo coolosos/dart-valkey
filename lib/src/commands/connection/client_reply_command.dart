@@ -8,7 +8,7 @@ enum ClientReplyMode {
 }
 
 /// Represents the 'CLIENT REPLY ON|OFF|SKIP' command.
-final class ClientReplyCommand extends ValKeyedCommand<bool> {
+final class ClientReplyCommand extends ValkeyCommand<bool> {
   ClientReplyCommand(this.mode);
   final ClientReplyMode mode;
 

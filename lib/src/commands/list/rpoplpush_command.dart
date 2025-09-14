@@ -17,7 +17,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String?` resolving to `'itemX'` or `null`
-final class RPopLPushCommand extends ValKeyedCommand<String?>
+final class RPopLPushCommand extends ValkeyCommand<String?>
     with KeyedCommand<String?> {
   RPopLPushCommand(this.source, this.destination);
   final String source;
@@ -35,7 +35,7 @@ final class RPopLPushCommand extends ValKeyedCommand<String?>
   }
 
   @override
-  ValKeyedCommand<String?> applyPrefix(String prefix) {
+  ValkeyCommand<String?> applyPrefix(String prefix) {
     return RPopLPushCommand('$prefix$source', '$prefix$destination');
   }
 }

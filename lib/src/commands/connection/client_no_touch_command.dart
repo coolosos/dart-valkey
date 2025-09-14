@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'OK'`
-final class ClientNoTouchCommand extends ValKeyedCommand<String> {
+final class ClientNoTouchCommand extends ValkeyCommand<String> {
   ClientNoTouchCommand(this.enable);
 
   final bool enable;

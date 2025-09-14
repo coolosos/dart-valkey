@@ -19,7 +19,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the hash.
 /// - [fields]: A list of fields to remove.
-final class HDelCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class HDelCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   HDelCommand(this.key, this.fields);
   final String key;
   final List<String> fields;
@@ -36,7 +36,7 @@ final class HDelCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return HDelCommand('$prefix$key', fields);
   }
 }

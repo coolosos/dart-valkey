@@ -20,7 +20,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `List<String>` resolving to `['member1', 'member2']`
-final class SPopCountCommand extends ValKeyedCommand<List<String>>
+final class SPopCountCommand extends ValkeyCommand<List<String>>
     with KeyedCommand<List<String>> {
   SPopCountCommand(this.key, this.count);
   final String key;
@@ -38,7 +38,7 @@ final class SPopCountCommand extends ValKeyedCommand<List<String>>
   }
 
   @override
-  ValKeyedCommand<List<String>> applyPrefix(String prefix) {
+  ValkeyCommand<List<String>> applyPrefix(String prefix) {
     return SPopCountCommand('$prefix$key', count);
   }
 }

@@ -18,7 +18,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [key]: The key of the list.
-final class LLenCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class LLenCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   LLenCommand(this.key);
   final String key;
 
@@ -34,7 +34,7 @@ final class LLenCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return LLenCommand('$prefix$key');
   }
 }

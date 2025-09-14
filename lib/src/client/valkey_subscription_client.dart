@@ -30,8 +30,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
     _commandQueue = Queue();
   }
 
-  late final Map<Completer<dynamic>, ValKeyedCommand<dynamic>>
-      _pendingCompleters;
+  late final Map<Completer<dynamic>, ValkeyCommand<dynamic>> _pendingCompleters;
   late final Queue<Completer<dynamic>> _commandQueue;
 
   final _messageController = StreamController<PubSubMessage>.broadcast();

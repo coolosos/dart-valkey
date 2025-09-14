@@ -20,7 +20,7 @@ enum UnblockType {
   error,
 }
 
-final class ClientUnblockCommand extends ValKeyedCommand<int> {
+final class ClientUnblockCommand extends ValkeyCommand<int> {
   ClientUnblockCommand(this.clientId, {this.unblockType});
 
   final int clientId;

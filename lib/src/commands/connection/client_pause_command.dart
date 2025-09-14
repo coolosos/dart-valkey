@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'CLIENT PAUSE timeout [WRITE]' command.
-final class ClientPauseCommand extends ValKeyedCommand<bool> {
+final class ClientPauseCommand extends ValkeyCommand<bool> {
   ClientPauseCommand(this.timeout, {this.write = false});
   final int timeout;
   final bool write;

@@ -24,12 +24,12 @@ abstract base class PubSubCommand<T> extends Command<T> {
 /// The base class for all Valkey commands.
 ///
 /// It is abstract and generic over the return type `T`.
-abstract base class ValKeyedCommand<T> extends Command<T> {
+abstract base class ValkeyCommand<T> extends Command<T> {
   // commandParts, parse, and encoded are inherited from Command<T>
   /// The parser for the response, to be implemented by each subclass.
   T parse(dynamic data);
 }
 
-base mixin KeyedCommand<T> on ValKeyedCommand<T> {
-  ValKeyedCommand<T> applyPrefix(String prefix);
+base mixin KeyedCommand<T> on ValkeyCommand<T> {
+  ValkeyCommand<T> applyPrefix(String prefix);
 }

@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'OK'`
-final class ClientCachingCommand extends ValKeyedCommand<String> {
+final class ClientCachingCommand extends ValkeyCommand<String> {
   ClientCachingCommand(this.enable);
 
   final bool enable;

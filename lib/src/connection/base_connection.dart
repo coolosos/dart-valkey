@@ -87,7 +87,7 @@ abstract class BaseConnection implements Connection {
         _ => null,
       };
 
-      if (initialCommand case ValKeyedCommand initialCommand) {
+      if (initialCommand case ValkeyCommand initialCommand) {
         socket.add(initialCommand.encoded);
         final response = await decoder.first;
         final parsedResponse = initialCommand.parse(response);

@@ -16,7 +16,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int?` resolving to `0` or `null`
-final class ZRankCommand extends ValKeyedCommand<int?> with KeyedCommand<int?> {
+final class ZRankCommand extends ValkeyCommand<int?> with KeyedCommand<int?> {
   ZRankCommand(this.key, this.member);
   final String key;
   final String member;
@@ -33,7 +33,7 @@ final class ZRankCommand extends ValKeyedCommand<int?> with KeyedCommand<int?> {
   }
 
   @override
-  ValKeyedCommand<int?> applyPrefix(String prefix) {
+  ValkeyCommand<int?> applyPrefix(String prefix) {
     return ZRankCommand('$prefix$key', member);
   }
 }

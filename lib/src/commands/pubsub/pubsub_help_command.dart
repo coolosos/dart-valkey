@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'PUBSUB HELP' command.
 /// Returns a help text.
-final class PubsubHelpCommand extends ValKeyedCommand<List<String>> {
+final class PubsubHelpCommand extends ValkeyCommand<List<String>> {
   @override
   List<String> get commandParts => ['PUBSUB', 'HELP'];
 

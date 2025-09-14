@@ -20,7 +20,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `List<String>` or `List<Map<String, String>>` (if WITHSCORES is true)
-final class ZRevRangeCommand extends ValKeyedCommand<List>
+final class ZRevRangeCommand extends ValkeyCommand<List>
     with KeyedCommand<List> {
   ZRevRangeCommand(
     this.key,

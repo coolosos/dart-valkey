@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `1` (number of members removed)
-final class SRemCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class SRemCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   SRemCommand(this.key, this.members);
   final String key;
   final List<String> members;
@@ -32,7 +32,7 @@ final class SRemCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return SRemCommand('$prefix$key', members);
   }
 }

@@ -26,7 +26,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [key]: The key of the hash.
-final class HGetAllCommand extends ValKeyedCommand<Map<String, String>>
+final class HGetAllCommand extends ValkeyCommand<Map<String, String>>
     with KeyedCommand<Map<String, String>> {
   HGetAllCommand(this.key);
   final String key;
@@ -50,7 +50,7 @@ final class HGetAllCommand extends ValKeyedCommand<Map<String, String>>
   }
 
   @override
-  ValKeyedCommand<Map<String, String>> applyPrefix(String prefix) {
+  ValkeyCommand<Map<String, String>> applyPrefix(String prefix) {
     return HGetAllCommand('$prefix$key');
   }
 }

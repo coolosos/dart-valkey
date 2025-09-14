@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'PUBSUB SHARDNUMSUB [channel-1 ... channel-N]' command.
 /// Returns the number of subscribers for the specified shard channels.
-final class PubsubShardnumsubCommand extends ValKeyedCommand<Map<String, int>> {
+final class PubsubShardnumsubCommand extends ValkeyCommand<Map<String, int>> {
   PubsubShardnumsubCommand([this.channels = const []]);
   final List<String> channels;
 

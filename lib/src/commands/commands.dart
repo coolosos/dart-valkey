@@ -9,3 +9,4 @@ export 'server/server.dart';
 export 'set/set.dart';
 export 'strings/strings.dart';
 export 'zset/zset.dart';
+export 'scripting/eval_command.dart';

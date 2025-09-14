@@ -3,7 +3,7 @@ import '../command.dart';
 
 /// Represents the 'SPUBLISH channel message' command.
 /// Posts a message to a shard channel.
-final class SpublishCommand extends ValKeyedCommand<int> {
+final class SpublishCommand extends ValkeyCommand<int> {
   SpublishCommand(this.channel, this.message);
   final String channel;
   final String message;

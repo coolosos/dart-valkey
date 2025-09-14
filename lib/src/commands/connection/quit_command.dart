@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'QUIT' command.
-final class QuitCommand extends ValKeyedCommand<String> {
+final class QuitCommand extends ValkeyCommand<String> {
   @override
   List<String> get commandParts => ['QUIT'];
 

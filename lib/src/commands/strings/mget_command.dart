@@ -22,7 +22,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [keys]: A list of keys to retrieve values for.
-final class MGetCommand extends ValKeyedCommand<List<String?>>
+final class MGetCommand extends ValkeyCommand<List<String?>>
     with KeyedCommand<List<String?>> {
   MGetCommand(this.keys);
   final List<String> keys;
@@ -39,7 +39,7 @@ final class MGetCommand extends ValKeyedCommand<List<String?>>
   }
 
   @override
-  ValKeyedCommand<List<String?>> applyPrefix(String prefix) {
+  ValkeyCommand<List<String?>> applyPrefix(String prefix) {
     return MGetCommand(keys.map((key) => '$prefix$key').toList());
   }
 }

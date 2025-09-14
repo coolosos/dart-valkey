@@ -19,7 +19,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `List<String>` resolving to `['member1', 'member2']`
-final class SMembersCommand extends ValKeyedCommand<List<String>>
+final class SMembersCommand extends ValkeyCommand<List<String>>
     with KeyedCommand<List<String>> {
   SMembersCommand(this.key);
   final String key;
@@ -36,7 +36,7 @@ final class SMembersCommand extends ValKeyedCommand<List<String>>
   }
 
   @override
-  ValKeyedCommand<List<String>> applyPrefix(String prefix) {
+  ValkeyCommand<List<String>> applyPrefix(String prefix) {
     return SMembersCommand('$prefix$key');
   }
 }

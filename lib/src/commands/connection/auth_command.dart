@@ -2,7 +2,7 @@ import '../../codec/valkey_exception.dart';
 import '../command.dart';
 
 /// Represents the 'AUTH [username] password' command.
-final class AuthCommand extends ValKeyedCommand<String> {
+final class AuthCommand extends ValkeyCommand<String> {
   AuthCommand({required this.password, this.username});
   final String? username;
   final String password;

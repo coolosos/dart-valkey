@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `2`
-final class ZCountCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class ZCountCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   ZCountCommand(this.key, this.min, this.max);
   final String key;
   final String min;
@@ -33,7 +33,7 @@ final class ZCountCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return ZCountCommand('$prefix$key', min, max);
   }
 }

@@ -15,8 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'OK'`
-final class RenameCommand extends ValKeyedCommand<bool>
-    with KeyedCommand<bool> {
+final class RenameCommand extends ValkeyCommand<bool> with KeyedCommand<bool> {
   RenameCommand(this.key, this.newKey);
   final String key;
   final String newKey;
@@ -30,7 +29,7 @@ final class RenameCommand extends ValKeyedCommand<bool>
   }
 
   @override
-  ValKeyedCommand<bool> applyPrefix(String prefix) {
+  ValkeyCommand<bool> applyPrefix(String prefix) {
     return RenameCommand('$prefix$key', '$prefix$newKey');
   }
 }

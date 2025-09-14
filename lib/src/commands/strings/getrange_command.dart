@@ -22,7 +22,7 @@ import '../command.dart';
 /// - [key]: The key to retrieve the substring from.
 /// - [start]: The starting offset.
 /// - [end]: The ending offset (inclusive).
-final class GetRangeCommand extends ValKeyedCommand<String>
+final class GetRangeCommand extends ValkeyCommand<String>
     with KeyedCommand<String> {
   GetRangeCommand(this.key, this.start, this.end);
   final String key;
@@ -42,7 +42,7 @@ final class GetRangeCommand extends ValKeyedCommand<String>
   }
 
   @override
-  ValKeyedCommand<String> applyPrefix(String prefix) {
+  ValkeyCommand<String> applyPrefix(String prefix) {
     return GetRangeCommand('$prefix$key', start, end);
   }
 }

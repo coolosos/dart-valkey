@@ -16,7 +16,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `int` resolving to `1` (number of elements in the resulting set)
-final class SDiffStoreCommand extends ValKeyedCommand<int>
+final class SDiffStoreCommand extends ValkeyCommand<int>
     with KeyedCommand<int> {
   SDiffStoreCommand(this.destination, this.keys);
   final String destination;
@@ -34,7 +34,7 @@ final class SDiffStoreCommand extends ValKeyedCommand<int>
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return SDiffStoreCommand(
       '$prefix$destination',
       keys.map((key) => '$prefix$key').toList(),

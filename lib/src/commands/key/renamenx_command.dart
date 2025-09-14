@@ -16,7 +16,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `bool` resolving to `true` (key renamed) or `false` (newkey already exists)
-final class RenameNxCommand extends ValKeyedCommand<bool>
+final class RenameNxCommand extends ValkeyCommand<bool>
     with KeyedCommand<bool> {
   RenameNxCommand(this.key, this.newKey);
   final String key;
@@ -35,7 +35,7 @@ final class RenameNxCommand extends ValKeyedCommand<bool>
   }
 
   @override
-  ValKeyedCommand<bool> applyPrefix(String prefix) {
+  ValkeyCommand<bool> applyPrefix(String prefix) {
     return RenameNxCommand('$prefix$key', '$prefix$newKey');
   }
 }

@@ -22,7 +22,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the hash.
 /// - [fields]: A list of fields to retrieve values for.
-final class HMGetCommand extends ValKeyedCommand<List<String?>>
+final class HMGetCommand extends ValkeyCommand<List<String?>>
     with KeyedCommand<List<String?>> {
   HMGetCommand(this.key, this.fields);
   final String key;
@@ -40,7 +40,7 @@ final class HMGetCommand extends ValKeyedCommand<List<String?>>
   }
 
   @override
-  ValKeyedCommand<List<String?>> applyPrefix(String prefix) {
+  ValkeyCommand<List<String?>> applyPrefix(String prefix) {
     return HMGetCommand('$prefix$key', fields);
   }
 }

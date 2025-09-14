@@ -20,7 +20,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `List<String>` or `List<Map<String, String>>` (if WITHSCORES is true)
-final class ZRangeByScoreCommand extends ValKeyedCommand<dynamic>
+final class ZRangeByScoreCommand extends ValkeyCommand<dynamic>
     with KeyedCommand<dynamic> {
   ZRangeByScoreCommand(
     this.key,
@@ -70,7 +70,7 @@ final class ZRangeByScoreCommand extends ValKeyedCommand<dynamic>
   }
 
   @override
-  ValKeyedCommand<dynamic> applyPrefix(String prefix) {
+  ValkeyCommand<dynamic> applyPrefix(String prefix) {
     return ZRangeByScoreCommand(
       '$prefix$key',
       min,

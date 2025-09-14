@@ -19,7 +19,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the list.
 /// - [values]: The values to push to the list.
-final class LPushCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class LPushCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   LPushCommand(this.key, this.values);
   final String key;
   final List<String> values;
@@ -36,7 +36,7 @@ final class LPushCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return LPushCommand('$prefix$key', values);
   }
 }

@@ -7,7 +7,7 @@ enum ClientTrackingMode {
 }
 
 /// Represents the 'CLIENT TRACKING ON|OFF' command.
-final class ClientTrackingCommand extends ValKeyedCommand<bool> {
+final class ClientTrackingCommand extends ValkeyCommand<bool> {
   ClientTrackingCommand(this.mode);
   final ClientTrackingMode mode;
 

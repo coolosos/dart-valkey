@@ -19,7 +19,7 @@ import '../command.dart';
 /// Parameters:
 /// - [key]: The key of the hash.
 /// - [fields]: A map of field-value pairs to set.
-final class HSetCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class HSetCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   HSetCommand(this.key, this.fields);
   final String key;
   final Map<String, Object> fields;
@@ -43,7 +43,7 @@ final class HSetCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return HSetCommand('$prefix$key', fields);
   }
 }

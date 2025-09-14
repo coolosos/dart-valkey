@@ -15,7 +15,7 @@ import '../command.dart';
 ///
 /// **Dart Result (from parse method):**
 /// `bool` resolving to `true`
-final class SMoveCommand extends ValKeyedCommand<bool> with KeyedCommand<bool> {
+final class SMoveCommand extends ValkeyCommand<bool> with KeyedCommand<bool> {
   SMoveCommand(this.source, this.destination, this.member);
   final String source;
   final String destination;
@@ -32,7 +32,7 @@ final class SMoveCommand extends ValKeyedCommand<bool> with KeyedCommand<bool> {
   }
 
   @override
-  ValKeyedCommand<bool> applyPrefix(String prefix) {
+  ValkeyCommand<bool> applyPrefix(String prefix) {
     return SMoveCommand('$prefix$source', '$prefix$destination', member);
   }
 }

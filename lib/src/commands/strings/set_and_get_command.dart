@@ -61,7 +61,7 @@ final class SetAndGetCommand extends BaseSetCommand<String?> {
   }
 
   @override
-  ValKeyedCommand<String?> applyPrefix(String prefix) {
+  ValkeyCommand<String?> applyPrefix(String prefix) {
     return SetAndGetCommand('$prefix$key', value);
   }
 }

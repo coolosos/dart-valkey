@@ -18,7 +18,7 @@ import '../command.dart';
 ///
 /// Parameters:
 /// - [key]: The key of the hash.
-final class HLenCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
+final class HLenCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   HLenCommand(this.key);
   final String key;
 
@@ -34,7 +34,7 @@ final class HLenCommand extends ValKeyedCommand<int> with KeyedCommand<int> {
   }
 
   @override
-  ValKeyedCommand<int> applyPrefix(String prefix) {
+  ValkeyCommand<int> applyPrefix(String prefix) {
     return HLenCommand('$prefix$key');
   }
 }
