@@ -19,14 +19,8 @@ void main() {
 
       test('should decode error', () async {
         final aa = await testDecode('-ERR unknown command\r\n');
-        expect(
-          aa,
-          isA<RespException>(),
-        );
-        expect(
-          (aa as RespException).message,
-          'ERR unknown command',
-        );
+        expect(aa, isA<RespException>());
+        expect((aa as RespException).message, 'ERR unknown command');
       });
 
       test('should decode integer', () {
@@ -112,7 +106,8 @@ void main() {
 
       test('should decode a map with different value types', () async {
         final result = await testDecode(
-            '%3\r\n+first\r\n:1\r\n+second\r\n#t\r\n+third\r\n,1.23\r\n');
+          '%3\r\n+first\r\n:1\r\n+second\r\n#t\r\n+third\r\n,1.23\r\n',
+        );
         expect(result, {'first': 1, 'second': true, 'third': 1.23});
       });
     });
@@ -120,7 +115,8 @@ void main() {
     group('Sets', () {
       test('should decode a set', () async {
         final result = await testDecode(
-            '~5\r\n+orange\r\n+apple\r\n:100\r\n+orange\r\n#t\r\n');
+          '~5\r\n+orange\r\n+apple\r\n:100\r\n+orange\r\n#t\r\n',
+        );
         expect(result, {'orange', 'apple', 100, true});
       });
 
@@ -134,7 +130,8 @@ void main() {
     group('Push', () {
       test('should decode a push message', () async {
         final result = await testDecode(
-            '>4\r\n+pubsub\r\n+message\r\n+some-channel\r\n+some-message\r\n');
+          '>4\r\n+pubsub\r\n+message\r\n+some-channel\r\n+some-message\r\n',
+        );
         expect(result, ['pubsub', 'message', 'some-channel', 'some-message']);
       });
     });
@@ -148,6 +145,24 @@ void main() {
       test('should decode a boolean false', () async {
         final result = await testDecode('#f\r\n');
         expect(result, false);
+      });
+    });
+
+    group('Double', () {
+      test('should decode a double', () async {
+        final result = await testDecode(',1.23\r\n');
+        expect(result, 1.23);
+      });
+    });
+
+    group('Null', () {
+      test('should decode null', () async {
+        final result = await testDecode('_\r\n');
+        expect(result, isNull);
+      });
+      test('should throw RespException for invalid bulk string length',
+          () async {
+        expect(testDecode('\$-2\r\n'), throwsA(isA<RespException>()));
       });
     });
   });
