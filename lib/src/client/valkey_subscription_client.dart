@@ -25,6 +25,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
     super.connection,
     super.maxReconnectAttempts = 5,
     super.respDecoder = const Resp3Decoder(),
+    super.disableNagle = true,
   }) {
     _pendingCompleters = {};
     _commandQueue = Queue();
