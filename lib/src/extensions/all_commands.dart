@@ -19,7 +19,7 @@ extension ValkeyCommands on ValkeyCommandClient {
     try {
       await execute(QuitCommand());
     } finally {
-      close();
+      await close();
     }
   }
 
