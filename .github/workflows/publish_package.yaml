@@ -1,0 +1,33 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Trigger on tags like v1.0.0, v1.0.1, etc.
+
+permissions:
+  id-token: write # This is required for requesting the OIDC token.
+  contents: read # This is required for actions/checkout.
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Analyze project
+        run: dart analyze --fatal-infos
+
+      - name: Run tests
+        run: dart test
+
+ 
+      - name: Publish to pub.dev
+        run: dart pub publish --force
