@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:dart_valkey/dart_valkey.dart';
-import 'package:dart_valkey/src/client/valkey_client.dart';
-import 'package:dart_valkey/src/codec/valkey_exception.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -38,7 +36,7 @@ void main() {
     test('execute should enqueue command and send encoded data', () async {
       final command = FakeCommand(fakeEncoded: [1, 2, 3], fakeResult: 'OK');
 
-      client.execute(command);
+      unawaited(client.execute(command));
 
       verify(mockConnection.send([1, 2, 3])).called(1);
     });
@@ -142,7 +140,7 @@ void main() {
           const Duration(),
           () => client.handleDataMock("ok"),
         );
-        client.handleOnConnectedMock();
+        unawaited(client.handleOnConnectedMock());
         Future.delayed(
           const Duration(),
           () => client.handleDataMock("ok"),
@@ -274,7 +272,9 @@ void main() {
         verify(mockConnection.send(any)).called(2);
       });
 
-      test('unsubscribe with no channels should not send command if not subscribed', () {
+      test(
+          'unsubscribe with no channels should not send command if not subscribed',
+          () {
         subClient.unsubscribe();
         verifyNever(mockConnection.send(any));
       });
@@ -292,7 +292,9 @@ void main() {
         verify(mockConnection.send(any)).called(2);
       });
 
-      test('punsubscribe with no patterns should not send command if not subscribed', () {
+      test(
+          'punsubscribe with no patterns should not send command if not subscribed',
+          () {
         subClient.punsubscribe();
         verifyNever(mockConnection.send(any));
       });
@@ -310,7 +312,9 @@ void main() {
         verify(mockConnection.send(any)).called(2);
       });
 
-      test('sunsubscribe with no channels should not send command if not subscribed', () {
+      test(
+          'sunsubscribe with no channels should not send command if not subscribed',
+          () {
         subClient.sunsubscribe();
         verifyNever(mockConnection.send(any));
       });
@@ -319,7 +323,8 @@ void main() {
     group('Lifecycle event handlers', () {
       test('_onError should forward error to message stream', () async {
         final testException = Exception('test error');
-        final expectation = expectLater(subClient.messages, emitsError(testException));
+        final expectation =
+            expectLater(subClient.messages, emitsError(testException));
         subClient.handleErrorMock(testException);
         await expectation;
       });

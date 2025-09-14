@@ -135,6 +135,7 @@ void main() {
       ).thenAnswer((invocation) {
         final Function? onErrorCallback = invocation.namedArguments[#onError];
         if (onErrorCallback != null) {
+          // ignore: avoid_dynamic_calls
           onErrorCallback(Exception('simulated error'));
         }
         return MockStreamSubscription();
