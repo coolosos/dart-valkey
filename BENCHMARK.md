@@ -3,8 +3,9 @@
 **Test Environment**  
 - **OS:** macOS  
 - **Server:** Valkey on `localhost:6379`  
-- **Iterations per Round:** 1000 `PING` commands  
-- **Rounds:** 10 (the first round is discarded when calculating averages)
+- **Workload:** Mixed (SET, GET, PING) operations per iteration
+- **Iterations per Round:** 1000 operations (each operation includes SET, GET, PING)
+- **Rounds:** 50 (the first round is discarded when calculating averages)
 
 ---
 
@@ -12,9 +13,8 @@
 
 | Library                    | Average Latency (ms) | Average Throughput (ops/sec) | Average Memory Change (KB) |
 |----------------------------|----------------------|------------------------------|----------------------------|
-| **dart_valkey**            | 0.06                 | 15,969.92                    | 17.78                      |
-| **redis package**          | 0.07                 | 14,972.81                    | 39.11                      |
-| **shorebird_redis_client** | 0.08                 | 12,654.19                    | 216.89                     |
+| **dart_valkey**            | 0.14                 | 7470.94                      | -3593.60                   |
+| **redis package**          | 0.14                 | 7329.03                      | -107.20                    |
+| **shorebird_redis_client** | 0.17                 | 6067.61                      | 229.76                     |
 
 ---
- 
