@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'ZINCRBY key increment member' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZINCRBY myzset 1.5 member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $4
 /// 2.5
 /// ```

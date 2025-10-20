@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HLEN key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HLEN user:1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

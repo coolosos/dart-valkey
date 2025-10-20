@@ -38,7 +38,7 @@ void main() {
     });
 
     test('should connect to the Valkey server RESP2', () async {
-      bool connected = false;
+      var connected = false;
       connection = TestableConnection(
         respDecoder: const Resp2Decoder(),
         onConnected: () async {
@@ -50,7 +50,7 @@ void main() {
     });
 
     test('should connect to the Valkey server RESP3', () async {
-      bool connected = false;
+      var connected = false;
       connection = TestableConnection(
         respDecoder: const Resp3Decoder(),
         onConnected: () async {

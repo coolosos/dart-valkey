@@ -24,13 +24,13 @@ extension ValkeyCommands on ValkeyCommandClient {
   }
 
   Future<String> reset() => execute(ResetCommand());
-  Future<String> clientCaching(bool enable) =>
-      execute(ClientCachingCommand(enable));
+  Future<String> clientCaching({required bool enable}) =>
+      execute(ClientCachingCommand(enable: enable));
   Future<int> clientGetredir() => execute(ClientGetredirCommand());
-  Future<String> clientNoEvict(bool enable) =>
-      execute(ClientNoEvictCommand(enable));
-  Future<String> clientNoTouch(bool enable) =>
-      execute(ClientNoTouchCommand(enable));
+  Future<String> clientNoEvict({required bool enable}) =>
+      execute(ClientNoEvictCommand(enable: enable));
+  Future<String> clientNoTouch({required bool enable}) =>
+      execute(ClientNoTouchCommand(enable: enable));
   Future<int> clientUnblock(int clientId, {UnblockType? unblockType}) =>
       execute(ClientUnblockCommand(clientId, unblockType: unblockType));
   Future<String> clientUnpause() => execute(ClientUnpauseCommand());
@@ -109,11 +109,11 @@ extension ValkeyCommands on ValkeyCommandClient {
       execute(LTrimCommand(key, start, stop));
   Future<int> linsert(
     String key,
-    bool before,
     String pivot,
-    String value,
-  ) =>
-      execute(LInsertCommand(key, before, pivot, value));
+    String value, {
+    required bool before,
+  }) =>
+      execute(LInsertCommand(key, pivot, value, before: before));
   Future<int> lrem(String key, int count, String value) =>
       execute(LRemCommand(key, count, value));
   Future<String?> rpoplpush(String source, String destination) =>

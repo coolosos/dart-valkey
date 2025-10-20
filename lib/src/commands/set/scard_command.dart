@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'SCARD key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SCARD myset
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

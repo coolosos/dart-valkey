@@ -5,12 +5,12 @@ import '../command.dart';
 /// Increments the number stored at key by increment.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// INCRBY mycounter 5
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :15
 /// ```
 ///

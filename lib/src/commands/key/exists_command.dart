@@ -5,12 +5,12 @@ import '../command.dart';
 /// Determines if one or more keys exist.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// EXISTS mykey1 mykey2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

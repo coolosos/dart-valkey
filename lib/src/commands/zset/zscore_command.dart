@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'ZSCORE key member' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZSCORE myzset member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $3
 /// 1.0
 /// ```

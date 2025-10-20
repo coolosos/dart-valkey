@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the members of the union of all the given sets.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SUNION set1 set2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *3
 /// $7
 /// member1

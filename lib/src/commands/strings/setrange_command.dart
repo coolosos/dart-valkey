@@ -5,12 +5,12 @@ import '../command.dart';
 /// Overwrites part of the string stored at key, starting at the specified offset, for the entire length of value.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SETRANGE mykey 6 World
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :11
 /// ```
 ///

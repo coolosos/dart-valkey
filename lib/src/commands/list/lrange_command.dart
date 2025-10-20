@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'LRANGE key start stop' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// LRANGE mylist 0 -1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $5
 /// item1

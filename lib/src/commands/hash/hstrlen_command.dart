@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the string length of the value associated with field in the hash stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HSTRLEN user:1 name
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :5
 /// ```
 ///
@@ -20,12 +20,12 @@ import '../command.dart';
 /// Returns the string length of the value associated with field in the hash stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HSTRLEN user:1 name
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :5
 /// ```
 ///

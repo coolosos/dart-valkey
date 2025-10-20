@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'LLEN key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// LLEN mylist
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

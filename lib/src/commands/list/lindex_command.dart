@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'LINDEX key index' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// LINDEX mylist 0
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// item1
 /// ```

@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HDEL key field [field ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HDEL user:1 age
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

@@ -4,12 +4,12 @@ import '../command.dart';
 /// Renames a key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// RENAME oldkey newkey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// +OK
 /// ```
 ///

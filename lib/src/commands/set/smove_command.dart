@@ -4,12 +4,12 @@ import '../command.dart';
 /// Moves member from the set at source to the set at destination.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SMOVE set1 set2 member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

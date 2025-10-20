@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the rank of member in the sorted set at key, with the scores ordered from low to high.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZRANK myzset member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :0
 /// ```
 ///

@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HGET key field' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HGET user:1 name
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// Alice
 /// ```

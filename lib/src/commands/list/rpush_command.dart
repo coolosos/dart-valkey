@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'RPUSH key value [value ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// RPUSH mylist item1 item2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

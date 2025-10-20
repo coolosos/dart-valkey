@@ -5,12 +5,12 @@ import '../command.dart';
 /// Increments the float value of a field in a hash by the given amount.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HINCRBYFLOAT myhash field 1.5
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $4
 /// 1.5
 /// ```

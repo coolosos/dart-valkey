@@ -5,12 +5,12 @@ import '../command.dart';
 /// Stores the members of the union of all the given sets in destination.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SUNIONSTORE newset set1 set2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :3
 /// ```
 ///

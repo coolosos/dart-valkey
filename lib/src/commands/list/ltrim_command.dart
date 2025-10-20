@@ -3,12 +3,12 @@ import '../command.dart';
 /// Represents the 'LTRIM key start stop' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// LTRIM mylist 0 0
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// +OK
 /// ```
 ///

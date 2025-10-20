@@ -5,7 +5,7 @@ import '../command.dart';
 /// Returns the specified range of elements in the sorted set stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZRANGE myzset 0 -1
 /// ZRANGE myzset (1 (5 BYSCORE
 /// ZRANGE myzset [a [z BYLEX REV LIMIT 0 1 WITHSCORES

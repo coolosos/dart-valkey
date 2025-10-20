@@ -5,12 +5,12 @@ import '../command.dart';
 /// Atomically sets key to value and returns the old value stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// GETSET mykey newvalue
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $7
 /// oldvalue
 /// ```

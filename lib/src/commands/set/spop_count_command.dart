@@ -5,12 +5,12 @@ import '../command.dart';
 /// Removes and returns multiple random members from the set value stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SPOP myset 2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $7
 /// member1

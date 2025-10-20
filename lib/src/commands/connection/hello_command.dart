@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HELLO' command.
 ///
 /// **Valkey Command:**
-/// ```
+/// ```text
 /// HELLO
 /// ```
 ///
 /// **Valkey Reply:**
-/// ```
+/// ```text
 /// A list of current server and connection properties.
 /// ```
 ///
@@ -51,8 +51,8 @@ final class HelloCommand extends ValkeyCommand<Map<String, dynamic>> {
     if (data is Map) {
       return data.cast<String, dynamic>();
     } else if (data is List) {
-      final Map<String, dynamic> result = {};
-      for (int i = 0; i < data.length; i += 2) {
+      final result = <String, dynamic>{};
+      for (var i = 0; i < data.length; i += 2) {
         if (i + 1 < data.length) {
           result[data[i].toString()] = data[i + 1];
         }

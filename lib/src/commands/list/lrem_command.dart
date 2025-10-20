@@ -5,12 +5,12 @@ import '../command.dart';
 /// Removes the first count occurrences of elements equal to value from the list stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// LREM mylist 1 item1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

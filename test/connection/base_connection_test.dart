@@ -39,8 +39,7 @@ void main() {
       mockRespDecoder = MockResp2Decoder();
       connection = TestConnection(
         respDecoder: mockRespDecoder,
-      );
-      connection.socketToReturn = mockSocket;
+      )..socketToReturn = mockSocket;
 
       when(mockRespDecoder.bind(any))
           .thenAnswer((_) => mockStream as Stream<Uint8List>);
@@ -121,8 +120,7 @@ void main() {
       connection = TestConnection(
         onError: (error) => receivedError = error,
         respDecoder: mockRespDecoder,
-      );
-      connection.socketToReturn = mockSocket;
+      )..socketToReturn = mockSocket;
 
       when(mockSocket.setOption(any, any)).thenReturn(true);
       when(
@@ -135,7 +133,7 @@ void main() {
       ).thenAnswer((invocation) {
         final Function? onErrorCallback = invocation.namedArguments[#onError];
         if (onErrorCallback != null) {
-          // ignore: avoid_dynamic_calls
+          // ignore: avoid_dynamic_calls test
           onErrorCallback(Exception('simulated error'));
         }
         return MockStreamSubscription();

@@ -5,12 +5,12 @@ import '../command.dart';
 /// Renames a key, only if the new key does not exist.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// RENAMENX oldkey newkey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

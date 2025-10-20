@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'ZADD key [NX|XX] [CH] [INCR] score member [score member ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZADD myzset 1.0 member1 2.0 member2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///
@@ -61,8 +61,9 @@ final class ZAddCommand extends ValkeyCommand<dynamic>
     }
 
     membersWithScores.forEach((member, score) {
-      parts.add(score.toString());
-      parts.add(member);
+      parts
+        ..add(score.toString())
+        ..add(member);
     });
     return parts;
   }

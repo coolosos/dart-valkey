@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns all the elements in the sorted set at key with a score between min and max (inclusive), with their scores.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZRANGEBYSCORE myzset -inf +inf LIMIT 0 1 WITHSCORES
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *4
 /// $7
 /// member1

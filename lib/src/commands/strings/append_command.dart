@@ -5,12 +5,12 @@ import '../command.dart';
 /// Appends a value to a key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// APPEND mykey " World"
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :11
 /// ```
 ///

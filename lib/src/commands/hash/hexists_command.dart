@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HEXISTS key field' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HEXISTS user:1 name
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

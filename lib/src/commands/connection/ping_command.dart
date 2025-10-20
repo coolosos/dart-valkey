@@ -3,12 +3,12 @@ import '../command.dart';
 /// Represents the 'PING [message]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// PING
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// +PONG
 /// ```
 ///

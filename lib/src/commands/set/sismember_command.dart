@@ -3,12 +3,12 @@ import '../command.dart';
 /// Represents the 'SISMEMBER key member' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SISMEMBER myset member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

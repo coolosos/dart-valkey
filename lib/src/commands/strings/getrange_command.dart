@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the substring of the string value stored at key, determined by the offsets start and end (both are inclusive).
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// GETRANGE mykey 0 4
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// Hello
 /// ```

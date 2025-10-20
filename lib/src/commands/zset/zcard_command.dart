@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'ZCARD key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZCARD myzset
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

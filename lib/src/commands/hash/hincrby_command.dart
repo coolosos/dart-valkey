@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HINCRBY key field increment' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HINCRBY user:1 age 1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :31
 /// ```
 ///

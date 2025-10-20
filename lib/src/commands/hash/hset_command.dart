@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HSET key field value [field value ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HSET user:1 name Alice age 30
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///
@@ -28,8 +28,9 @@ final class HSetCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   List<String> get commandParts {
     final parts = <String>['HSET', key];
     fields.forEach((field, value) {
-      parts.add(field);
-      parts.add(value.toString());
+      parts
+        ..add(field)
+        ..add(value.toString());
     });
     return parts;
   }

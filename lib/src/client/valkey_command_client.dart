@@ -61,8 +61,8 @@ class ValkeyCommandClient extends BaseValkeyClient {
   /// - [command]: The [ValkeyCommand] instance to execute.
 
   Future<T> execute<T>(ValkeyCommand<T> command) {
-    final ValkeyCommand<T> commandToExecute = switch (command) {
-      KeyedCommand<T> c when (keyPrefix?.isNotEmpty ?? false) =>
+    final commandToExecute = switch (command) {
+      final KeyedCommand<T> c when (keyPrefix?.isNotEmpty ?? false) =>
         c.applyPrefix(keyPrefix!),
       _ => command,
     };

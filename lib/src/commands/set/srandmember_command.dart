@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns a random member from the set stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SRANDMEMBER myset
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $7
 /// member1
 /// ```

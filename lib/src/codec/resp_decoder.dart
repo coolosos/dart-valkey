@@ -34,13 +34,13 @@ sealed class BaseRespCodec extends StreamTransformerBase<Uint8List, dynamic> {
   Stream<dynamic> bind(Stream<Uint8List> stream) {
     final controller = StreamController<dynamic>();
     // final buffer = <int>[];
-    final BytesBuilder bytesBuilder = BytesBuilder(); // Use BytesBuilder
+    final bytesBuilder = BytesBuilder(); // Use BytesBuilder
     var offset = 0;
 
     stream.listen(
       (chunk) {
         bytesBuilder.add(chunk);
-        Uint8List buffer = bytesBuilder.takeBytes();
+        final buffer = bytesBuilder.takeBytes();
         try {
           while (offset < buffer.length) {
             final result = _parse(buffer, offset);

@@ -17,12 +17,12 @@ enum ExpireStrategyTypes {
 /// Represents the 'EXPIRE key seconds [NX|XX|GT|LT]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// EXPIRE mykey 60 NX
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///
@@ -55,7 +55,7 @@ final class ExpireCommand extends ValkeyCommand<bool> with KeyedCommand<bool> {
   @override
   bool parse(dynamic data) {
     if (data is int) return data == 1;
-    if (data is String) return data == "1";
+    if (data is String) return data == '1';
     throw ValkeyException(
       'Invalid response for EXPIRE: expected an integer, got ${data.runtimeType}',
     );

@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'ZCOUNT key min max' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZCOUNT myzset 0 10
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

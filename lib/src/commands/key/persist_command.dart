@@ -4,12 +4,12 @@ import '../command.dart';
 /// Removes the expiration from a key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// PERSIST mykey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

@@ -5,12 +5,12 @@ import '../command.dart';
 /// Decrements the number stored at key by one.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// DECR mycounter
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :0
 /// ```
 ///
