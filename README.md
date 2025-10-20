@@ -10,7 +10,7 @@
 [![](https://img.shields.io/badge/linted%20by-coolint-0553B1)](https://pub.dev/packages/coolint)
 [![codecov](https://codecov.io/gh/coolosos/dart_valkey/graph/badge.svg)](https://codecov.io/gh/coolosos/dart_valkey)
 
-![Codecov icicle graph](https://codecov.io/github/coolosos/dart-valkey/graphs/icicle.svg?token=UCBDRQIM3S)
+![Codecov icicle graph](https://codecov.io/github/coolosos/dart-valkey/graphs/sunburst.svg?token=UCBDRQIM3S)
 
 This project is a robust, type-safe Dart client for Redis (and Valkey) that manages both command and Pub/Sub interactions. It provides built‐in connection management, automatic reconnection, and pluggable authentication. Thanks to its modular design, the user can easily extend commands as Dart extensions and choose between a secure (TLS) and insecure connection.
 
