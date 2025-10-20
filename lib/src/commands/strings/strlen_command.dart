@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the length of the string value stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// STRLEN mykey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :5
 /// ```
 ///

@@ -1,6 +1,17 @@
 
 #### dart valkey/redis
 
+[![Pub Version](https://badgen.net/pub/v/dart_valkey)](https://pub.dev/packages/dart_valkey/)
+[![Pub Likes](https://badgen.net/pub/likes/dart_valkey)](https://pub.dev/packages/dart_valkey/score)
+[![Pub Points](https://badgen.net/pub/points/dart_valkey)](https://pub.dev/packages/dart_valkey/score)
+[![Pub Downloads](https://badgen.net/pub/dm/dart_valkey)](https://pub.dev/packages/dart_valkey)
+[![Dart SDK Version](https://badgen.net/pub/sdk-version/dart_valkey)](https://pub.dev/packages/dart_valkey/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/coolosos/dart_valkey/blob/main/LICENSE)
+[![](https://img.shields.io/badge/linted%20by-coolint-0553B1)](https://pub.dev/packages/coolint)
+[![codecov](https://codecov.io/gh/coolosos/dart_valkey/graph/badge.svg)](https://codecov.io/gh/coolosos/dart_valkey)
+
+![Codecov icicle graph](https://codecov.io/github/coolosos/dart-valkey/graphs/icicle.svg?token=UCBDRQIM3S)
+
 This project is a robust, type-safe Dart client for Redis (and Valkey) that manages both command and Pub/Sub interactions. It provides built‐in connection management, automatic reconnection, and pluggable authentication. Thanks to its modular design, the user can easily extend commands as Dart extensions and choose between a secure (TLS) and insecure connection.
 
 ---
@@ -104,7 +115,7 @@ Future<void> main() async {
  
 ## Commands Implementation Status
 
-A continuación se muestra el estado de implementación de los comandos de Valkey, tal y como se indica en la documentación oficial. Los comandos marcados con `[x]` están implementados, mientras que los marcados con `[ ]` aún no lo están.
+The implementation status of the Valkey commands is shown below, as indicated in the official documentation. Commands marked with `[x]` are implemented, while those marked with `[ ]` are not yet implemented.
 
 ### Bitmap Operations
 - [ ] [BITCOUNT](https://valkey.io/commands/BITCOUNT)

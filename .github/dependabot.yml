@@ -1,0 +1,29 @@
+version: 2
+updates:
+  # Mantenimiento de las dependencias de Pub
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      time: "19:00"
+      timezone: "Europe/Madrid"
+    # Personaliza los mensajes de commit para que sigan un estilo convencional
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Etiqueta automáticamente los PRs de Dependabot
+    labels:
+      - "dependencies"
+
+  # Mantenimiento de las GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      time: "19:00"
+      timezone: "Europe/Madrid"
+    commit-message:
+      prefix: "chore(ci)"
+      include: "scope"
+    labels:
+      - "ci"

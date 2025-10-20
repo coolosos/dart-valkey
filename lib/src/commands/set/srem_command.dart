@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'SREM key member [member ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SREM myset member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

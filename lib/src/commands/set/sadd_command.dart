@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'SADD key member [member ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SADD myset member1 member2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

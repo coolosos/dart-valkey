@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns all values in the hash stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HVALS user:1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $5
 /// Alice

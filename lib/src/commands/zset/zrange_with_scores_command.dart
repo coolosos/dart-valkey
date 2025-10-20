@@ -1,17 +1,17 @@
+import '../../codec/valkey_exception.dart';
 import '../command.dart';
 import 'zrange_command.dart';
-import '../../codec/valkey_exception.dart';
 
 /// Represents the 'ZRANGE key start stop WITHSCORES' command.
 /// Returns the specified range of elements in the sorted set stored at key, with their scores.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZRANGE myzset 0 -1 WITHSCORES
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *4
 /// $7
 /// member1

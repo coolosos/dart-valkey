@@ -131,19 +131,19 @@ void main() {
 
         Future.delayed(
           const Duration(),
-          () => client.handleDataMock("ok"),
+          () => client.handleDataMock('ok'),
         );
 
         await client.execute(command);
-        client.handleDataMock("ok");
+        client.handleDataMock('ok');
         Future.delayed(
           const Duration(),
-          () => client.handleDataMock("ok"),
+          () => client.handleDataMock('ok'),
         );
         unawaited(client.handleOnConnectedMock());
         Future.delayed(
           const Duration(),
-          () => client.handleDataMock("ok"),
+          () => client.handleDataMock('ok'),
         );
         await client.execute(command);
 
@@ -174,7 +174,7 @@ void main() {
 
       await Future.delayed(const Duration());
 
-      expect((messages.first).message, equals('hello'));
+      expect(messages.first.message, equals('hello'));
     });
 
     test('onData with unknown type should emit error', () async {
@@ -267,8 +267,9 @@ void main() {
       });
 
       test('unsubscribe should send unsubscribe command', () {
-        subClient.subscribe(['channel1']);
-        subClient.unsubscribe(['channel1']);
+        subClient
+          ..subscribe(['channel1'])
+          ..unsubscribe(['channel1']);
         verify(mockConnection.send(any)).called(2);
       });
 
@@ -287,8 +288,9 @@ void main() {
       });
 
       test('punsubscribe should send punsubscribe command', () {
-        subClient.psubscribe(['patt*']);
-        subClient.punsubscribe(['patt*']);
+        subClient
+          ..psubscribe(['patt*'])
+          ..punsubscribe(['patt*']);
         verify(mockConnection.send(any)).called(2);
       });
 
@@ -307,8 +309,9 @@ void main() {
       });
 
       test('sunsubscribe should send sunsubscribe command', () {
-        subClient.ssubscribe(['shard-channel']);
-        subClient.sunsubscribe(['shard-channel']);
+        subClient
+          ..ssubscribe(['shard-channel'])
+          ..sunsubscribe(['shard-channel']);
         verify(mockConnection.send(any)).called(2);
       });
 

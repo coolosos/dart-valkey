@@ -1,3 +1,5 @@
+// ignore_for_file: unreachable_from_main, close_sinks test
+
 import 'dart:async';
 import 'dart:io';
 import 'package:dart_valkey/dart_valkey.dart';

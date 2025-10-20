@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the values of all specified keys.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// MGET key1 key2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $5
 /// value1

@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'CLIENT UNPAUSE' command.
 ///
 /// **Valkey Command:**
-/// ```
+/// ```text
 /// CLIENT UNPAUSE
 /// ```
 ///
 /// **Valkey Reply:**
-/// ```
+/// ```text
 /// OK
 /// ```
 ///

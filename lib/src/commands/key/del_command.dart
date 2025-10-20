@@ -5,12 +5,12 @@ import '../command.dart';
 /// Deletes one or more keys.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// DEL mykey1 mykey2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :2
 /// ```
 ///

@@ -5,12 +5,12 @@ import '../command.dart';
 /// Stores the members of the intersection of all the given sets in destination.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SINTERSTORE newset set1 set2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

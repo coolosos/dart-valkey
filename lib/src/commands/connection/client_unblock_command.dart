@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'CLIENT UNBLOCK' command.
 ///
 /// **Valkey Command:**
-/// ```
+/// ```text
 /// CLIENT UNBLOCK client-id [TIMEOUT | ERROR]
 /// ```
 ///
 /// **Valkey Reply:**
-/// ```
+/// ```text
 /// Integer reply: 0 if the client was not unblocked, 1 if the client was unblocked.
 /// ```
 ///

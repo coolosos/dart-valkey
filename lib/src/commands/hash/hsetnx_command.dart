@@ -5,12 +5,12 @@ import '../command.dart';
 /// Sets field in the hash stored at key to value, only if field does not yet exist.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HSETNX user:1 newfield newvalue
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

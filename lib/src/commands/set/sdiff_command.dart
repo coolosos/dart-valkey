@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the members of the set resulting from the difference between the first set and all the successive sets.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SDIFF set1 set2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *1
 /// $7
 /// member2

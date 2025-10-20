@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the members of the intersection of all the given sets.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SINTER set1 set2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *1
 /// $7
 /// member1

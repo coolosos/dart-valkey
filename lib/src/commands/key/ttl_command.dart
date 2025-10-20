@@ -5,12 +5,12 @@ import '../command.dart';
 /// Gets the time to live for a key in seconds.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// TTL mykey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :60
 /// ```
 ///

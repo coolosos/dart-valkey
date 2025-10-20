@@ -5,12 +5,12 @@ import '../command.dart';
 /// Sets multiple key-value pairs in a single atomic operation.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// MSET key1 value1 key2 value2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// +OK
 /// ```
 ///
@@ -28,8 +28,9 @@ final class MSetCommand extends ValkeyCommand<String>
   List<String> get commandParts {
     final parts = <String>['MSET'];
     keyValuePairs.forEach((key, value) {
-      parts.add(key);
-      parts.add(value);
+      parts
+        ..add(key)
+        ..add(value);
     });
     return parts;
   }

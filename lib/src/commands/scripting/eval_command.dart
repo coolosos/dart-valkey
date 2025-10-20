@@ -3,12 +3,12 @@ import '../command.dart';
 /// Represents the 'EVAL' command.
 ///
 /// **Valkey Command:**
-/// ```
-/// EVAL script numkeys key [key ...] arg [arg ...]
+/// ```text
+/// EVAL script numKeys key [key ...] arg [arg ...]
 /// ```
 ///
 /// **Valkey Reply:**
-/// ```
+/// ```text
 /// The result of the script execution.
 /// ```
 final class EvalCommand extends ValkeyCommand<dynamic> {
@@ -26,9 +26,7 @@ final class EvalCommand extends ValkeyCommand<dynamic> {
 
   @override
   List<String> get commandParts {
-    final parts = ['EVAL', script, numberOfKeys.toString()];
-    parts.addAll(keys);
-    parts.addAll(args);
+    final parts = ['EVAL', script, numberOfKeys.toString(), ...keys, ...args];
     return parts;
   }
 

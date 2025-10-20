@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'HGETALL key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HGETALL user:1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *4
 /// $4
 /// name

@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns the specified range of elements in the sorted set stored at key, with scores ordered from high to low.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZREVRANGE myzset 0 -1 WITHSCORES
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $7
 /// member2

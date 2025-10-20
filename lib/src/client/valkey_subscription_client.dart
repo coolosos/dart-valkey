@@ -140,7 +140,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
 
   @override
   void _onError(Object error) {
-    for (var completer in _commandQueue) {
+    for (final completer in _commandQueue) {
       final command = _pendingCompleters.remove(completer);
       if (command != null && !completer.isCompleted) {
         completer.completeError(error);
@@ -153,7 +153,7 @@ class ValkeySubscriptionClient extends BaseValkeyClient
 
   @override
   void _onDone() {
-    for (var completer in _commandQueue) {
+    for (final completer in _commandQueue) {
       final command = _pendingCompleters.remove(completer);
       if (command != null && !completer.isCompleted) {
         completer.completeError(StateError('Connection lost.'));

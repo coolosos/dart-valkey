@@ -4,13 +4,13 @@ import '../command.dart';
 /// Represents the 'RPOP key [count]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// RPOP mylist
 /// RPOP mylist 2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// item1
 /// ```

@@ -91,12 +91,12 @@ abstract class BaseConnection implements Connection {
         _ => null,
       };
 
-      if (initialCommand case ValkeyCommand initialCommand) {
+      if (initialCommand case final ValkeyCommand initialCommand) {
         socket.add(initialCommand.encoded);
         final response = await decoder.first;
         final parsedResponse = initialCommand.parse(response);
 
-        final bool authSuccess = switch (initialCommand) {
+        final authSuccess = switch (initialCommand) {
           AuthCommand() => parsedResponse == 'OK',
           HelloCommand() => parsedResponse is Map<String, dynamic> &&
               parsedResponse['proto'] == 3,

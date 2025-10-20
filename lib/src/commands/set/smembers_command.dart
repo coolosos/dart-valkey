@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'SMEMBERS key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SMEMBERS myset
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $7
 /// member1

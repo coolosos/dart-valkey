@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'INCR key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// INCR mycounter
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

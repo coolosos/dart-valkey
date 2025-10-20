@@ -5,12 +5,12 @@ import '../command.dart';
 /// Determines the type of a key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// TYPE mykey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// +string
 /// ```
 ///

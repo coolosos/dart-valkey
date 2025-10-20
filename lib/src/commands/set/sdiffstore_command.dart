@@ -5,12 +5,12 @@ import '../command.dart';
 /// Stores the members of the set resulting from the difference between the first set and all the successive sets in destination.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SDIFFSTORE newset set1 set2
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

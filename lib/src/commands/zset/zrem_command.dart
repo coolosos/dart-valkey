@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'ZREM key member [member ...]' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// ZREM myzset member1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :1
 /// ```
 ///

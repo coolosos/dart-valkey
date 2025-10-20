@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'CLIENT GETREDIR' command.
 ///
 /// **Valkey Command:**
-/// ```
+/// ```text
 /// CLIENT GETREDIR
 /// ```
 ///
 /// **Valkey Reply:**
-/// ```
+/// ```text
 /// Integer reply: the client ID to which the current connection's tracking
 /// notifications are being redirected, or 0 if no redirection is active,
 /// or -1 if client tracking is not enabled.

@@ -5,12 +5,12 @@ import '../command.dart';
 /// Inserts an element before or after another element in a list.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// LINSERT mylist BEFORE item2 newitem
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// :3
 /// ```
 ///
@@ -23,7 +23,12 @@ import '../command.dart';
 /// - [pivot]: The element to insert relative to.
 /// - [value]: The value to insert.
 final class LInsertCommand extends ValkeyCommand<int> with KeyedCommand<int> {
-  LInsertCommand(this.key, this.before, this.pivot, this.value);
+  LInsertCommand(
+    this.key,
+    this.pivot,
+    this.value, {
+    required this.before,
+  });
   final String key;
   final bool before;
   final String pivot;
@@ -33,7 +38,7 @@ final class LInsertCommand extends ValkeyCommand<int> with KeyedCommand<int> {
   List<String> get commandParts => [
         'LINSERT',
         key,
-        before ? 'BEFORE' : 'AFTER',
+        if (before) 'BEFORE' else 'AFTER',
         pivot,
         value,
       ];
@@ -48,6 +53,6 @@ final class LInsertCommand extends ValkeyCommand<int> with KeyedCommand<int> {
 
   @override
   ValkeyCommand<int> applyPrefix(String prefix) {
-    return LInsertCommand('$prefix$key', before, pivot, value);
+    return LInsertCommand('$prefix$key', pivot, value, before: before);
   }
 }

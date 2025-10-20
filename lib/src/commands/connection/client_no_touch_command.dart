@@ -4,25 +4,25 @@ import '../command.dart';
 /// Represents the 'CLIENT NO-TOUCH' command.
 ///
 /// **Valkey Command:**
-/// ```
+/// ```text
 /// CLIENT NO-TOUCH ON | OFF
 /// ```
 ///
 /// **Valkey Reply:**
-/// ```
+/// ```text
 /// OK
 /// ```
 ///
 /// **Dart Result (from parse method):**
 /// `String` resolving to `'OK'`
 final class ClientNoTouchCommand extends ValkeyCommand<String> {
-  ClientNoTouchCommand(this.enable);
+  ClientNoTouchCommand({required this.enable});
 
   final bool enable;
 
   @override
   List<String> get commandParts =>
-      ['CLIENT', 'NO-TOUCH', enable ? 'ON' : 'OFF'];
+      ['CLIENT', 'NO-TOUCH', if (enable) 'ON' else 'OFF'];
 
   @override
   String parse(dynamic data) {

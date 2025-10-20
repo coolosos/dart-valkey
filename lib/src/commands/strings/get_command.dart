@@ -4,12 +4,12 @@ import '../command.dart';
 /// Represents the 'GET key' command.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// GET mykey
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// hello
 /// ```

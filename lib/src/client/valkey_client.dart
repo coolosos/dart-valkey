@@ -4,21 +4,23 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:io';
 
+import 'package:meta/meta.dart';
+
 import '../codec/resp_decoder.dart';
+import '../codec/valkey_exception.dart';
 import '../commands/commands.dart';
 import '../connection/connection.dart';
 import '../connection/insecure_connection.dart';
 import '../connection/secure_connection.dart';
-import '../codec/valkey_exception.dart';
 import '../models/pubsub_message.dart';
-import 'package:meta/meta.dart';
 
 export '../models/pubsub_message.dart';
+
+part 'mixins/pattern_subscription_mixin.dart';
+part 'mixins/regular_subscription_mixin.dart';
+part 'mixins/shard_subscription_mixin.dart';
 part 'valkey_command_client.dart';
 part 'valkey_subscription_client.dart';
-part 'mixins/regular_subscription_mixin.dart';
-part 'mixins/pattern_subscription_mixin.dart';
-part 'mixins/shard_subscription_mixin.dart';
 
 /// Base class for Valkey and Valkey Pub/Sub clients, providing common connection management.
 sealed class BaseValkeyClient {

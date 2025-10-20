@@ -5,12 +5,12 @@ import '../command.dart';
 /// Returns all field names in the hash stored at key.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// HKEYS user:1
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// *2
 /// $4
 /// name

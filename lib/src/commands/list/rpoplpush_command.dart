@@ -5,12 +5,12 @@ import '../command.dart';
 /// Atomically removes the last element from source, and pushes it to the head of destination.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// RPOPLPUSH mylist myotherlist
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// itemX
 /// ```

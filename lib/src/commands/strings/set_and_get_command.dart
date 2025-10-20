@@ -9,12 +9,12 @@ import 'set_command.dart';
 /// Note: This command variant is only available on Redis >= 6.2.
 ///
 /// **Redis Command:**
-/// ```
+/// ```text
 /// SET mykey myvalue GET
 /// ```
 ///
 /// **Redis Reply (Example):**
-/// ```
+/// ```text
 /// $5
 /// oldval
 /// ```
