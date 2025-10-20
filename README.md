@@ -104,7 +104,7 @@ Future<void> main() async {
  
 ## Commands Implementation Status
 
-A continuación se muestra el estado de implementación de los comandos de Valkey, tal y como se indica en la documentación oficial. Los comandos marcados con `[x]` están implementados, mientras que los marcados con `[ ]` aún no lo están.
+The implementation status of the Valkey commands is shown below, as indicated in the official documentation. Commands marked with `[x]` are implemented, while those marked with `[ ]` are not yet implemented.
 
 ### Bitmap Operations
 - [ ] [BITCOUNT](https://valkey.io/commands/BITCOUNT)
