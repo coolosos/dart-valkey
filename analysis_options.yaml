@@ -1,4 +1,4 @@
-include: package:coolint/coolint.yaml
+include: package:coolint/dart.yaml
 
 analyzer:
   exclude:
