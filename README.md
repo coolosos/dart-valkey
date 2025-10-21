@@ -8,7 +8,7 @@
 [![Dart SDK Version](https://badgen.net/pub/sdk-version/dart_valkey)](https://pub.dev/packages/dart_valkey/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/coolosos/dart_valkey/blob/main/LICENSE)
 [![](https://img.shields.io/badge/linted%20by-coolint-0553B1)](https://pub.dev/packages/coolint)
-[![codecov](https://codecov.io/gh/coolosos/dart-valkey/graph/badge.svg)](https://codecov.io/gh/coolosos/dart_valkey)
+[![codecov](https://codecov.io/gh/coolosos/dart-valkey/graph/badge.svg)](https://codecov.io/gh/coolosos/dart-valkey)
 
 ![Codecov icicle graph](https://codecov.io/github/coolosos/dart-valkey/graphs/sunburst.svg?token=UCBDRQIM3S)
 
