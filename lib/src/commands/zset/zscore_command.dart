@@ -28,9 +28,13 @@ final class ZScoreCommand extends ValkeyCommand<double?>
   @override
   double? parse(dynamic data) {
     if (data == null) return null;
-    if (data is String) return double.tryParse(data);
+    if (data is String) {
+      if (double.tryParse(data) case final value?) {
+        return value;
+      }
+    }
     throw ValkeyException(
-      'Invalid response for ZSCORE: expected a string or null, got ${data.runtimeType}',
+      'Invalid response for ZSCORE: expected a parsable string or null, got ${data.runtimeType} "$data"',
     );
   }
 

@@ -55,9 +55,12 @@ final class ExpireCommand extends ValkeyCommand<bool> with KeyedCommand<bool> {
   @override
   bool parse(dynamic data) {
     if (data is int) return data == 1;
-    if (data is String) return data == '1';
+    if (data is String) {
+      if (data == '1') return true;
+      if (data == '0') return false;
+    }
     throw ValkeyException(
-      'Invalid response for EXPIRE: expected an integer, got ${data.runtimeType}',
+      'Invalid response for EXPIRE: expected an integer or "0"/"1", got ${data.runtimeType} "$data"',
     );
   }
 
