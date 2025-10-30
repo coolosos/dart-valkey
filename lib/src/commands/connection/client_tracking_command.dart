@@ -17,10 +17,11 @@ final class ClientTrackingCommand extends ValkeyCommand<bool> {
 
   @override
   bool parse(dynamic data) {
-    if (data is String) return data == 'OK';
-
+    if (data is String) {
+      if (data == 'OK') return true;
+    }
     throw ValkeyException(
-      'Invalid response for CLIENT TRACKING: expected OK, got ${data.runtimeType}',
+      'Invalid response for CLIENT TRACKING: expected OK, got ${data.runtimeType} "$data"',
     );
   }
 }
