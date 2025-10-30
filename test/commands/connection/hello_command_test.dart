@@ -1,5 +1,5 @@
-import 'package:dart_valkey/src/commands/connection/hello_command.dart';
 import 'package:dart_valkey/src/codec/valkey_exception.dart';
+import 'package:dart_valkey/src/commands/connection/hello_command.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -37,7 +37,7 @@ void main() {
     test('should parse list response correctly', () {
       final command = HelloCommand();
       expect(command.parse(['server', 'valkey', 'version', '7.2.0']),
-          {'server': 'valkey', 'version': '7.2.0'});
+          {'server': 'valkey', 'version': '7.2.0'},);
     });
 
     test('should throw an exception for invalid response', () {
