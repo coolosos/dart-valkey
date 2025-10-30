@@ -7,4 +7,5 @@ export 'src/commands/commands.dart';
 export 'src/connection/connection.dart';
 export 'src/connection/insecure_connection.dart';
 export 'src/connection/secure_connection.dart';
+export 'src/extensions/all_commands.dart';
 export 'src/models/pubsub_message.dart';
