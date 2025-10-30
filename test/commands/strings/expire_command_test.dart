@@ -10,7 +10,11 @@ void main() {
     });
 
     test('should build the correct command with strategy', () {
-      final command = ExpireCommand('mykey', 60, strategyType: ExpireStrategyTypes.onlyIfNotExists);
+      final command = ExpireCommand(
+        'mykey',
+        60,
+        strategyType: ExpireStrategyTypes.onlyIfNotExists,
+      );
       expect(command.commandParts, ['EXPIRE', 'mykey', '60', 'NX']);
     });
 
@@ -40,9 +44,16 @@ void main() {
     });
 
     test('should apply prefix to key', () {
-      final command = ExpireCommand('mykey', 60, strategyType: ExpireStrategyTypes.onlyIfExists);
+      final command = ExpireCommand(
+        'mykey',
+        60,
+        strategyType: ExpireStrategyTypes.onlyIfExists,
+      );
       final prefixedCommand = command.applyPrefix('myprefix:');
-      expect(prefixedCommand.commandParts, ['EXPIRE', 'myprefix:mykey', '60', 'XX']);
+      expect(
+        prefixedCommand.commandParts,
+        ['EXPIRE', 'myprefix:mykey', '60', 'XX'],
+      );
     });
   });
 }
