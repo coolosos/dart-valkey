@@ -22,7 +22,10 @@ void main() {
     test('should apply prefix to key', () {
       final command = AppendCommand('mykey', 'myvalue');
       final prefixedCommand = command.applyPrefix('myprefix:');
-      expect(prefixedCommand.commandParts, ['APPEND', 'myprefix:mykey', 'myvalue']);
+      expect(
+        prefixedCommand.commandParts,
+        ['APPEND', 'myprefix:mykey', 'myvalue'],
+      );
     });
   });
 }
