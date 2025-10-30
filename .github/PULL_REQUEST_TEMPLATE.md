@@ -1,20 +1,6 @@
----
-name: Pull Request
-about: Propose a change to the dart_valkey project
-title: 'feat: A brief and descriptive title'
-labels: ''
-assignees: ''
-
----
-
 ## 📝 Description
 
 Please provide a clear and concise description of the changes in this pull request. What is the motivation for this change?
-
-## 🔗 Related Issue
-
-Please link to the issue that this pull request addresses.
-*e.g., "Fixes #123"*
 
 ## ✅ Type of Change
 
