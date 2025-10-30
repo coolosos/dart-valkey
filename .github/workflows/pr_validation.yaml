@@ -11,6 +11,16 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    services:
+      valkey:
+        image: valkey/valkey:7.2.5 # Use a specific version
+        ports:
+          - 6379:6379 # Map port 6379 on the host to 6379 in the container
+        options: >-
+          --health-cmd "valkey-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -25,8 +35,17 @@ jobs:
       - name: Analyze project
         run: dart analyze --fatal-infos
 
+      - name: Wait for Valkey to be ready
+        run: |
+          for i in $(seq 1 10); do
+            valkey-cli -h 127.0.0.1 -p 6379 ping && break
+            echo "Waiting for Valkey..."
+            sleep 1
+          done
+          valkey-cli -h 127.0.0.1 -p 6379 ping
+
       - name: Run tests with coverage
-        run: dart test --coverage=coverage --exclude-tags integration
+        run: dart test --coverage=coverage # Removed --exclude-tags integration
 
       - name: Generate LCOV report
         run: dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info
