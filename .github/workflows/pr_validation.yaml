@@ -1,7 +1,9 @@
-
 name: PR Validation
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -11,27 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v5
 
-    - name: Set up Dart SDK
-      uses: dart-lang/setup-dart@v1.7.1
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1.7.1
 
-    - name: Install dependencies
-      run: dart pub get
+      - name: Install dependencies
+        run: dart pub get
 
-    - name: Analyze project
-      run: dart analyze --fatal-infos
+      - name: Analyze project
+        run: dart analyze --fatal-infos
 
-    - name: Run tests with coverage
-      run: dart test --coverage=coverage --exclude-tags integration
+      - name: Run tests with coverage
+        run: dart test --coverage=coverage --exclude-tags integration
 
-    - name: Generate LCOV report
-      run: dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info
+      - name: Generate LCOV report
+        run: dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v5
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: coverage/lcov.info
-        fail_ci_if_error: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/lcov.info
+          fail_ci_if_error: true
