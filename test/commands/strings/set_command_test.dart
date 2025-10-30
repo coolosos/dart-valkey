@@ -14,7 +14,7 @@ void main() {
     });
 
     test('should build the correct command with expire duration', () {
-      final command = SetCommand('mykey', 'myvalue', expire: ExpireDuration(Duration(seconds: 60)));
+      final command = SetCommand('mykey', 'myvalue', expire: const ExpireDuration(Duration(seconds: 60)));
       expect(command.commandParts, ['SET', 'mykey', 'myvalue', 'EX', '60']);
     });
 

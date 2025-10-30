@@ -1,5 +1,5 @@
-import 'package:dart_valkey/src/commands/zset/zadd_command.dart';
 import 'package:dart_valkey/src/codec/valkey_exception.dart';
+import 'package:dart_valkey/src/commands/zset/zadd_command.dart';
 import 'package:test/test.dart';
 
 void main() {

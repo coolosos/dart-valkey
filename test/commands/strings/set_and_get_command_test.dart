@@ -1,6 +1,6 @@
+import 'package:dart_valkey/src/codec/valkey_exception.dart';
 import 'package:dart_valkey/src/commands/strings/set_and_get_command.dart';
 import 'package:dart_valkey/src/commands/strings/set_command.dart'; // For SetStrategyTypes
-import 'package:dart_valkey/src/codec/valkey_exception.dart';
 import 'package:test/test.dart';
 
 void main() {
